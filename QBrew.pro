@@ -15,8 +15,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        qbrew.cpp
+        qbrew.cpp \
+    Process/process.cpp
 
-HEADERS  += qbrew.h
+HEADERS  += qbrew.h \
+    Process/process.h
 
 FORMS    += qbrew.ui
