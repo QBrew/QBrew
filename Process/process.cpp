@@ -33,7 +33,11 @@ std::pair<std::string, std::string> qbrew::brewVersion()
     pos = strout.find("\n");
     std::string versionBrewCask = strout.substr (14, pos - 14);
 
-    std::pair<std::string, std::string> versions(versionBrew, versionBrewCask);
+
+    std::pair<std::string, std::string> versions(versionBrew,
+            versionBrewCask);
+
+    return versions;
 }
 
 std::vector<std::string> qbrew::search(std::string search, bool isCask)
