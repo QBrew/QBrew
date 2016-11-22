@@ -36,28 +36,15 @@ std::pair<std::string, std::string> qbrew::brewVersion()
     std::pair<std::string, std::string> versions(versionBrew, versionBrewCask);
 }
 
-std::vector<std::string> qbrew::search(std::string search, bool cask)
+std::vector<std::string> qbrew::search(std::string search, bool isCask)
 {
-    QProcess process;
-    std::string str = "/usr/local/bin/brew ";
-    str += cask ? "cask search " : "search ";
-    str += search;
-    process.start(QString::fromStdString(str));
-    process.waitForFinished(-1); // will wait forever until finished
-    QString stdout = process.readAllStandardOutput();
-
-    std::vector<std::string> results;
-    std::stringstream  stream;
-    stream.str(stdout.toStdString());
-    std::string line;
-    while (std::getline(stream, line))
-    {
-        if (!line.compare("==> Partial matches") == 0 &&
-                !line.compare("==> Exact match") == 0)
-        {
-            results.push_back(line);
-        }
-    }
+    std::string argument = isCask ? "cask search " : "search ";
+    argument += search;
+    std::vector<std::string> results = listArgument(argument);
+    results.erase(std::remove(results.begin(), results.end(),
+                              "==> Partial matches"), results.end());
+    results.erase(std::remove(results.begin(), results.end(), "==> Exact match"),
+                  results.end());
 
     return results;
 }
@@ -93,4 +80,30 @@ int qbrew::install(std::string package, bool cask)
 
     return 0;
 
+}
+
+std::vector<std::string> qbrew::listArgument(std::string argument)
+{
+    QProcess process;
+    std::string str = "/usr/local/bin/brew " + argument;
+
+    process.start(QString::fromStdString(str));
+    process.waitForFinished(-1); // will wait forever until finished
+    QString stdout = process.readAllStandardOutput();
+
+    std::vector<std::string> results;
+    std::stringstream  stream;
+    stream.str(stdout.toStdString());
+    std::string line;
+    while (std::getline(stream, line))
+    {
+        results.push_back(line);
+    }
+
+    return results;
+}
+
+std::vector<std::string> qbrew::list(bool isCask)
+{
+    return listArgument(isCask ? "cask list" : "list");
 }
