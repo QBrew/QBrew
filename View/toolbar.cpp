@@ -20,9 +20,10 @@ void toolBar::setActions()
 
     addSeparator();
 
-    installAction_ = addAction(QIcon(":/install"),  tr("Install"));
-    uninstallAction_ = addAction(QIcon(":/delete"),        tr("Uninstall"));
-    favoriAction_ = addAction(QIcon("://favori"), tr("Favori"));
+    installAction_ = addAction(QIcon(":/Icons/install"),  tr("Install"));
+    uninstallAction_ = addAction(QIcon(":/Icons/uninstall"),
+                                 tr("Uninstall"));
+    favoriAction_ = addAction(QIcon(":/Icons/favori"), tr("Favori"));
 }
 
 void toolBar::setStatusTips()

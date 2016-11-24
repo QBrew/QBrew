@@ -26,11 +26,11 @@ SOURCES += main.cpp\
 HEADERS  += \
     Process/process.h \
     View/packagelist.h \
-    mainwindows.h \
     qbrewapplication.h \
     View/toolbar.h \
     View/packageitem.h \
-    View/packagemodel.h
+    View/packagemodel.h \
+    mainwindow.h
 
 FORMS    +=
 

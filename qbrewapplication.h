@@ -4,7 +4,7 @@
 
 #include <QApplication>
 
-#include "mainwindows.h"
+#include "mainwindow.h"
 
 class MainWindow;
 

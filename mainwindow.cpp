@@ -1,4 +1,4 @@
-#include "mainwindows.h"
+#include "mainwindow.h"
 #include "View/packagelist.h"
 #include "View/packagemodel.h"
 
