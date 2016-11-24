@@ -33,7 +33,6 @@ std::pair<std::string, std::string> qbrew::brewVersion()
     pos = strout.find("\n");
     std::string versionBrewCask = strout.substr (14, pos - 14);
 
-
     std::pair<std::string, std::string> versions(versionBrew,
             versionBrewCask);
 
@@ -82,8 +81,8 @@ int qbrew::install(std::string package, bool cask)
         return -3;
     }
 
+    //install well done
     return 0;
-
 }
 
 std::vector<std::string> qbrew::listArgument(std::string argument)
@@ -110,4 +109,20 @@ std::vector<std::string> qbrew::listArgument(std::string argument)
 std::vector<std::string> qbrew::list(bool isCask)
 {
     return listArgument(isCask ? "cask list" : "list");
+}
+
+std::map<std::string, std::string> qbrew::infoPackage(std::string package,
+        bool isCask)
+{
+    std::string argument = isCask ? "cask info " : "info ";
+    argument += package;
+    std::vector<std::string> vector = listArgument(argument);
+    std::size_t pos = vector.at(0).find(":");
+    std::size_t pos2 = vector.at(0).find("\n");
+
+    std::map<std::string, std::string> map;
+    map["name"] = vector.at(0).substr (0, pos);
+    map["version"] = vector.at(0).substr (pos + 2, pos2 - pos);
+
+    return map;
 }

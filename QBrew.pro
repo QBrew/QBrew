@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql svg
 
 CONFIG += c++14
 
@@ -15,10 +15,24 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        qbrew.cpp \
-    Process/process.cpp
+    Process/process.cpp \
+    qbrewapplication.cpp \
+    mainwindow.cpp \
+    View/toolbar.cpp \
+    View/packageitem.cpp \
+    View/packagelist.cpp \
+    View/packagemodel.cpp
 
-HEADERS  += qbrew.h \
-    Process/process.h
+HEADERS  += \
+    Process/process.h \
+    View/packagelist.h \
+    mainwindows.h \
+    qbrewapplication.h \
+    View/toolbar.h \
+    View/packageitem.h \
+    View/packagemodel.h
 
-FORMS    += qbrew.ui
+FORMS    +=
+
+RESOURCES += \
+    ressources.qrc

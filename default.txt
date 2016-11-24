@@ -1,0 +1,3 @@
+dropbox	latest
+google-chrome	latest
+netbeans	8.2

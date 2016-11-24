@@ -1,8 +1,10 @@
 #include "packagelist.h"
+#include "packagemodel.h"
 
 #include <QHeaderView>
+#include <QFile>
 
-void packageList::setHeaderLabels()
+/*void packageList::setHeaderLabels()
 {
     QStringList headerLabels
     {
@@ -19,13 +21,16 @@ void packageList::setHeaderLabels()
 
     setSortingEnabled(true);
     header()->setSectionResizeMode(QHeaderView::ResizeToContents);
-}
+}*/
 
 void packageList::setTreeView()
 {
-    QStandardItemModel * model = new QStandardItemModel();
+    QFile file(":/default.txt");
+    file.open(QIODevice::ReadOnly);
+    packageModel * model = new packageModel(file.readAll());
 
-    QStandardItem * check;
+    file.close();
+    /*QStandardItem * check;
     QStandardItem * favori;
     QStandardItem * name;
     QStandardItem * version;
@@ -44,13 +49,13 @@ void packageList::setTreeView()
         version->setFlags(version->flags() & ~Qt::ItemIsEditable);
 
         model->appendRow(QList<QStandardItem *>() << check << favori << name <<
-                         version);
+        version);
     }
 
-    model->setHorizontalHeaderItem(0, new QStandardItem());
-    model->setHorizontalHeaderItem(1, new QStandardItem());
-    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Name")));
-    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Version")));
+        model->setHorizontalHeaderItem(0, new QStandardItem());
+     model->setHorizontalHeaderItem(1, new QStandardItem());
+     model->setHorizontalHeaderItem(2, new QStandardItem(QString("Name")));
+     model->setHorizontalHeaderItem(3, new QStandardItem(QString("Version")));*/
 
     header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
@@ -60,36 +65,7 @@ void packageList::setTreeView()
 
 packageList::packageList(QWidget * parent) : QTreeView(parent)
 {
-    setHeaderLabels();
+    //setHeaderLabels();
 
     setTreeView();
-}
-
-/*QVariant packageList::data(const QModelIndex & index, int role) const
-{
-    if (!index.isValid())
-        return QVariant();
-
-    packageList * item = static_cast<packageList *>(index.internalPointer());
-
-    if ( role == Qt::CheckStateRole && index.column() == 0 )
-        return static_cast<int>( item->isChecked() ? Qt::Checked : Qt::Unchecked );
-
-    if (role != Qt::DisplayRole)
-        return QVariant();
-
-    return item->data(index.column());
-}*/
-
-Qt::ItemFlags packageList::flags(const QModelIndex & index) const
-{
-    if (!index.isValid())
-        return 0;
-
-    Qt::ItemFlags flags = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
-
-    if ( index.column() == 0 )
-        flags |= Qt::ItemIsUserCheckable;
-
-    return flags;
 }
