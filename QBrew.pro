@@ -10,6 +10,8 @@ CONFIG += c++14
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QT += sql
+
 TARGET = QBrew
 TEMPLATE = app
 
@@ -21,7 +23,8 @@ SOURCES += main.cpp\
     View/toolbar.cpp \
     View/packageitem.cpp \
     View/packagelist.cpp \
-    View/packagemodel.cpp
+    View/packagemodel.cpp \
+    DB/db.cpp
 
 HEADERS  += \
     Process/process.h \
@@ -30,7 +33,9 @@ HEADERS  += \
     View/toolbar.h \
     View/packageitem.h \
     View/packagemodel.h \
-    mainwindow.h
+    mainwindow.h \
+    DB/db.h \
+    DB/formula.h
 
 FORMS    +=
 
