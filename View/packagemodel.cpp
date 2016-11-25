@@ -44,7 +44,8 @@
     Provides a simple tree model to show how to create and use hierarchical
     models.
 */
-
+#include <QDebug>
+#include <QIcon>
 #include "packagemodel.h"
 
 packageModel::packageModel(const QString & data, QObject * parent)
@@ -52,7 +53,7 @@ packageModel::packageModel(const QString & data, QObject * parent)
 {
     QList<QVariant> rootData;
     rootData << "Name" << "Version";
-    rootItem_ = new packageItem(rootData);
+    rootItem_ = new packageItem(rootData, false);
     setupModelData(data.split(QString("\n")), rootItem_);
 }
 
@@ -78,6 +79,10 @@ QVariant packageModel::data(const QModelIndex & index, int role) const
 
     if ( role == Qt::CheckStateRole && index.column() == 0 )
         return static_cast<int>( item->isChecked() ? Qt::Checked : Qt::Unchecked );
+
+    if (role == Qt::DecorationRole && index.column() == 0)
+        return item->isFavourite() ? QVariant(QIcon(":/Icons/favori")) : QVariant(
+                   QIcon(":/Icons/noFavourite"));
 
     if (role != Qt::DisplayRole)
         return QVariant();
@@ -182,7 +187,10 @@ void packageModel::setupModelData(const QStringList & lines,
             // Read the column data from the rest of the line.
             QStringList columnStrings = lineData.split("\t", QString::SkipEmptyParts);
             QList<QVariant> columnData;
-            for (int column = 0; column < columnStrings.count(); ++column)
+            //checkFavourite : 0 or 1 in first in line of data
+            bool isFavourite = columnStrings[0] == "1";
+
+            for (int column = 1; column < columnStrings.count(); ++column)
                 columnData << columnStrings[column];
 
             if (position > indentations.last())
@@ -204,9 +212,10 @@ void packageModel::setupModelData(const QStringList & lines,
                     indentations.pop_back();
                 }
             }
-
+            qDebug() << columnData;
             // Append a new item to the current parent's list of children.
-            parents.last()->appendChild(new packageItem(columnData, parents.last()));
+            parents.last()->appendChild(new packageItem(columnData, isFavourite,
+                                        parents.last()));
         }
 
         number++;

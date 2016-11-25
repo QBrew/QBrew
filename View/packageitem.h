@@ -7,7 +7,8 @@
 class packageItem
 {
   public:
-    packageItem(const QList<QVariant> & data, packageItem * parent = 0);
+    packageItem(const QList<QVariant> & data, bool isFavourite,
+                packageItem * parent = 0);
     ~packageItem();
 
     void appendChild(packageItem * child);
@@ -19,13 +20,16 @@ class packageItem
     int row() const;
     packageItem * parent();
     bool isChecked() const;
-    void setChecked( bool set );
+    void setChecked(bool set);
+    bool isFavourite() const;
+    void setFavourite(bool set);
 
   private:
     QList<packageItem *> childItems_;
     QList<QVariant> itemData_;
     packageItem * parentItem_;
     bool isChecked_;
+    bool isFavourite_;
 };
 
 #endif // PACKAGEITEM_H

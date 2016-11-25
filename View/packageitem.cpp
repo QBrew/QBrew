@@ -2,10 +2,13 @@
 
 #include <QStringList>
 
-packageItem::packageItem(const QList<QVariant> & data, packageItem * parent)
+packageItem::packageItem(const QList<QVariant> & data, bool isFavourite,
+                         packageItem * parent)
 {
     parentItem_ = parent;
     itemData_ = data;
+    isChecked_ = false;
+    isFavourite_ = isFavourite;
 }
 
 packageItem::~packageItem()
@@ -51,6 +54,16 @@ bool packageItem::isChecked() const
 void packageItem::setChecked(bool set)
 {
     isChecked_ = set;
+}
+
+bool packageItem::isFavourite() const
+{
+    return isFavourite_;
+}
+
+void packageItem::setFavourite(bool set)
+{
+    isFavourite_ = set;
 }
 
 int packageItem::row() const
