@@ -2,6 +2,8 @@
 #include <sstream>
 #include <iostream>
 #include <QProcess>
+#include <QFile>
+#include <QTextStream>
 
 bool qbrew::isBrewCaskInstalled()
 {
@@ -111,18 +113,42 @@ std::vector<std::string> qbrew::list(bool isCask)
     return listArgument(isCask ? "cask list" : "list");
 }
 
-std::map<std::string, std::string> qbrew::infoPackage(std::string package,
+QMap<std::string, std::string> qbrew::infoPackage(std::string package,
         bool isCask)
 {
-    std::string argument = isCask ? "cask info " : "info ";
-    argument += package;
-    std::vector<std::string> vector = listArgument(argument);
-    std::size_t pos = vector.at(0).find(":");
-    std::size_t pos2 = vector.at(0).find("\n");
-
-    std::map<std::string, std::string> map;
-    map["name"] = vector.at(0).substr (0, pos);
-    map["version"] = vector.at(0).substr (pos + 2, pos2 - pos);
-
+    QMap<std::string, std::string> map;
+    map["name"] = package;
+    map["version"] = "";
+    map["desc"] = "";
+    map["url"] = "";
+    map["homepage"] = "";
+    QString path = isCask ?
+                   "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
+                   "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
+    path += QString::fromStdString(package) + ".rb";
+    QFile file(path);
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QList<std::string> infos = {"  desc ", "  homepage ", "  url ", "  version ", "  name "};
+        QTextStream in(&file);
+        while (!in.atEnd())
+        {
+            std::string line = in.readLine().toStdString();
+            for (std::string info : infos)
+            {
+                if (line.find(info) != std::string::npos)
+                {
+                    line.erase(std::remove(line.begin(), line.end(), '"'), line.end());
+                    line.erase(std::remove(line.begin(), line.end(), '\''), line.end());
+                    line.erase(std::remove(line.begin(), line.end(), ':'), line.end());
+                    map[info.substr(2, info.length() - 3)] = line.substr(info.length(),
+                            line.length() - info.length());
+                    infos.removeOne(info);
+                    break;
+                }
+            }
+        }
+        file.close();
+    }
     return map;
 }

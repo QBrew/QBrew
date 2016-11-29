@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <map>
+#include <QMap>
 
 namespace qbrew
 {
@@ -14,7 +14,7 @@ std::vector<std::string> search(std::string search, bool isCask);
 int install(std::string package, bool cask);
 std::vector<std::string> listArgument(std::string argument);
 std::vector<std::string> list(bool isCask);
-std::map<std::string, std::string> infoPackage(std::string package,
+QMap<std::string, std::string> infoPackage(std::string package,
         bool isCask);
 
 }
