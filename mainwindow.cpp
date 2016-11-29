@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "View/packagelist.h"
 #include "View/packagemodel.h"
+#include "View/menubar.h"
 
 #include <QLineEdit>
 
@@ -10,7 +11,7 @@ mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
 
     stackedWidget_->addWidget(new packageList(this));
 
-    menuBar_       = new QMenuBar(this);
+    menuBar_       = new menubar(this);
     toolBar_       = new toolBar(this);
     statusBar_     = new QStatusBar(this);
 

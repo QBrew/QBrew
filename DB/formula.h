@@ -41,4 +41,3 @@ void formula::setVersion(QString version)
 } 
  
 #endif // FORMULA_H 
-index on develop: 805d43a Init Qt Project

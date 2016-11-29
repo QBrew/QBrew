@@ -15,7 +15,6 @@ QT += sql
 TARGET = QBrew
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
     Process/process.cpp \
     qbrewapplication.cpp \
@@ -24,7 +23,9 @@ SOURCES += main.cpp\
     View/packageitem.cpp \
     View/packagelist.cpp \
     View/packagemodel.cpp \
-    DB/db.cpp
+    DB/db.cpp \
+    View/menubar.cpp \
+    Menu/about.cpp
 
 HEADERS  += \
     Process/process.h \
@@ -35,7 +36,9 @@ HEADERS  += \
     View/packagemodel.h \
     mainwindow.h \
     DB/db.h \
-    DB/formula.h
+    DB/formula.h \
+    View/menubar.h \
+    Menu/about.h
 
 FORMS    +=
 
