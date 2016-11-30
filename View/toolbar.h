@@ -13,6 +13,7 @@ class toolBar : public QToolBar
     QAction * uninstallAction_;
     QAction * favoriAction_;
     QAction * emailAction_;
+    QAction * selectAll_;
 
     void setActions();
     void setConnections();
@@ -27,6 +28,7 @@ class toolBar : public QToolBar
     void installClicked();
     void uninstallClicked();
     void addFavoriClicked();
+    void selectAllClicked();
 };
 
 #endif // TOOLBAR_H
