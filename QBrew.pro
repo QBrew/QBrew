@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     View/packageitem.cpp \
     View/packagelist.cpp \
     View/packagemodel.cpp \
-    DB/db.cpp
+    DB/DB/dbmanager.cpp \
+    DB/DB/favoritedb.cpp
 
 HEADERS  += \
     Process/process.h \
@@ -34,8 +35,9 @@ HEADERS  += \
     View/packageitem.h \
     View/packagemodel.h \
     mainwindow.h \
-    DB/db.h \
-    DB/formula.h
+    DB/DB/dbmanager.h \
+    DB/DB/favoritedb.h \
+    DB/DTO/favoritedto.h
 
 FORMS    +=
 
