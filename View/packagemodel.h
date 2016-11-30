@@ -67,6 +67,7 @@ class packageModel : public QAbstractItemModel
 
     bool setData(const QModelIndex & index, const QVariant & value,
                  int role);
+    void selectAll();
 
   private:
     void setupModelData(const QStringList & lines, packageItem * parent);

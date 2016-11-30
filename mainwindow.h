@@ -21,12 +21,16 @@ class mainWindow : public QMainWindow
 
   public slots:
 
+    void selectAll();
+
   private:
 
     QStackedWidget * stackedWidget_;
     toolBar     *    toolBar_;
     QMenuBar    *    menuBar_;
     QStatusBar   *   statusBar_;
+    packageList * packageList_;
+    void connectToolbar();
 };
 
 #endif // MAINWINDOWS_H

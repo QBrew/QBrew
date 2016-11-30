@@ -5,6 +5,7 @@
         <file alias="uninstall">Icons/uninstall.svg</file>
         <file alias="update">Icons/update.svg</file>
         <file alias="noFavourite">Icons/noFavourite.svg</file>
+        <file alias="selectAll">Icons/selectAll.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>default.txt</file>
