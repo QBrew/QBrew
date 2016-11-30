@@ -24,7 +24,7 @@ SOURCES += main.cpp\
     View/packagelist.cpp \
     View/packagemodel.cpp \
     DB/DB/dbmanager.cpp \
-    DB/DB/favoritedb.cpp
+    DB/DB/favoritedb.cpp \
     View/menubar.cpp \
     Menu/about.cpp
 
@@ -38,7 +38,7 @@ HEADERS  += \
     mainwindow.h \
     DB/DB/dbmanager.h \
     DB/DB/favoritedb.h \
-    DB/DTO/favoritedto.h
+    DB/DTO/favoritedto.h \
     View/menubar.h \
     Menu/about.h
 
