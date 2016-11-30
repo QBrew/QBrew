@@ -84,6 +84,9 @@ int qbrew::install(std::string package, bool cask)
     }
 
     //install well done
+    str = "/usr/local/bin/brew ";
+    str += cask ? "cask cleanup" : "cleanup";
+    process.start(QString::fromStdString(str));
     return 0;
 }
 
