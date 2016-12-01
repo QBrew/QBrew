@@ -74,7 +74,7 @@ std::vector<std::string> qbrew::search(std::string search, bool isCask)
 }
 
 
-QStringList qbrew::search2(QString searchValue, bool isCask)
+QFileInfoList qbrew::search2(QString searchValue, bool isCask)
 {
     QString path = isCask ?
                    "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
@@ -84,12 +84,7 @@ QStringList qbrew::search2(QString searchValue, bool isCask)
     searchValue = searchValue.isEmpty() ? "*"  : "*" + searchValue + "*";
     QFileInfoList files = currentDir.entryInfoList(QStringList(searchValue),
                           QDir::Files);
-    QStringList list;
-    for (auto f : files)
-    {
-        list.push_back(f.baseName());
-    }
-    return list;
+    return files;
 }
 
 int qbrew::install(std::string package, bool cask)

@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QDebug>
 
+#include <QFileInfoList>
 /*void packageList::setHeaderLabels()
 {
     QStringList headerLabels
@@ -28,10 +29,13 @@
 void packageList::setTreeView()
 {
     QString data;
-    std::vector<std::string> search = qbrew::search("", true);
-    for (std::string test : search)
+    //QStringList search = qbrew::search2("", true);
+    QFileInfoList search = qbrew::search2("", true);
+    for (auto test : search)
     {
-        QMap<std::string, std::string> map = qbrew::infoPackage(test, true);
+        QMap<std::string, std::string> map = qbrew::infoPackage(
+                test.baseName().toStdString(),
+                true);
         data += "1\t" + QString::fromStdString(map["name"]) + "\t" +
                 QString::fromStdString(map["version"]) + "\n";
     }
@@ -73,6 +77,8 @@ void packageList::setTreeView()
      model->setHorizontalHeaderItem(3, new QStandardItem(QString("Version")));*/
 
     header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+
 
     setAlternatingRowColors(true);
     setModel(model);

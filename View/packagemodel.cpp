@@ -212,7 +212,6 @@ void packageModel::setupModelData(const QStringList & lines,
                     indentations.pop_back();
                 }
             }
-            qDebug() << columnData;
             // Append a new item to the current parent's list of children.
             parents.last()->appendChild(new packageItem(columnData, isFavourite,
                                         parents.last()));
