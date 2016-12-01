@@ -27,7 +27,7 @@ std::vector<std::string> list(bool isCask);
 QMap<std::string, std::string> infoPackage(std::string package,
         bool isCask);
 QMap<QString, QString> infoPackage2(QString package, bool cask);
-void addToMap(QMap<QString, QString> & map, QString line);
+void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line);
 
 void cleanup(bool cask);
 

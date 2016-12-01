@@ -231,21 +231,23 @@ QMap<std::string, std::string> infoPackage(std::string package, bool isCask)
 QMap<QString, QString> infoPackage2(QString package, bool cask)
 {
     QMap<QString, QString> map;
-    map["name"] = package;
-    map["version"] = "";
-    map["desc"] = "";
-    map["url"] = "";
-    map["homepage"] = "";
+    QStringList infos (QStringList() << "  version " << "  url "
+                       << "  name " );//<< "  homepage "  << "  desc ");
+    map.insert("name", package);
+    map.insert("version", "");
+    map.insert("url", "");
+    //map.insert("desc", "");
+    //map.insert("homepage", "");
     map["favorite"] = "1";
     QString path = getBrewPath(cask) + package + ".rb";
     QFile inputFile(path);
     if (inputFile.open(QIODevice::ReadOnly))
     {
         QTextStream in(&inputFile);
-        while (!in.atEnd())
+        while (!in.atEnd() && !infos.isEmpty())
         {
             QString line = in.readLine();
-            addToMap(map, line);
+            addToMap(map, infos, line);
 
         }
         inputFile.close();
@@ -253,10 +255,8 @@ QMap<QString, QString> infoPackage2(QString package, bool cask)
     return map;
 }
 
-void addToMap(QMap<QString, QString> & map, QString line)
+void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line)
 {
-    QStringList infos (QStringList() << "  desc " << "  homepage " << "  url "
-                       << "  version " << "  name ");
     for (QString info : infos)
     {
         if (line.indexOf(info) != -1)
