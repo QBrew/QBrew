@@ -4,6 +4,7 @@
 #include <QMenuBar>
 #include "Menu/about.h"
 #include <iostream>
+#include "Menu/preferences.h"
 
 class menubar : public QMenuBar
 {
@@ -12,6 +13,7 @@ public:
      void setActions();
      void setConnections();
      void aboutPopup();
+     void preferencesPopup();
 
 signals:
 

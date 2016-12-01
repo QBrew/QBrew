@@ -21,7 +21,8 @@ class mainWindow : public QMainWindow
 
   public slots:
 
-    void selectAll();
+    void selectAllNone(bool isAll);
+    void install();
 
   private:
 
