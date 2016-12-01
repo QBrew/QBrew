@@ -10,9 +10,11 @@
 #include <QFileDialog>
 #include <iostream>
 #include <QFile>
+#include <QLineEdit>
 
 class preferences : public QDialog
 {
+    Q_OBJECT
 public:
     preferences(QWidget* Parent);
     void setTextZone();
@@ -21,11 +23,12 @@ public:
 signals:
 
 public slots:
-    //void save();
+    void save();
+    void getDirectory();
 
 private :
     QVBoxLayout* vbox_;
-    QTextEdit* path_;
+    QLineEdit* path_;
     QPushButton* closeButton_;
     QPushButton* saveButton_;
     QPushButton* pathButton_;
