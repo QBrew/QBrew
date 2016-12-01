@@ -1,8 +1,10 @@
 #include "packagelist.h"
 #include "packagemodel.h"
+#include "Process/process.h"
 
 #include <QHeaderView>
 #include <QFile>
+#include <QDebug>
 
 /*void packageList::setHeaderLabels()
 {
@@ -25,11 +27,24 @@
 
 void packageList::setTreeView()
 {
-    QFile file(":/default.txt");
-    file.open(QIODevice::ReadOnly);
-    packageModel * model = new packageModel(file.readAll());
+    QString data;
+    std::vector<std::string> search = qbrew::search("", true);
+    for (std::string test : search)
+    {
+        QMap<std::string, std::string> map = qbrew::infoPackage(test, true);
+        data += "1\t" + QString::fromStdString(map["name"]) + "\t" +
+                QString::fromStdString(map["version"]) + "\n";
+    }
 
-    file.close();
+
+    /*QFile file(":/default.txt");
+    file.open(QIODevice::ReadOnly);
+    QByteArray test = file.readAll();
+    QString test2 = (QString)test;
+    qDebug() << "test " << test2.split(QString("\n"));*/
+    packageModel * model = new packageModel(data);
+
+    //file.close();
     /*QStandardItem * check;
     QStandardItem * favori;
     QStandardItem * name;
@@ -65,7 +80,5 @@ void packageList::setTreeView()
 
 packageList::packageList(QWidget * parent) : QTreeView(parent)
 {
-    //setHeaderLabels();
-
     setTreeView();
 }

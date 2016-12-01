@@ -5,7 +5,7 @@ namespace qbrew
 {
 
 bool connection();
-bool close();
+void close();
 
 }
 

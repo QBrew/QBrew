@@ -3,7 +3,18 @@
 #include <iostream>
 #include <QProcess>
 #include <QFile>
+#include <QDir>
 #include <QTextStream>
+
+#include <QDebug>
+
+
+QString qbrew::getBrewPath(bool isCask)
+{
+    QString path = isCask ?
+                   "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
+                   "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
+}
 
 bool qbrew::isBrewCaskInstalled()
 {
@@ -41,6 +52,22 @@ std::pair<std::string, std::string> qbrew::brewVersion()
     return versions;
 }
 
+QPair<QString, QString> qbrew::brewVersion2()
+{
+    QProcess process;
+    process.start("/usr/local/bin/brew --version ");
+    process.waitForFinished(-1); // will wait forever until finished
+    QString stdout = process.readAllStandardOutput();
+    QString brew = stdout.split("\n").at(0).split(" ").at(1);
+
+    process.start("/usr/local/bin/brew cask --version ");
+    process.waitForFinished(-1); // will wait forever until finished
+    stdout = process.readAllStandardOutput();
+    QString brewCask = stdout.split("\n").at(0).split(" ").at(1);
+
+    return QPair<QString, QString> (brew, brewCask);
+}
+
 std::vector<std::string> qbrew::search(std::string search, bool isCask)
 {
     std::string argument = isCask ? "cask search " : "search ";
@@ -52,6 +79,21 @@ std::vector<std::string> qbrew::search(std::string search, bool isCask)
                   results.end());
 
     return results;
+}
+
+
+QStringList qbrew::search2(QString searchValue, bool isCask)
+{
+    QDir currentDir(getBrewPath(isCask));
+    searchValue = searchValue.isEmpty() ? "*"  : "*" + searchValue + "*";
+    QFileInfoList files = currentDir.entryInfoList(QStringList(searchValue),
+                          QDir::Files);
+    QStringList list;
+    for (auto f : files)
+    {
+        list.push_back(f.baseName());
+    }
+    return list;
 }
 
 int qbrew::install(std::string package, bool cask)
