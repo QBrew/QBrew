@@ -53,6 +53,7 @@ class packageModel : public QAbstractItemModel
 
   public:
     packageModel(const QString & data, QObject * parent = 0);
+    packageModel(const QList<QMap<QString, QString>> & data, QObject * parent = 0);
     ~packageModel();
 
     QVariant data(const QModelIndex & index, int role) const;
@@ -71,6 +72,8 @@ class packageModel : public QAbstractItemModel
 
   private:
     void setupModelData(const QStringList & lines, packageItem * parent);
+    void setupModelData(const QList<QMap<QString, QString>> & packages,
+                        packageItem * parent);
 
     packageItem * rootItem_;
 };

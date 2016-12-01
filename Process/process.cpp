@@ -13,14 +13,13 @@ namespace qbrew
 
 
 
-QString getBrewPath(bool isCask)
+QString getBrewPath(bool cask)
 {
     //TODO check if path is no default
 
-    QString path = isCask ?
-                   "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
-                   "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
-    return path;
+    return cask ?
+           "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
+           "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
 }
 
 bool isBrewCaskInstalled()
@@ -89,16 +88,16 @@ std::vector<std::string> search(std::string search, bool isCask)
 }
 
 
-QFileInfoList search2(QString searchValue, bool isCask)
+QFileInfoList search2(QString searchValue, bool cask)
 {
-    QDir currentDir(getBrewPath(isCask));
+    QDir currentDir(getBrewPath(cask));
     searchValue = searchValue.isEmpty() ? "*"  : "*" + searchValue + "*";
     QFileInfoList files = currentDir.entryInfoList(QStringList(searchValue),
                           QDir::Files);
     return files;
 }
 
-int install(std::string package, bool cask)
+int install3(std::string package, bool cask)
 {
     QProcess process;
     std::string str = "/usr/local/bin/brew ";
@@ -132,6 +131,36 @@ int install(std::string package, bool cask)
     str += cask ? "cask cleanup" : "cleanup";
     process.start(QString::fromStdString(str));
     return 0;
+}
+
+int install2(QString package, bool cask)
+{
+    QProcess process;
+    QString command = "/usr/local/bin/brew ";
+    command.append(cask ? "cask install " : "install " + package);
+    process.start(command);
+    process.waitForFinished(-1); // will wait forever until finished
+
+    if (process.exitCode() == 0)
+    {
+        //already install or install
+        cleanup(cask);
+        return 0;
+    }
+    else
+    {
+        //error
+        return -1;
+    }
+
+}
+
+void cleanup(bool cask)
+{
+    QString command = "/usr/local/bin/brew ";
+    command += cask ? "cask cleanup" : "cleanup";
+    QProcess process;
+    process.start(command);
 }
 
 std::vector<std::string> listArgument(std::string argument)
@@ -197,6 +226,59 @@ QMap<std::string, std::string> infoPackage(std::string package, bool isCask)
         file.close();
     }
     return map;
+}
+
+QMap<QString, QString> infoPackage2(QString package, bool cask)
+{
+    QMap<QString, QString> map;
+    map["name"] = package;
+    map["version"] = "";
+    map["desc"] = "";
+    map["url"] = "";
+    map["homepage"] = "";
+    map["favorite"] = "1";
+    QString path = getBrewPath(cask) + package + ".rb";
+    QFile inputFile(path);
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+        QTextStream in(&inputFile);
+        while (!in.atEnd())
+        {
+            QString line = in.readLine();
+            addToMap(map, line);
+
+        }
+        inputFile.close();
+    }
+    return map;
+}
+
+void addToMap(QMap<QString, QString> & map, QString line)
+{
+    QStringList infos (QStringList() << "  desc " << "  homepage " << "  url "
+                       << "  version " << "  name ");
+    for (QString info : infos)
+    {
+        if (line.indexOf(info) != -1)
+        {
+            line.remove('"');
+            line.remove('\'');
+            line.remove(':');
+            QStringList items = line.split(" ", QString::SkipEmptyParts);
+            QString key (items.at(0));
+            QString value (items.at(1));
+            if (info == "  name ")
+            {
+                for (int i = 2 ; i < items.size() ; i++)
+                {
+                    value.append(" " + items.at(i));
+                }
+            }
+            map.insert(key, value);
+            infos.removeOne(info);
+            break;
+        }
+    }
 }
 
 

@@ -7,6 +7,9 @@
 #include <QDebug>
 
 #include <QFileInfoList>
+
+using namespace qbrew;
+
 /*void packageList::setHeaderLabels()
 {
     QStringList headerLabels
@@ -84,7 +87,24 @@ void packageList::setTreeView()
     setModel(model);
 }
 
+void packageList::setTreeView2()
+{
+    QList<QMap<QString, QString>> maps;
+    QFileInfoList search = qbrew::search2("", true);
+    for (auto package : search)
+    {
+        QMap<QString, QString> map = infoPackage2(package.baseName(), true);
+        maps.append(map);
+    }
+
+    packageModel * model = new packageModel(maps);
+
+    header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    setAlternatingRowColors(true);
+    setModel(model);
+}
+
 packageList::packageList(QWidget * parent) : QTreeView(parent)
 {
-    setTreeView();
+    setTreeView2();
 }

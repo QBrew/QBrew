@@ -57,6 +57,16 @@ packageModel::packageModel(const QString & data, QObject * parent)
     setupModelData(data.split(QString("\n")), rootItem_);
 }
 
+//new version
+packageModel::packageModel(const QList<QMap<QString, QString>> & data,
+                           QObject * parent)
+{
+    QList<QVariant> rootData;
+    rootData << "Name" << "Version";
+    rootItem_ = new packageItem(rootData, false);
+    setupModelData(data, rootItem_);
+}
+
 packageModel::~packageModel()
 {
     delete rootItem_;
@@ -219,6 +229,30 @@ void packageModel::setupModelData(const QStringList & lines,
 
         number++;
     }
+}
+
+//new version
+void packageModel::setupModelData(const QList<QMap<QString, QString>> &
+                                  packages, packageItem * parent)
+{
+    QList<packageItem *> parents;
+    QList<int> indentations;
+    parents << parent;
+    indentations << 0;
+
+    int number = 0;
+
+    for (QMap<QString, QString> map : packages)
+    {
+
+        bool isFavorite {map["favorite"] == "1"};
+        QList<QVariant> data;
+        data.push_back(map.value("name"));
+        data.push_back(map.value("version"));
+        parents.last()->appendChild(new packageItem(data, isFavorite,
+                                    parents.last()));
+    }
+
 }
 
 bool packageModel::setData(const QModelIndex & index, const QVariant & value,
