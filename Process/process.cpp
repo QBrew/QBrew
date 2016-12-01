@@ -14,6 +14,7 @@ QString qbrew::getBrewPath(bool isCask)
     QString path = isCask ?
                    "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
                    "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
+    return path;
 }
 
 bool qbrew::isBrewCaskInstalled()
