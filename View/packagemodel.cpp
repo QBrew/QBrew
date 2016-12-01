@@ -232,13 +232,13 @@ bool packageModel::setData(const QModelIndex & index, const QVariant & value,
     return true;
 }
 
-void packageModel::selectAll()
+void packageModel::selectAllNone(bool isAll)
 {
     int i = 0;
     for (; i < rowCount(); ++i)
     {
         packageItem * item = static_cast<packageItem *>(index(i, 0).internalPointer());
-        item->setChecked(item->isChecked() ? false : true);
+        item->setChecked(isAll ? true : false);
     }
     dataChanged(index(0, 0), index(i, 0));
 }

@@ -21,6 +21,7 @@ void toolBar::setActions()
     addSeparator();
 
     selectAll_ = addAction(QIcon(":/Icons/selectAll"), tr("Select all"));
+    selectNone_ = addAction(QIcon(":/Icons/selectNone"), tr("Select none"));
 
     addSeparator();
 
@@ -34,6 +35,7 @@ void toolBar::setStatusTips()
 {
     updateAction_->setStatusTip(tr("Update the list of packages"));
     selectAll_->setStatusTip(tr("Select all the packages listed"));
+    selectNone_->setStatusTip(tr("Select none of the packages listed"));
     installAction_->setStatusTip(tr("Install selected packages"));
     uninstallAction_->setStatusTip(tr("Uninstall selected packages"));
     favoriAction_->setStatusTip(tr("Add selected packages to favori"));
@@ -43,6 +45,7 @@ void toolBar::setToolTips()
 {
     updateAction_->setToolTip(tr("Update the list of packages"));
     selectAll_->setToolTip(tr("Select all the packages listed"));
+    selectNone_->setToolTip(tr("Select none of the packages listed"));
     installAction_->setToolTip(tr("Install selected packages"));
     uninstallAction_->setToolTip(tr("Uninstall selected packages"));
     favoriAction_->setToolTip(tr("Add selected packages to favori"));
@@ -52,6 +55,7 @@ void toolBar::setConnections()
 {
     connect(updateAction_, &QAction::triggered, this, &toolBar::updateClicked);
     connect(selectAll_, &QAction::triggered, this, &toolBar::selectAllClicked);
+    connect(selectNone_, &QAction::triggered, this, &toolBar::selectNoneClicked);
     connect(installAction_, &QAction::triggered, this,
             &toolBar::installClicked);
     connect(uninstallAction_, &QAction::triggered, this,

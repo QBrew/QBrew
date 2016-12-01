@@ -5,6 +5,8 @@
 
 #include <QDebug>
 #include <QLineEdit>
+#include <QProgressDialog>
+#include <QThread>
 
 mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
 {
@@ -24,17 +26,34 @@ mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
     setCentralWidget(stackedWidget_);
 }
 
-void mainWindow::selectAll()
+void mainWindow::selectAllNone(bool isAll)
 {
-    static_cast<packageModel *>(packageList_->model())->selectAll();
-    //qDebug() << stackedWidget_->widget(0)->model().selectAll();
-    //qDebug() << test;
+    static_cast<packageModel *>(packageList_->model())->selectAllNone(isAll);
+}
+
+void mainWindow::install()
+{
+    QProgressDialog * progress = new QProgressDialog("Downloading", "", 0, 100000);
+
+    progress->setCancelButton(NULL);
+    progress->setWindowModality(Qt::WindowModal);
+    progress->show();
+
+    for (int i = 0; i < 100000; i++)
+    {
+        progress->setValue(i);
+        QThread::usleep(10);
+
+        if (progress->wasCanceled())
+            break;
+    }
+
+    progress->setLabelText("Installation");
 }
 
 void mainWindow::connectToolbar()
 {
-    connect(toolBar_, &toolBar::selectAllClicked, this, [this]
-    {
-        selectAll();
-    });
+    connect(toolBar_, &toolBar::selectAllClicked, this, [this] {selectAllNone(true);});
+    connect(toolBar_, &toolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
+    connect(toolBar_, &toolBar::installClicked, this, [this] {install();});
 }
