@@ -90,8 +90,7 @@ void packageList::setTreeView()
 void packageList::setTreeView2()
 {
     QList<QMap<QString, QString>> maps;
-    QFileInfoList search = qbrew::search2("", true);
-    for (auto package : search)
+    for (auto package : search2("", true))
     {
         QMap<QString, QString> map = infoPackage2(package.baseName(), true);
         maps.append(map);

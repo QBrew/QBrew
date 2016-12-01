@@ -240,8 +240,6 @@ void packageModel::setupModelData(const QList<QMap<QString, QString>> &
     parents << parent;
     indentations << 0;
 
-    int number = 0;
-
     for (QMap<QString, QString> map : packages)
     {
 
