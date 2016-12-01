@@ -10,6 +10,7 @@ namespace qbrew
 {
 
 bool isBrewCaskInstalled();
+QString getBrewPath(bool isCask);
 
 std::pair<std::string, std::string> brewVersion();
 QPair<QString, QString> brewVersion2();

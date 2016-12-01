@@ -8,6 +8,14 @@
 
 #include <QDebug>
 
+
+QString qbrew::getBrewPath(bool isCask)
+{
+    QString path = isCask ?
+                   "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
+                   "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
+}
+
 bool qbrew::isBrewCaskInstalled()
 {
     QProcess process;
@@ -76,11 +84,7 @@ std::vector<std::string> qbrew::search(std::string search, bool isCask)
 
 QFileInfoList qbrew::search2(QString searchValue, bool isCask)
 {
-    QString path = isCask ?
-                   "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
-                   "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
-    QDir currentDir(path);
-    //QDir currentDir(getBrewPath(isCask));
+    QDir currentDir(getBrewPath(isCask));
     searchValue = searchValue.isEmpty() ? "*"  : "*" + searchValue + "*";
     QFileInfoList files = currentDir.entryInfoList(QStringList(searchValue),
                           QDir::Files);
