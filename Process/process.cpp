@@ -8,16 +8,22 @@
 
 #include <QDebug>
 
-
-QString qbrew::getBrewPath(bool isCask)
+namespace qbrew
 {
+
+
+
+QString getBrewPath(bool isCask)
+{
+    //TODO check if path is no default
+
     QString path = isCask ?
                    "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
                    "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
     return path;
 }
 
-bool qbrew::isBrewCaskInstalled()
+bool isBrewCaskInstalled()
 {
     QProcess process;
     QString str = "/usr/local/bin/brew --version ";
@@ -28,7 +34,7 @@ bool qbrew::isBrewCaskInstalled()
     return !stdout.isEmpty();
 }
 
-std::pair<std::string, std::string> qbrew::brewVersion()
+std::pair<std::string, std::string> brewVersion()
 {
     QProcess process;
     QString str = "/usr/local/bin/brew --version ";
@@ -53,7 +59,7 @@ std::pair<std::string, std::string> qbrew::brewVersion()
     return versions;
 }
 
-QPair<QString, QString> qbrew::brewVersion2()
+QPair<QString, QString> brewVersion2()
 {
     QProcess process;
     process.start("/usr/local/bin/brew --version ");
@@ -69,7 +75,7 @@ QPair<QString, QString> qbrew::brewVersion2()
     return QPair<QString, QString> (brew, brewCask);
 }
 
-std::vector<std::string> qbrew::search(std::string search, bool isCask)
+std::vector<std::string> search(std::string search, bool isCask)
 {
     std::string argument = isCask ? "cask search " : "search ";
     argument += search;
@@ -83,7 +89,7 @@ std::vector<std::string> qbrew::search(std::string search, bool isCask)
 }
 
 
-QFileInfoList qbrew::search2(QString searchValue, bool isCask)
+QFileInfoList search2(QString searchValue, bool isCask)
 {
     QDir currentDir(getBrewPath(isCask));
     searchValue = searchValue.isEmpty() ? "*"  : "*" + searchValue + "*";
@@ -92,7 +98,7 @@ QFileInfoList qbrew::search2(QString searchValue, bool isCask)
     return files;
 }
 
-int qbrew::install(std::string package, bool cask)
+int install(std::string package, bool cask)
 {
     QProcess process;
     std::string str = "/usr/local/bin/brew ";
@@ -128,7 +134,7 @@ int qbrew::install(std::string package, bool cask)
     return 0;
 }
 
-std::vector<std::string> qbrew::listArgument(std::string argument)
+std::vector<std::string> listArgument(std::string argument)
 {
     QProcess process;
     std::string str = "/usr/local/bin/brew " + argument;
@@ -149,13 +155,12 @@ std::vector<std::string> qbrew::listArgument(std::string argument)
     return results;
 }
 
-std::vector<std::string> qbrew::list(bool isCask)
+std::vector<std::string> list(bool isCask)
 {
     return listArgument(isCask ? "cask list" : "list");
 }
 
-QMap<std::string, std::string> qbrew::infoPackage(std::string package,
-        bool isCask)
+QMap<std::string, std::string> infoPackage(std::string package, bool isCask)
 {
     QMap<std::string, std::string> map;
     map["name"] = package;
@@ -193,3 +198,7 @@ QMap<std::string, std::string> qbrew::infoPackage(std::string package,
     }
     return map;
 }
+
+
+
+} //namespace qbrew
