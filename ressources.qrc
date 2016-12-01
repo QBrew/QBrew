@@ -10,5 +10,6 @@
     </qresource>
     <qresource prefix="/">
         <file>default.txt</file>
+        <file>path.txt</file>
     </qresource>
 </RCC>

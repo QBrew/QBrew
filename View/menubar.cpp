@@ -18,10 +18,16 @@ void menubar::setActions()
 void menubar::setConnections()
 {
     connect(aboutAction_,    &QAction::triggered, this, &menubar::aboutPopup);
+    connect(preferencesAction_,    &QAction::triggered, this, &menubar::preferencesPopup);
 }
 
 void menubar::aboutPopup()
 {
     about * popup = new about(this);
+    popup->exec();
+}
+
+void menubar::preferencesPopup(){
+    preferences* popup = new preferences(this);
     popup->exec();
 }
