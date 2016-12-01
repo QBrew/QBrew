@@ -7,19 +7,20 @@ namespace qbrew
 bool connection()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("QBrewDB");
+    db.setDatabaseName("favorite.qbrew");
     db.setUserName("root");
-    db.setPassword("rootroot");
+    db.setPassword("root");
     return db.open();
 }
 
-bool close()
+void close()
 {
     QSqlDatabase db = QSqlDatabase::database();
     if (db.isOpen())
     {
         db.close();
     }
+
 }
 
 }
