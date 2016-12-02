@@ -33,32 +33,7 @@ bool isBrewCaskInstalled()
     return !stdout.isEmpty();
 }
 
-std::pair<std::string, std::string> brewVersion()
-{
-    QProcess process;
-    QString str = "/usr/local/bin/brew --version ";
-    process.start(str);
-    process.waitForFinished(-1); // will wait forever until finished
-    QString stdout = process.readAllStandardOutput();
-    std::string strout = stdout.toStdString();
-    std::size_t pos = strout.find("\n");
-    std::string versionBrew = strout.substr (9, pos - 9);
-
-    str = "/usr/local/bin/brew cask --version ";
-    process.start(str);
-    process.waitForFinished(-1); // will wait forever until finished
-    stdout = process.readAllStandardOutput();
-    strout = stdout.toStdString();
-    pos = strout.find("\n");
-    std::string versionBrewCask = strout.substr (14, pos - 14);
-
-    std::pair<std::string, std::string> versions(versionBrew,
-            versionBrewCask);
-
-    return versions;
-}
-
-QPair<QString, QString> brewVersion2()
+QPair<QString, QString> brewVersion()
 {
     QProcess process;
     process.start("/usr/local/bin/brew --version ");
@@ -74,21 +49,7 @@ QPair<QString, QString> brewVersion2()
     return QPair<QString, QString> (brew, brewCask);
 }
 
-std::vector<std::string> search(std::string search, bool isCask)
-{
-    std::string argument = isCask ? "cask search " : "search ";
-    argument += search;
-    std::vector<std::string> results = listArgument(argument);
-    results.erase(std::remove(results.begin(), results.end(),
-                              "==> Partial matches"), results.end());
-    results.erase(std::remove(results.begin(), results.end(), "==> Exact match"),
-                  results.end());
-
-    return results;
-}
-
-
-QFileInfoList search2(QString searchValue, bool cask)
+QFileInfoList search(QString searchValue, bool cask)
 {
     QDir currentDir(getBrewPath(cask));
     searchValue = searchValue.isEmpty() ? "*"  : "*" + searchValue + "*";
@@ -97,7 +58,7 @@ QFileInfoList search2(QString searchValue, bool cask)
     return files;
 }
 
-int install3(std::string package, bool cask)
+int install(std::string package, bool cask)
 {
     QProcess process;
     std::string str = "/usr/local/bin/brew ";
@@ -133,7 +94,7 @@ int install3(std::string package, bool cask)
     return 0;
 }
 
-int install2(QString package, bool cask)
+int install(QString package, bool cask)
 {
     QProcess process;
     QString command = "/usr/local/bin/brew ";
@@ -187,45 +148,6 @@ std::vector<std::string> listArgument(std::string argument)
 std::vector<std::string> list(bool isCask)
 {
     return listArgument(isCask ? "cask list" : "list");
-}
-
-QMap<std::string, std::string> infoPackage(std::string package, bool isCask)
-{
-    QMap<std::string, std::string> map;
-    map["name"] = package;
-    map["version"] = "";
-    map["desc"] = "";
-    map["url"] = "";
-    map["homepage"] = "";
-    QString path = isCask ?
-                   "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
-                   "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
-    path += QString::fromStdString(package) + ".rb";
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly))
-    {
-        QList<std::string> infos = {"  desc ", "  homepage ", "  url ", "  version ", "  name "};
-        QTextStream in(&file);
-        while (!in.atEnd())
-        {
-            std::string line = in.readLine().toStdString();
-            for (std::string info : infos)
-            {
-                if (line.find(info) != std::string::npos)
-                {
-                    line.erase(std::remove(line.begin(), line.end(), '"'), line.end());
-                    line.erase(std::remove(line.begin(), line.end(), '\''), line.end());
-                    line.erase(std::remove(line.begin(), line.end(), ':'), line.end());
-                    map[info.substr(2, info.length() - 3)] = line.substr(info.length(),
-                            line.length() - info.length());
-                    infos.removeOne(info);
-                    break;
-                }
-            }
-        }
-        file.close();
-    }
-    return map;
 }
 
 QMap<QString, QString> infoPackage2(QString package, bool cask)

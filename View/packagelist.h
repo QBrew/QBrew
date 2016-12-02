@@ -9,7 +9,6 @@ class packageList : public QTreeView
 
     //void setHeaderLabels();
     void setTreeView();
-    void setTreeView2();
 
   public:
     explicit packageList(QWidget * parent = 0);

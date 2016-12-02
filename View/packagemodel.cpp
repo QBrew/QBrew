@@ -48,16 +48,6 @@
 #include <QIcon>
 #include "packagemodel.h"
 
-packageModel::packageModel(const QString & data, QObject * parent)
-    : QAbstractItemModel(parent)
-{
-    QList<QVariant> rootData;
-    rootData << "Name" << "Version";
-    rootItem_ = new packageItem(rootData, false);
-    setupModelData(data.split(QString("\n")), rootItem_);
-}
-
-//new version
 packageModel::packageModel(const QList<QMap<QString, QString>> & data,
                            QObject * parent)
 {
@@ -170,77 +160,16 @@ int packageModel::rowCount(const QModelIndex & parent) const
     return parentItem->childCount();
 }
 
-void packageModel::setupModelData(const QStringList & lines,
-                                  packageItem * parent)
-{
-    QList<packageItem *> parents;
-    QList<int> indentations;
-    parents << parent;
-    indentations << 0;
 
-    int number = 0;
-
-    while (number < lines.count())
-    {
-        int position = 0;
-        while (position < lines[number].length())
-        {
-            if (lines[number].mid(position, 1) != " ")
-                break;
-            position++;
-        }
-
-        QString lineData = lines[number].mid(position).trimmed();
-
-        if (!lineData.isEmpty())
-        {
-            // Read the column data from the rest of the line.
-            QStringList columnStrings = lineData.split("\t", QString::SkipEmptyParts);
-            QList<QVariant> columnData;
-            //checkFavourite : 0 or 1 in first in line of data
-            bool isFavourite = columnStrings[0] == "1";
-
-            for (int column = 1; column < columnStrings.count(); ++column)
-                columnData << columnStrings[column];
-
-            if (position > indentations.last())
-            {
-                // The last child of the current parent is now the new parent
-                // unless the current parent has no children.
-
-                if (parents.last()->childCount() > 0)
-                {
-                    parents << parents.last()->child(parents.last()->childCount() - 1);
-                    indentations << position;
-                }
-            }
-            else
-            {
-                while (position < indentations.last() && parents.count() > 0)
-                {
-                    parents.pop_back();
-                    indentations.pop_back();
-                }
-            }
-            // Append a new item to the current parent's list of children.
-            parents.last()->appendChild(new packageItem(columnData, isFavourite,
-                                        parents.last()));
-        }
-
-        number++;
-    }
-}
-
-//new version
 void packageModel::setupModelData(const QList<QMap<QString, QString>> &
-                                  packages, packageItem * parent)
+                                  maps, packageItem * parent)
 {
     QList<packageItem *> parents;
     QList<int> indentations;
     parents << parent;
     indentations << 0;
 
-    for (QMap<QString, QString> map : packages)
+    for (QMap<QString, QString> map : maps)
     {
 
         bool isFavorite {map["favorite"] == "1"};
