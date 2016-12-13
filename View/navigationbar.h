@@ -15,6 +15,7 @@ class navigationBar : public QWidget
 
   public:
     explicit navigationBar(QWidget * parent = 0);
+
     QPushButton * all();
     QPushButton * installed();
     QPushButton * favourite();

@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     DB/DB/favoritedb.cpp \
     View/menubar.cpp \
     Menu/about.cpp \
-    Menu/preferences.cpp
+    Menu/preferences.cpp \
+    View/navigationbar.cpp
 
 HEADERS  += \
     Process/process.h \
@@ -42,7 +43,8 @@ HEADERS  += \
     DB/DTO/favoritedto.h \
     View/menubar.h \
     Menu/about.h \
-    Menu/preferences.h
+    Menu/preferences.h \
+    View/navigationbar.h
 
 FORMS    +=
 
