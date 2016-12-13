@@ -8,8 +8,5 @@
         <file alias="selectAll">Icons/selectAll.svg</file>
         <file alias="selectNone">Icons/selectNone.svg</file>
     </qresource>
-    <qresource prefix="/">
-        <file>default.txt</file>
-        <file>path.txt</file>
-    </qresource>
+    <qresource prefix="/"/>
 </RCC>

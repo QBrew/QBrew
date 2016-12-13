@@ -11,6 +11,7 @@
 #include <iostream>
 #include <QFile>
 #include <QLineEdit>
+#include <QSettings>
 
 class preferences : public QDialog
 {

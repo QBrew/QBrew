@@ -17,12 +17,9 @@ void preferences::setTextZone(){
 
     QHBoxLayout* hbox = new QHBoxLayout;
 
-    QFile file(":/path.txt");
-    file.open(QIODevice::ReadOnly);
-    QString text = file.readLine();
-    if( text.endsWith("\n") ){
-        text.truncate( text.length() - 1 );
-    }
+    QSettings settings("Projet","QBrew");
+    QString text = settings.value("path").toString();
+
     path_ = new QLineEdit(text);
     path_->setMinimumSize(300,20);
     path_->setMaximumSize(300,20);
@@ -55,11 +52,8 @@ void preferences::setButtons(){
 
 
 void preferences::save(){
-    QFile file(":/path.txt");
-    file.open(QIODevice::WriteOnly | QIODevice::Truncate);
-    QString text = path_->text();
-    file.write(text.toUtf8());
-    file.close();
+    QSettings settings("Projet","QBrew");
+    settings.setValue("path",path_->text());
     this->close();
 }
 
