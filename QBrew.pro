@@ -24,10 +24,11 @@ SOURCES += main.cpp\
     View/packagelist.cpp \
     View/packagemodel.cpp \
     DB/DB/dbmanager.cpp \
-    DB/DB/favoritedb.cpp \
     View/menubar.cpp \
     Menu/about.cpp \
-    Menu/preferences.cpp
+    Menu/preferences.cpp \
+    DB/DB/qbrewdb.cpp \
+    DB/DTO/formuladto.cpp
 
 HEADERS  += \
     Process/process.h \
@@ -38,15 +39,16 @@ HEADERS  += \
     View/packagemodel.h \
     mainwindow.h \
     DB/DB/dbmanager.h \
-    DB/DB/favoritedb.h \
-    DB/DTO/favoritedto.h \
     View/menubar.h \
     Menu/about.h \
-    Menu/preferences.h
+    Menu/preferences.h \
+    DB/DB/qbrewdb.h \
+    DB/DTO/formuladto.h
 
 FORMS    +=
 
 RESOURCES += \
     ressources.qrc
 
-DISTFILES +=
+DISTFILES += \
+    sql/schema.sql
