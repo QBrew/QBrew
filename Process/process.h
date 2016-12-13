@@ -22,7 +22,7 @@ int install(QString package, bool cask);
 std::vector<std::string> listArgument(std::string argument);
 std::vector<std::string> list(bool isCask);
 
-QMap<QString, QString> infoPackage2(QString package, bool cask);
+QMap<QString, QString> infoPackage(QString package, bool cask);
 void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line);
 
 void cleanup(bool cask);

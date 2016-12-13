@@ -7,7 +7,9 @@
 #include <QMenuBar>
 #include <QStatusBar>
 #include <QToolBar>
+#include <QHBoxLayout>
 
+#include "View/navigationbar.h"
 #include "View/toolbar.h"
 #include "View/packagelist.h"
 
@@ -24,14 +26,23 @@ class mainWindow : public QMainWindow
     void selectAllNone(bool isAll);
     void install();
 
+    void viewAll();
+    void viewInstalled();
+    void viewFavourite();
+
   private:
 
+    QHBoxLayout * hbox_;
+    QWidget * root_;
+    navigationBar * navigationBar_;
     QStackedWidget * stackedWidget_;
     toolBar     *    toolBar_;
     QMenuBar    *    menuBar_;
     QStatusBar   *   statusBar_;
     packageList * packageList_;
+
     void connectToolbar();
+    void connectNavigationBar();
 };
 
 #endif // MAINWINDOWS_H

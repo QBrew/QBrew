@@ -150,16 +150,16 @@ std::vector<std::string> list(bool isCask)
     return listArgument(isCask ? "cask list" : "list");
 }
 
-QMap<QString, QString> infoPackage2(QString package, bool cask)
+QMap<QString, QString> infoPackage(QString package, bool cask)
 {
     QMap<QString, QString> map;
     QStringList infos (QStringList() << "  version " << "  url "
-                       << "  name " );//<< "  homepage "  << "  desc ");
+                       << "  name " << "  homepage "  << "  desc ");
     map.insert("name", package);
     map.insert("version", "");
     map.insert("url", "");
-    //map.insert("desc", "");
-    //map.insert("homepage", "");
+    map.insert("desc", "");
+    map.insert("homepage", "");
     map["favorite"] = "1";
     QString path = getBrewPath(cask) + package + ".rb";
     QFile inputFile(path);

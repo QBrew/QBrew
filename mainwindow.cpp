@@ -10,10 +10,19 @@
 
 mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
 {
+    root_ = new QWidget();
+    hbox_ = new QHBoxLayout();
+    hbox_->setContentsMargins(0, 0, 0, 0);
+    hbox_->setSpacing(0);
+
     stackedWidget_ = new QStackedWidget(this);
 
     packageList_ = new packageList(this);
     stackedWidget_->addWidget(packageList_);
+    navigationBar_ = new navigationBar();
+    hbox_->addWidget(navigationBar_);
+    hbox_->addWidget(stackedWidget_);
+    root_->setLayout(hbox_);
 
     menuBar_       = new menubar(this);
     toolBar_       = new toolBar(this);
@@ -21,9 +30,12 @@ mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
 
     addToolBar(toolBar_);
     connectToolbar();
+    connectNavigationBar();
     setMenuBar(menuBar_);
     setStatusBar(statusBar_);
-    setCentralWidget(stackedWidget_);
+    setCentralWidget(root_);
+
+    showMaximized();
 }
 
 void mainWindow::selectAllNone(bool isAll)
@@ -51,9 +63,33 @@ void mainWindow::install()
     progress->setLabelText("Installation");
 }
 
+void mainWindow::viewAll()
+{
+    qDebug() << "ALL";
+}
+
+void mainWindow::viewInstalled()
+{
+    qDebug() << "INSTALL";
+}
+
+void mainWindow::viewFavourite()
+{
+    qDebug() << "FAVOURITE";
+}
+
 void mainWindow::connectToolbar()
 {
     connect(toolBar_, &toolBar::selectAllClicked, this, [this] {selectAllNone(true);});
     connect(toolBar_, &toolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
     connect(toolBar_, &toolBar::installClicked, this, [this] {install();});
+}
+
+void mainWindow::connectNavigationBar()
+{
+    connect(navigationBar_->all(), SIGNAL(clicked(bool)), this, SLOT(viewAll()));
+    connect(navigationBar_->installed(), SIGNAL(clicked(bool)), this,
+            SLOT(viewInstalled()));
+    connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,
+            SLOT(viewFavourite()));
 }

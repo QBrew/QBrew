@@ -15,7 +15,7 @@ void packageList::setTreeView()
     QList<QMap<QString, QString>> maps;
     for (auto package : search(QString(""), true))
     {
-        QMap<QString, QString> map = infoPackage2(package.baseName(), true);
+        QMap<QString, QString> map = infoPackage(package.baseName(), true);
         maps.append(map);
     }
 

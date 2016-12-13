@@ -2,7 +2,6 @@
 
 menubar::menubar(QWidget * parent) : QMenuBar(parent)
 {
-    //setIcon(QIcon(":/icons/medivisu.svg"));
     menu_ = new QMenu();
     setActions();
     setConnections();
@@ -18,7 +17,8 @@ void menubar::setActions()
 void menubar::setConnections()
 {
     connect(aboutAction_,    &QAction::triggered, this, &menubar::aboutPopup);
-    connect(preferencesAction_,    &QAction::triggered, this, &menubar::preferencesPopup);
+    connect(preferencesAction_,    &QAction::triggered, this,
+            &menubar::preferencesPopup);
 }
 
 void menubar::aboutPopup()
@@ -27,7 +27,8 @@ void menubar::aboutPopup()
     popup->exec();
 }
 
-void menubar::preferencesPopup(){
-    preferences* popup = new preferences(this);
+void menubar::preferencesPopup()
+{
+    preferences * popup = new preferences(this);
     popup->exec();
 }
