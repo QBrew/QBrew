@@ -34,16 +34,18 @@ void createTable()
     {
         QSqlQuery query;
         query.exec("CREATE TABLE FORMULA"
-                   "(NAME TEXT NOT NULL PRIMARY KEY,"
-                   "VERSION TEXT NOT NULL,"
-                   "URL TEXT NOT NULL,"
-                   "HOMEPAGE TEXT NOT NULL,"
-                   "DESC TEXT NOT NULL)");
+                   "(NAME       TEXT NOT NULL PRIMARY KEY,"
+                   "VERSION     TEXT NOT NULL,"
+                   "URL         TEXT NOT NULL,"
+                   "HOMEPAGE    TEXT NOT NULL,"
+                   "DESC        TEXT NOT NULL,"
+                   "INSTALL     INT NOT NULL,"
+                   "FAVORITE    INT NOT NULL)");
     }
 
 }
 
-void deleteTable()
+void dropTable()
 {
     QSqlQuery query;
     query.exec("DROP TABLE IF EXISTS FORMULA");
