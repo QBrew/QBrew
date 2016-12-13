@@ -33,9 +33,10 @@ mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
     connectNavigationBar();
     setMenuBar(menuBar_);
     setStatusBar(statusBar_);
-    setCentralWidget(root_);
+    setCentralWidget(stackedWidget_);
 
-    showMaximized();
+    packageList_->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(packageList_, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenu(const QPoint &)));
 }
 
 void mainWindow::selectAllNone(bool isAll)
@@ -85,11 +86,13 @@ void mainWindow::connectToolbar()
     connect(toolBar_, &toolBar::installClicked, this, [this] {install();});
 }
 
-void mainWindow::connectNavigationBar()
+void mainWindow::onCustomContextMenu(const QPoint &point)
 {
-    connect(navigationBar_->all(), SIGNAL(clicked(bool)), this, SLOT(viewAll()));
-    connect(navigationBar_->installed(), SIGNAL(clicked(bool)), this,
-            SLOT(viewInstalled()));
-    connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,
-            SLOT(viewFavourite()));
+    QModelIndex index = packageList_->indexAt(point);
+    if (index.isValid()) {
+        QMenu* contextMenu = new QMenu(packageList_);
+        QAction* select = new QAction("Select",contextMenu);
+        contextMenu->addAction(select);
+        contextMenu->exec(packageList_->mapToGlobal(point));
+    }
 }

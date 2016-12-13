@@ -25,6 +25,7 @@ class mainWindow : public QMainWindow
 
     void selectAllNone(bool isAll);
     void install();
+    void onCustomContextMenu(const QPoint &point);
 
     void viewAll();
     void viewInstalled();

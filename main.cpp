@@ -1,10 +1,17 @@
 #include "qbrewapplication.h"
 #include <QApplication>
+#include <QSettings>
 
 int main(int argc, char * argv[])
 {
 
     qBrewApplication app(argc, argv);
+
+    //Valeur par défaut, à mettre parmis les fonctions
+    //exécutées lors du premier lancement de l'application
+    QSettings settings("Projet","QBrew");
+    settings.setValue("path","/usr/local/HomeBrew");
+    //
     return app.exec();
 
 
