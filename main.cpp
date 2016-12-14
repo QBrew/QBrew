@@ -1,9 +1,26 @@
 #include "qbrewapplication.h"
 #include <QApplication>
-#include <QSettings>
+#include "DB/DB/dbmanager.h"
+#include "DB/DB/qbrewdb.h"
+#include "DB/DTO/formuladto.h"
+#include "Process/process.h"
+#include <QSqlDatabase>
+
+#include "QDebug"
+
+using namespace qbrew;
 
 int main(int argc, char * argv[])
 {
+    connection();
+    //dropTable();
+
+    QSqlDatabase db = QSqlDatabase::database();
+    if (db.tables().isEmpty())
+    {
+        createTable();
+        createDB(true);
+    }
 
     qBrewApplication app(argc, argv);
 
@@ -13,24 +30,23 @@ int main(int argc, char * argv[])
     settings.setValue("path","/usr/local/HomeBrew");
     //
     return app.exec();
-
-
-
-    /*QApplication a(argc, argv);
-    QBrew w;
-    w.show();
-
-    return a.exec();
-
-
-    std::vector<std::string> test = qbrew::search("", false);
-
-     for (std::string str : test)
-     {
-         std::cout << str << std::endl;
-     }
-
-     //std::cout << qbrew::install("vlc", true);
-
-    return 0;*/
+    close();
+    /*
+    connection();
+    //dropTable();
+    //createTable();
+    FormulaDTO formula("un 4e package", "12.23", "www.monurl.com",
+                       "www.monurl.dl.com", "Bonjour!", true, false);
+    if (addFormula(formula))
+    {
+        //qDebug() << "Formula added";
+    }
+    //deleteFormula("un 3e package");
+    for (auto f : getAll())
+    {
+        qDebug().noquote() << f.toString();
+        qDebug() << "";
+    }
+    return 0;
+    */
 }

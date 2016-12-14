@@ -1,5 +1,8 @@
 #include "dbmanager.h"
 #include <QtSql>
+#include <QDir>
+#include <QSqlQuery>
+#include <QDebug>
 
 namespace qbrew
 {
@@ -7,9 +10,9 @@ namespace qbrew
 bool connection()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("favorite.qbrew");
+    db.setDatabaseName("QBrewDB.sqlite");
     db.setUserName("root");
-    db.setPassword("root");
+    db.setPassword("rootroot");
     return db.open();
 }
 
@@ -21,6 +24,31 @@ void close()
         db.close();
     }
 
+}
+
+void createTable()
+{
+
+    QSqlDatabase db = QSqlDatabase::database();
+    if (db.tables().isEmpty())
+    {
+        QSqlQuery query;
+        query.exec("CREATE TABLE FORMULA"
+                   "(NAME       TEXT NOT NULL PRIMARY KEY,"
+                   "VERSION     TEXT NOT NULL,"
+                   "URL         TEXT NOT NULL,"
+                   "HOMEPAGE    TEXT NOT NULL,"
+                   "DESC        TEXT NOT NULL,"
+                   "INSTALL     INT NOT NULL,"
+                   "FAVORITE    INT NOT NULL)");
+    }
+
+}
+
+void dropTable()
+{
+    QSqlQuery query;
+    query.exec("DROP TABLE IF EXISTS FORMULA");
 }
 
 }

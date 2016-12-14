@@ -6,6 +6,8 @@ namespace qbrew
 
 bool connection();
 void close();
+void createTable();
+void dropTable();
 
 }
 
