@@ -28,7 +28,7 @@ SOURCES += main.cpp\
     Menu/about.cpp \
     Menu/preferences.cpp \
     DB/DB/qbrewdb.cpp \
-    DB/DTO/formuladto.cpp
+    DB/DTO/formuladto.cpp \
     View/navigationbar.cpp
 
 HEADERS  += \
@@ -42,10 +42,10 @@ HEADERS  += \
     DB/DB/dbmanager.h \
     View/menubar.h \
     Menu/about.h \
-    View/navigationbar.h
+    View/navigationbar.h \
+    DB/DTO/formuladto.h \
     Menu/preferences.h \
-    DB/DB/qbrewdb.h \
-    DB/DTO/formuladto.h
+    DB/DB/qbrewdb.h
 
 FORMS    +=
 

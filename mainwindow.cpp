@@ -35,6 +35,8 @@ mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
     setStatusBar(statusBar_);
     setCentralWidget(root_);
 
+    showMaximized();
+
     packageList_->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(packageList_, SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onCustomContextMenu(const QPoint &)));

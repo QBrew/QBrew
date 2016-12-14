@@ -7,6 +7,8 @@
 #include <QSqlDatabase>
 
 #include "QDebug"
+#include <QSettings>
+
 
 using namespace qbrew;
 
@@ -26,8 +28,8 @@ int main(int argc, char * argv[])
 
     //Valeur par défaut, à mettre parmis les fonctions
     //exécutées lors du premier lancement de l'application
-    QSettings settings("Projet","QBrew");
-    settings.setValue("path","/usr/local/HomeBrew");
+    QSettings settings("Projet", "QBrew");
+    settings.setValue("path", "/usr/local/HomeBrew");
     //
     return app.exec();
     close();

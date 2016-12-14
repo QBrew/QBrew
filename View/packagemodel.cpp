@@ -46,7 +46,7 @@
 */
 #include <QDebug>
 #include <QIcon>
-#include <../DB/DTO/formuladto.h>
+#include <DB/DTO/formuladto.h>
 #include <DB/DB/qbrewdb.h>
 #include "packagemodel.h"
 
