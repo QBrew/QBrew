@@ -24,7 +24,7 @@ QList<FormulaDTO> getAll()
 
 FormulaDTO selectFormula(QString name)
 {
-    FormulaDTO result {name};
+    FormulaDTO result{};
     QSqlQuery query("SELECT * FROM FORMULA WHERE NAME = :name");
     query.bindValue(":name", name);
     if (query.next())

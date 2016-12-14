@@ -4,22 +4,13 @@
 
 #include <QHeaderView>
 #include <QFile>
-#include <QDebug>
-
 #include <QFileInfoList>
 
 using namespace qbrew;
 
 void packageList::setTreeView()
 {
-    QList<QMap<QString, QString>> maps;
-    for (auto package : search(QString(""), true))
-    {
-        QMap<QString, QString> map = infoPackage2(package.baseName(), true);
-        maps.append(map);
-    }
-
-    packageModel * model = new packageModel(maps);
+    packageModel * model = new packageModel();
 
     header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     setAlternatingRowColors(true);

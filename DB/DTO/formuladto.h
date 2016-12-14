@@ -22,8 +22,7 @@ class FormulaDTO
     inline FormulaDTO(QString name, QString version, QString homepage,
                       QString url, QString desc,
                       bool isInstalled = false, bool isFavorite = false);
-    inline FormulaDTO(QString name) : FormulaDTO(name, "version", "home", "url",
-                "desc") {}
+    inline FormulaDTO() : FormulaDTO("", "", "", "", "", false, false) {}
     inline const QString name();
     inline const QString version();
     inline const QString homepage();

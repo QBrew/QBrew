@@ -46,15 +46,16 @@
 */
 #include <QDebug>
 #include <QIcon>
+#include <../DB/DTO/formuladto.h>
+#include <DB/DB/qbrewdb.h>
 #include "packagemodel.h"
 
-packageModel::packageModel(const QList<QMap<QString, QString>> & data,
-                           QObject * parent)
+packageModel::packageModel(QObject * parent)
 {
     QList<QVariant> rootData;
     rootData << "Name" << "Version";
     rootItem_ = new packageItem(rootData, false);
-    setupModelData(data, rootItem_);
+    setupModelData(rootItem_);
 }
 
 packageModel::~packageModel()
@@ -161,23 +162,20 @@ int packageModel::rowCount(const QModelIndex & parent) const
 }
 
 
-void packageModel::setupModelData(const QList<QMap<QString, QString>> &
-                                  maps, packageItem * parent)
+void packageModel::setupModelData(packageItem * parent)
 {
     QList<packageItem *> parents;
     QList<int> indentations;
     parents << parent;
     indentations << 0;
 
-    for (QMap<QString, QString> map : maps)
+    for (qbrew::FormulaDTO f : qbrew::getAll())
     {
-
-        bool isFavorite {map["favorite"] == "1"};
         QList<QVariant> data;
-        data.push_back(map.value("name"));
-        data.push_back(map.value("version"));
-        parents.last()->appendChild(new packageItem(data, isFavorite,
-                                    parents.last()));
+        data.push_back(f.name());
+        data.push_back(f.version());
+        parents.last()->appendChild(
+            new packageItem(data, f.isFavorite(), parents.last()));
     }
 
 }

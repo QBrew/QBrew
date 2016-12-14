@@ -4,7 +4,10 @@
 #include <QProcess>
 #include <QFile>
 #include <QDir>
+#include <QDirIterator>
 #include <QTextStream>
+#include "../DB/DTO/formuladto.h"
+#include "../DB/DB/qbrewdb.h"
 
 #include <QDebug>
 
@@ -47,15 +50,6 @@ QPair<QString, QString> brewVersion()
     QString brewCask = stdout.split("\n").at(0).split(" ").at(1);
 
     return QPair<QString, QString> (brew, brewCask);
-}
-
-QFileInfoList search(QString searchValue, bool cask)
-{
-    QDir currentDir(getBrewPath(cask));
-    searchValue = searchValue.isEmpty() ? "*"  : "*" + searchValue + "*";
-    QFileInfoList files = currentDir.entryInfoList(QStringList(searchValue),
-                          QDir::Files);
-    return files;
 }
 
 int install(std::string package, bool cask)
@@ -150,18 +144,38 @@ std::vector<std::string> list(bool isCask)
     return listArgument(isCask ? "cask list" : "list");
 }
 
-QMap<QString, QString> infoPackage2(QString package, bool cask)
+
+void createDB(bool cask)
+{
+    QList<QMap<QString, QString>> maps;
+    QDir currentDir(getBrewPath(cask));
+    QDirIterator it(currentDir);
+    while (it.hasNext())
+    {
+        it.next();
+        if (it.fileInfo().isFile())
+        {
+            QMap<QString, QString> map (infoPackage(it.fileInfo().baseName(), true));
+            FormulaDTO formula {map.value("name"), map.value("version"),
+                                map.value("homepage"), map.value("url"),
+                                map.value("desc")};
+            addFormula(formula);
+        }
+
+    }
+}
+
+QMap<QString, QString> infoPackage(QString filename, bool cask)
 {
     QMap<QString, QString> map;
     QStringList infos (QStringList() << "  version " << "  url "
                        << "  name " );//<< "  homepage "  << "  desc ");
-    map.insert("name", package);
+    map.insert("name", filename);
     map.insert("version", "");
     map.insert("url", "");
-    //map.insert("desc", "");
-    //map.insert("homepage", "");
-    map["favorite"] = "1";
-    QString path = getBrewPath(cask) + package + ".rb";
+    map.insert("desc", "");
+    map.insert("homepage", "");
+    QString path = getBrewPath(cask) + filename + ".rb";
     QFile inputFile(path);
     if (inputFile.open(QIODevice::ReadOnly))
     {
