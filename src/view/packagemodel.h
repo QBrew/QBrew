@@ -47,13 +47,13 @@
 
 #include "packageitem.h"
 
-class packageModel : public QAbstractItemModel
+class PackageModel : public QAbstractItemModel
 {
     Q_OBJECT
 
   public:
-    packageModel(QObject * parent = 0);
-    ~packageModel();
+    PackageModel(QObject * parent = 0);
+    ~PackageModel();
 
     QVariant data(const QModelIndex & index, int role) const;
     Qt::ItemFlags flags(const QModelIndex & index) const;
@@ -70,9 +70,9 @@ class packageModel : public QAbstractItemModel
     void selectAllNone(bool isAll);
 
   private:
-    void setupModelData(packageItem * parent);
+    void setupModelData(PackageItem * parent);
 
-    packageItem * rootItem_;
+    PackageItem * rootItem_;
 };
 //! [0]
 

@@ -5,7 +5,7 @@
 #include <vector>
 #include <QMap>
 #include <QFileInfoList>
-#include "DB/DTO/formuladto.h"
+#include "../db/db/qbrewdb.h"
 
 namespace qbrew
 {

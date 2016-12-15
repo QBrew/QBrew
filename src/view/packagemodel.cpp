@@ -46,37 +46,37 @@
 */
 #include <QDebug>
 #include <QIcon>
-#include <DB/DTO/formuladto.h>
-#include <DB/DB/qbrewdb.h>
+#include "../DB/DTO/formuladto.h"
+#include "../DB/DB/qbrewdb.h"
 #include "packagemodel.h"
 
-packageModel::packageModel(QObject * parent)
+PackageModel::PackageModel(QObject * parent)
 {
     QList<QVariant> rootData;
     rootData << "Name" << "Version";
-    rootItem_ = new packageItem(rootData, false);
+    rootItem_ = new PackageItem(rootData, false);
     setupModelData(rootItem_);
 }
 
-packageModel::~packageModel()
+PackageModel::~PackageModel()
 {
     delete rootItem_;
 }
 
-int packageModel::columnCount(const QModelIndex & parent) const
+int PackageModel::columnCount(const QModelIndex & parent) const
 {
     if (parent.isValid())
-        return static_cast<packageItem *>(parent.internalPointer())->columnCount();
+        return static_cast<PackageItem *>(parent.internalPointer())->columnCount();
     else
         return rootItem_->columnCount();
 }
 
-QVariant packageModel::data(const QModelIndex & index, int role) const
+QVariant PackageModel::data(const QModelIndex & index, int role) const
 {
     if (!index.isValid())
         return QVariant();
 
-    packageItem * item = static_cast<packageItem *>(index.internalPointer());
+    PackageItem * item = static_cast<PackageItem *>(index.internalPointer());
 
     if ( role == Qt::CheckStateRole && index.column() == 0 )
         return static_cast<int>( item->isChecked() ? Qt::Checked : Qt::Unchecked );
@@ -91,7 +91,7 @@ QVariant packageModel::data(const QModelIndex & index, int role) const
     return item->data(index.column());
 }
 
-Qt::ItemFlags packageModel::flags(const QModelIndex & index) const
+Qt::ItemFlags PackageModel::flags(const QModelIndex & index) const
 {
     if (!index.isValid())
         return 0;
@@ -104,7 +104,7 @@ Qt::ItemFlags packageModel::flags(const QModelIndex & index) const
     return flags;
 }
 
-QVariant packageModel::headerData(int section, Qt::Orientation orientation,
+QVariant PackageModel::headerData(int section, Qt::Orientation orientation,
                                   int role) const
 {
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
@@ -113,33 +113,33 @@ QVariant packageModel::headerData(int section, Qt::Orientation orientation,
     return QVariant();
 }
 
-QModelIndex packageModel::index(int row, int column, const QModelIndex & parent)
+QModelIndex PackageModel::index(int row, int column, const QModelIndex & parent)
 const
 {
     if (!hasIndex(row, column, parent))
         return QModelIndex();
 
-    packageItem * parentItem;
+    PackageItem * parentItem;
 
     if (!parent.isValid())
         parentItem = rootItem_;
     else
-        parentItem = static_cast<packageItem *>(parent.internalPointer());
+        parentItem = static_cast<PackageItem *>(parent.internalPointer());
 
-    packageItem * childItem = parentItem->child(row);
+    PackageItem * childItem = parentItem->child(row);
     if (childItem)
         return createIndex(row, column, childItem);
     else
         return QModelIndex();
 }
 
-QModelIndex packageModel::parent(const QModelIndex & index) const
+QModelIndex PackageModel::parent(const QModelIndex & index) const
 {
     if (!index.isValid())
         return QModelIndex();
 
-    packageItem * childItem = static_cast<packageItem *>(index.internalPointer());
-    packageItem * parentItem = childItem->parent();
+    PackageItem * childItem = static_cast<PackageItem *>(index.internalPointer());
+    PackageItem * parentItem = childItem->parent();
 
     if (parentItem == rootItem_)
         return QModelIndex();
@@ -147,24 +147,24 @@ QModelIndex packageModel::parent(const QModelIndex & index) const
     return createIndex(parentItem->row(), 0, parentItem);
 }
 
-int packageModel::rowCount(const QModelIndex & parent) const
+int PackageModel::rowCount(const QModelIndex & parent) const
 {
-    packageItem * parentItem;
+    PackageItem * parentItem;
     if (parent.column() > 0)
         return 0;
 
     if (!parent.isValid())
         parentItem = rootItem_;
     else
-        parentItem = static_cast<packageItem *>(parent.internalPointer());
+        parentItem = static_cast<PackageItem *>(parent.internalPointer());
 
     return parentItem->childCount();
 }
 
 
-void packageModel::setupModelData(packageItem * parent)
+void PackageModel::setupModelData(PackageItem * parent)
 {
-    QList<packageItem *> parents;
+    QList<PackageItem *> parents;
     QList<int> indentations;
     parents << parent;
     indentations << 0;
@@ -175,27 +175,27 @@ void packageModel::setupModelData(packageItem * parent)
         data.push_back(f.name());
         data.push_back(f.version());
         parents.last()->appendChild(
-            new packageItem(data, f.isFavorite(), parents.last()));
+            new PackageItem(data, f.isFavorite(), parents.last()));
     }
 
 }
 
-bool packageModel::setData(const QModelIndex & index, const QVariant & value,
+bool PackageModel::setData(const QModelIndex & index, const QVariant & value,
                            int role)
 {
-    packageItem * item = static_cast<packageItem *>(index.internalPointer());
+    PackageItem * item = static_cast<PackageItem *>(index.internalPointer());
 
     item->setChecked(item->isChecked() ? false : true);
 
     return true;
 }
 
-void packageModel::selectAllNone(bool isAll)
+void PackageModel::selectAllNone(bool isAll)
 {
     int i = 0;
     for (; i < rowCount(); ++i)
     {
-        packageItem * item = static_cast<packageItem *>(index(i, 0).internalPointer());
+        PackageItem * item = static_cast<PackageItem *>(index(i, 0).internalPointer());
         item->setChecked(isAll ? true : false);
     }
     dataChanged(index(0, 0), index(i, 0));

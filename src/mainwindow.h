@@ -9,15 +9,15 @@
 #include <QToolBar>
 #include <QHBoxLayout>
 
-#include "View/navigationbar.h"
-#include "View/toolbar.h"
-#include "View/packagelist.h"
+#include "view/navigationbar.h"
+#include "view/toolbar.h"
+#include "view/packagelist.h"
 
-class mainWindow : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
   public:
-    explicit mainWindow(QWidget * parent = 0);
+    explicit MainWindow(QWidget * parent = 0);
 
   signals:
 
@@ -35,12 +35,12 @@ class mainWindow : public QMainWindow
 
     QHBoxLayout * hbox_;
     QWidget * root_;
-    navigationBar * navigationBar_;
+    NavigationBar * navigationBar_;
     QStackedWidget * stackedWidget_;
-    toolBar     *    toolBar_;
+    ToolBar     *    toolBar_;
     QMenuBar    *    menuBar_;
     QStatusBar   *   statusBar_;
-    packageList * packageList_;
+    PackageList * packageList_;
 
     void connectToolbar();
     void connectNavigationBar();

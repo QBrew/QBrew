@@ -7,21 +7,21 @@
 #include <QLabel>
 #include <QPushButton>
 
-class about : public QDialog
+class About : public QDialog
 {
-public:
-    about(QWidget * parent);
+  public:
+    About(QWidget * parent);
     void setText();
     void setButton();
 
-signals:
+  signals:
 
-public slots:
+  public slots:
 
-private:
-    QVBoxLayout* vbox_;
-    QLabel* text_;
-    QPushButton* closeButton_;
+  private:
+    QVBoxLayout * vbox_;
+    QLabel * text_;
+    QPushButton * closeButton_;
 };
 
 #endif // ABOUT_H

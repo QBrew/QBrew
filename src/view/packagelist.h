@@ -3,7 +3,7 @@
 
 #include <QTreeView>
 
-class packageList : public QTreeView
+class PackageList : public QTreeView
 {
     Q_OBJECT
 
@@ -11,7 +11,7 @@ class packageList : public QTreeView
     void setTreeView();
 
   public:
-    explicit packageList(QWidget * parent = 0);
+    explicit PackageList(QWidget * parent = 0);
 
   signals:
 

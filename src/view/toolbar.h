@@ -4,7 +4,7 @@
 #include <QAction>
 #include <QToolBar>
 
-class toolBar : public QToolBar
+class ToolBar : public QToolBar
 {
     Q_OBJECT
 
@@ -22,7 +22,7 @@ class toolBar : public QToolBar
     void setToolTips();
 
   public:
-    explicit toolBar(QWidget * parent = 0);
+    explicit ToolBar(QWidget * parent = 0);
 
   signals:
     void updateClicked();

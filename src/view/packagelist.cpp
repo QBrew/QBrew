@@ -1,6 +1,6 @@
 #include "packagelist.h"
 #include "packagemodel.h"
-#include "Process/process.h"
+#include "../Process/process.h"
 
 #include <QHeaderView>
 #include <QFile>
@@ -8,16 +8,16 @@
 
 using namespace qbrew;
 
-void packageList::setTreeView()
+void PackageList::setTreeView()
 {
-    packageModel * model = new packageModel();
+    PackageModel * model = new PackageModel();
 
     header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     setAlternatingRowColors(true);
     setModel(model);
 }
 
-packageList::packageList(QWidget * parent) : QTreeView(parent)
+PackageList::PackageList(QWidget * parent) : QTreeView(parent)
 {
     setTreeView();
 }

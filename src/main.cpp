@@ -24,7 +24,7 @@ int main(int argc, char * argv[])
         createDB(true);
     }
 
-    qBrewApplication app(argc, argv);
+    QBrewApplication app(argc, argv);
 
     //Valeur par défaut, à mettre parmis les fonctions
     //exécutées lors du premier lancement de l'application

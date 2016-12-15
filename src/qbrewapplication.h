@@ -8,12 +8,12 @@
 
 class MainWindow;
 
-class qBrewApplication : public QApplication
+class QBrewApplication : public QApplication
 {
   public:
-    qBrewApplication(int & argc, char * argv[]);
+    QBrewApplication(int & argc, char * argv[]);
   private:
-    mainWindow * mainWindow_;
+    MainWindow * mainWindow_;
 };
 
 #endif // QBREWAPPLICATION_H

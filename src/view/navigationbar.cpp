@@ -3,29 +3,29 @@
 #include <QButtonGroup>
 
 
-navigationBar::navigationBar(QWidget * parent) : QWidget(parent)
+NavigationBar::NavigationBar(QWidget * parent) : QWidget(parent)
 {
     setButtons();
     setGroup();
     this->setLayout(vBox_);
 }
 
-QPushButton * navigationBar::all()
+QPushButton * NavigationBar::all()
 {
     return all_;
 }
 
-QPushButton * navigationBar::installed()
+QPushButton * NavigationBar::installed()
 {
     return installed_;
 }
 
-QPushButton * navigationBar::favourite()
+QPushButton * NavigationBar::favourite()
 {
     return favourite_;
 }
 
-void navigationBar::setButtons()
+void NavigationBar::setButtons()
 {
     group_ = new QButtonGroup(this);
     vBox_ = new QVBoxLayout();
@@ -64,7 +64,7 @@ void navigationBar::setButtons()
     vBox_->addWidget(favourite_);
 }
 
-void navigationBar::setGroup()
+void NavigationBar::setGroup()
 {
     group_->addButton(all_);
     group_->addButton(installed_);

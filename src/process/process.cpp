@@ -6,8 +6,8 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QTextStream>
-#include "../DB/DTO/formuladto.h"
-#include "../DB/DB/qbrewdb.h"
+#include "../db/dto/formuladto.h"
+#include "../db/db/qbrewdb.h"
 
 #include <QDebug>
 

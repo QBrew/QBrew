@@ -1,6 +1,6 @@
 #include "about.h"
 
-about::about(QWidget * parent) : QDialog(parent)
+About::About(QWidget * parent) : QDialog(parent)
 {
     vbox_ = new QVBoxLayout;
     setWindowTitle("About");
@@ -11,7 +11,7 @@ about::about(QWidget * parent) : QDialog(parent)
     setSizeGripEnabled( false ) ;
 }
 
-void about::setText()
+void About::setText()
 {
     text_ = new QLabel("QBrew\n"
                        "Licence : GPL3 (https://www.gnu.org/licenses/gpl-3.0.txt)\n"
@@ -22,7 +22,7 @@ void about::setText()
     vbox_->addWidget(text_);
 }
 
-void about::setButton()
+void About::setButton()
 {
     closeButton_ = new QPushButton("Close");
     closeButton_->setMinimumSize(75, 30);

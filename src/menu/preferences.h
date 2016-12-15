@@ -13,26 +13,26 @@
 #include <QLineEdit>
 #include <QSettings>
 
-class preferences : public QDialog
+class Preferences : public QDialog
 {
     Q_OBJECT
-public:
-    preferences(QWidget* Parent);
+  public:
+    Preferences(QWidget * Parent);
     void setTextZone();
     void setButtons();
 
-signals:
+  signals:
 
-public slots:
+  public slots:
     void save();
     void getDirectory();
 
-private :
-    QVBoxLayout* vbox_;
-    QLineEdit* path_;
-    QPushButton* closeButton_;
-    QPushButton* saveButton_;
-    QPushButton* pathButton_;
+  private :
+    QVBoxLayout * vbox_;
+    QLineEdit * path_;
+    QPushButton * closeButton_;
+    QPushButton * saveButton_;
+    QPushButton * pathButton_;
 };
 
 #endif // PREFERENCES_H

@@ -3,7 +3,7 @@
 #include <QIcon>
 #include <QtSvg>
 
-toolBar::toolBar(QWidget * parent) : QToolBar(parent)
+ToolBar::ToolBar(QWidget * parent) : QToolBar(parent)
 {
     setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
@@ -14,7 +14,7 @@ toolBar::toolBar(QWidget * parent) : QToolBar(parent)
     setMovable(false);
 }
 
-void toolBar::setActions()
+void ToolBar::setActions()
 {
     updateAction_ = addAction(QIcon(":/Icons/update"),    tr("Update"));
 
@@ -31,7 +31,7 @@ void toolBar::setActions()
     favoriAction_ = addAction(QIcon(":/Icons/favori"), tr("Favori"));
 }
 
-void toolBar::setStatusTips()
+void ToolBar::setStatusTips()
 {
     updateAction_->setStatusTip(tr("Update the list of packages"));
     selectAll_->setStatusTip(tr("Select all the packages listed"));
@@ -41,7 +41,7 @@ void toolBar::setStatusTips()
     favoriAction_->setStatusTip(tr("Add selected packages to favori"));
 }
 
-void toolBar::setToolTips()
+void ToolBar::setToolTips()
 {
     updateAction_->setToolTip(tr("Update the list of packages"));
     selectAll_->setToolTip(tr("Select all the packages listed"));
@@ -51,15 +51,15 @@ void toolBar::setToolTips()
     favoriAction_->setToolTip(tr("Add selected packages to favori"));
 }
 
-void toolBar::setConnections()
+void ToolBar::setConnections()
 {
-    connect(updateAction_, &QAction::triggered, this, &toolBar::updateClicked);
-    connect(selectAll_, &QAction::triggered, this, &toolBar::selectAllClicked);
-    connect(selectNone_, &QAction::triggered, this, &toolBar::selectNoneClicked);
+    connect(updateAction_, &QAction::triggered, this, &ToolBar::updateClicked);
+    connect(selectAll_, &QAction::triggered, this, &ToolBar::selectAllClicked);
+    connect(selectNone_, &QAction::triggered, this, &ToolBar::selectNoneClicked);
     connect(installAction_, &QAction::triggered, this,
-            &toolBar::installClicked);
+            &ToolBar::installClicked);
     connect(uninstallAction_, &QAction::triggered, this,
-            &toolBar::uninstallClicked);
+            &ToolBar::uninstallClicked);
     connect(favoriAction_, &QAction::triggered, this,
-            &toolBar::addFavoriClicked);
+            &ToolBar::addFavoriClicked);
 }

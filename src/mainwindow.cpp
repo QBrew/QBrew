@@ -1,14 +1,14 @@
 #include "mainwindow.h"
-#include "View/packagelist.h"
-#include "View/packagemodel.h"
-#include "View/menubar.h"
+#include "view/packagelist.h"
+#include "view/packagemodel.h"
+#include "view/menubar.h"
 
 #include <QDebug>
 #include <QLineEdit>
 #include <QProgressDialog>
 #include <QThread>
 
-mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
+MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 {
     root_ = new QWidget();
     hbox_ = new QHBoxLayout();
@@ -17,15 +17,15 @@ mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
 
     stackedWidget_ = new QStackedWidget(this);
 
-    packageList_ = new packageList(this);
+    packageList_ = new PackageList(this);
     stackedWidget_->addWidget(packageList_);
-    navigationBar_ = new navigationBar();
+    navigationBar_ = new NavigationBar();
     hbox_->addWidget(navigationBar_);
     hbox_->addWidget(stackedWidget_);
     root_->setLayout(hbox_);
 
-    menuBar_       = new menubar(this);
-    toolBar_       = new toolBar(this);
+    menuBar_       = new MenuBar(this);
+    toolBar_       = new ToolBar(this);
     statusBar_     = new QStatusBar(this);
 
     addToolBar(toolBar_);
@@ -42,12 +42,12 @@ mainWindow::mainWindow(QWidget * parent) : QMainWindow(parent)
             SLOT(onCustomContextMenu(const QPoint &)));
 }
 
-void mainWindow::selectAllNone(bool isAll)
+void MainWindow::selectAllNone(bool isAll)
 {
-    static_cast<packageModel *>(packageList_->model())->selectAllNone(isAll);
+    static_cast<PackageModel *>(packageList_->model())->selectAllNone(isAll);
 }
 
-void mainWindow::install()
+void MainWindow::install()
 {
     QProgressDialog * progress = new QProgressDialog("Downloading", "", 0, 100000);
 
@@ -67,29 +67,29 @@ void mainWindow::install()
     progress->setLabelText("Installation");
 }
 
-void mainWindow::viewAll()
+void MainWindow::viewAll()
 {
     qDebug() << "ALL";
 }
 
-void mainWindow::viewInstalled()
+void MainWindow::viewInstalled()
 {
     qDebug() << "INSTALL";
 }
 
-void mainWindow::viewFavourite()
+void MainWindow::viewFavourite()
 {
     qDebug() << "FAVOURITE";
 }
 
-void mainWindow::connectToolbar()
+void MainWindow::connectToolbar()
 {
-    connect(toolBar_, &toolBar::selectAllClicked, this, [this] {selectAllNone(true);});
-    connect(toolBar_, &toolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
-    connect(toolBar_, &toolBar::installClicked, this, [this] {install();});
+    connect(toolBar_, &ToolBar::selectAllClicked, this, [this] {selectAllNone(true);});
+    connect(toolBar_, &ToolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
+    connect(toolBar_, &ToolBar::installClicked, this, [this] {install();});
 }
 
-void mainWindow::onCustomContextMenu(const QPoint & point)
+void MainWindow::onCustomContextMenu(const QPoint & point)
 {
     QModelIndex index = packageList_->indexAt(point);
     if (index.isValid())
@@ -101,7 +101,7 @@ void mainWindow::onCustomContextMenu(const QPoint & point)
     }
 }
 
-void mainWindow::connectNavigationBar()
+void MainWindow::connectNavigationBar()
 {
     connect(navigationBar_->all(), SIGNAL(clicked(bool)), this, SLOT(viewAll()));
     connect(navigationBar_->installed(), SIGNAL(clicked(bool)), this,

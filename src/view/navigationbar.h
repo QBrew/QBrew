@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-class navigationBar : public QWidget
+class NavigationBar : public QWidget
 {
     Q_OBJECT
 
@@ -14,7 +14,7 @@ class navigationBar : public QWidget
     void setGroup();
 
   public:
-    explicit navigationBar(QWidget * parent = 0);
+    explicit NavigationBar(QWidget * parent = 0);
 
     QPushButton * all();
     QPushButton * installed();

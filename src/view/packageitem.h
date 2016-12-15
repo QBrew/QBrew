@@ -4,30 +4,30 @@
 #include <QList>
 #include <QVariant>
 
-class packageItem
+class PackageItem
 {
   public:
-    packageItem(const QList<QVariant> & data, bool isFavourite,
-                packageItem * parent = 0);
-    ~packageItem();
+    PackageItem(const QList<QVariant> & data, bool isFavourite,
+                PackageItem * parent = 0);
+    ~PackageItem();
 
-    void appendChild(packageItem * child);
+    void appendChild(PackageItem * child);
 
-    packageItem * child(int row);
+    PackageItem * child(int row);
     int childCount() const;
     int columnCount() const;
     QVariant data(int column) const;
     int row() const;
-    packageItem * parent();
+    PackageItem * parent();
     bool isChecked() const;
     void setChecked(bool set);
     bool isFavourite() const;
     void setFavourite(bool set);
 
   private:
-    QList<packageItem *> childItems_;
+    QList<PackageItem *> childItems_;
     QList<QVariant> itemData_;
-    packageItem * parentItem_;
+    PackageItem * parentItem_;
     bool isChecked_;
     bool isFavourite_;
 };

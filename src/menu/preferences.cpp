@@ -1,6 +1,6 @@
 #include "preferences.h"
 
-preferences::preferences(QWidget* parent) : QDialog(parent)
+Preferences::Preferences(QWidget* parent) : QDialog(parent)
 {
     vbox_ = new QVBoxLayout;
     setWindowTitle("Preferences");
@@ -11,7 +11,7 @@ preferences::preferences(QWidget* parent) : QDialog(parent)
     setSizeGripEnabled( false ) ;
 }
 
-void preferences::setTextZone(){
+void Preferences::setTextZone(){
     QLabel* title = new QLabel("Path : ");
     vbox_->addWidget(title,Qt::AlignLeft);
 
@@ -30,7 +30,7 @@ void preferences::setTextZone(){
     vbox_->addLayout(hbox);
 }
 
-void preferences::setButtons(){
+void Preferences::setButtons(){
     QHBoxLayout* hbox = new QHBoxLayout;
 
     closeButton_ = new QPushButton("Cancel");
@@ -51,13 +51,13 @@ void preferences::setButtons(){
 }
 
 
-void preferences::save(){
+void Preferences::save(){
     QSettings settings("Projet","QBrew");
     settings.setValue("path",path_->text());
     this->close();
 }
 
-void preferences::getDirectory(){
+void Preferences::getDirectory(){
     QString dir;
     if(QDir(path_->text()).exists()){
         dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
