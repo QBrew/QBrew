@@ -10,6 +10,7 @@ namespace qbrew
 class FormulaDTO
 {
   private :
+    QString filename_;
     QString name_;
     QString version_;
     QString homepage_;
@@ -19,10 +20,11 @@ class FormulaDTO
     bool isFavorite_;
 
   public:
-    inline FormulaDTO(QString name, QString version, QString homepage,
-                      QString url, QString desc,
+    inline FormulaDTO(QString filename, QString name, QString version,
+                      QString homepage, QString url, QString desc,
                       bool isInstalled = false, bool isFavorite = false);
-    inline FormulaDTO() : FormulaDTO("", "", "", "", "", false, false) {}
+    inline FormulaDTO() : FormulaDTO("", "", "", "", "", "", false, false) {}
+    inline const QString filename();
     inline const QString name();
     inline const QString version();
     inline const QString homepage();
@@ -35,11 +37,16 @@ class FormulaDTO
 
 };
 
-FormulaDTO::FormulaDTO(QString name, QString version, QString homepage,
+FormulaDTO::FormulaDTO(QString filename, QString name, QString version, QString homepage,
                        QString url, QString desc, bool isInstalled, bool isFavorite) :
-    name_{name}, version_{version}, homepage_{homepage}, url_{url}, desc_{desc},
+    filename_ {filename}, name_{name}, version_{version}, homepage_{homepage}, url_{url}, desc_{desc},
     isInstalled_{isInstalled}, isFavorite_{isFavorite}
 {
+}
+
+const QString FormulaDTO::filename()
+{
+    return filename_;
 }
 
 const QString FormulaDTO::name()
