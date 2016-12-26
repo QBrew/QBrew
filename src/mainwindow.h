@@ -9,6 +9,7 @@
 #include <QToolBar>
 #include <QHBoxLayout>
 #include <QTableWidget>
+#include <QAction>
 
 #include "view/navigationbar.h"
 #include "view/toolbar.h"
@@ -46,6 +47,8 @@ class MainWindow : public QMainWindow
     QMenuBar    *    menuBar_;
     QStatusBar   *   statusBar_;
     FormulaList * formulalist_;
+
+    QModelIndex clicked_;
 
     void connectToolbar();
     void connectNavigationBar();

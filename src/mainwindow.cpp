@@ -43,14 +43,15 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     showMaximized();
     formulalist_->setFocus();
 
-    //packageList_->setContextMenuPolicy(Qt::CustomContextMenu);
-    /*connect(packageList_, SIGNAL(customContextMenuRequested(const QPoint &)), this,
-            SLOT(onCustomContextMenu(const QPoint &)));*/
-
     connect(formulalist_, SIGNAL(cellClicked(int, int)), this,
             SLOT(tableItemClicked(int, int)));
     connect(formulalist_, SIGNAL(cellDoubleClicked(int, int)), this,
             SLOT(tableItemDoubleClicked(int, int)));
+
+    formulalist_->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(formulalist_, SIGNAL(customContextMenuRequested(const QPoint &)), this,
+            SLOT(onCustomContextMenu(const QPoint &)));
+
 
 }
 
@@ -113,19 +114,6 @@ void MainWindow::connectToolbar()
     connect(toolBar_, &ToolBar::installClicked, this, [this] {install();});
 }
 
-void MainWindow::onCustomContextMenu(const QPoint & point)
-{
-    /*QModelIndex index = packageList_->indexAt(point);
-    if (index.isValid())
-    {
-        QMenu * contextMenu = new QMenu(packageList_);
-        QAction * select = new QAction("Select", contextMenu);
-        contextMenu->addAction(select);
-        contextMenu->exec(packageList_->mapToGlobal(point));
-    }*/
-}
-
-
 void MainWindow::connectNavigationBar()
 {
     connect(navigationBar_->all(), SIGNAL(clicked(bool)), this, SLOT(viewAll()));
@@ -133,4 +121,30 @@ void MainWindow::connectNavigationBar()
             SLOT(viewInstalled()));
     connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,
             SLOT(viewFavourite()));
+}
+
+void MainWindow::onCustomContextMenu(const QPoint &point)
+{
+    QModelIndex index = formulalist_->indexAt(point);
+    if (index.isValid()) {
+        clicked_ = index;
+        QMenu* contextMenu = new QMenu(formulalist_);
+        QCheckBox * check = (QCheckBox*)formulalist_->cellWidget(index.row(),0);
+        QAction* select;
+        if(check->isChecked()){
+            select = new QAction("Unselect",contextMenu);
+        }else{
+            select = new QAction("Select",contextMenu);
+        }
+        connect(select, &QAction::triggered, [this]()
+        {
+            tableItemDoubleClicked(clicked_.row(),0);
+        });
+        QAction* install = new QAction("Install",contextMenu);
+        QAction* favourite = new QAction("Favourite",contextMenu);
+        contextMenu->addAction(select);
+        contextMenu->addAction(install);
+        contextMenu->addAction(favourite);
+        contextMenu->exec(formulalist_->mapToGlobal(point));
+    }
 }
