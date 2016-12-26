@@ -68,7 +68,7 @@ void FormulaList::selectFormula(bool isAll)
     }
 }
 
-QList<qbrew::FormulaDTO> FormulaList::getSelected()
+QList<qbrew::FormulaDTO> FormulaList::getSelectedFavorite()
 {
     QList<qbrew::FormulaDTO> result;
     int i{0};
@@ -76,7 +76,9 @@ QList<qbrew::FormulaDTO> FormulaList::getSelected()
     {
         if (checkBox->isChecked())
         {
-            result.append(formula_.at(i));
+            qbrew::FormulaDTO f = formula_.at(i);
+            f.setIsFavorite(true);
+            result.append(f);
         }
         i++;
     }

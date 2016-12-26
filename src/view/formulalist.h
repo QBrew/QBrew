@@ -21,7 +21,7 @@ class FormulaList : public QTableWidget
     void search(QString searchValue);
 
     void selectFormula(bool isAll);
-    QList<qbrew::FormulaDTO> getSelected();
+    QList<qbrew::FormulaDTO> getSelectedFavorite();
 
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);

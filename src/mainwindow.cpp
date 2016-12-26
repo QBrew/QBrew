@@ -83,7 +83,7 @@ void MainWindow::install()
 
 void MainWindow::addFavorite()
 {
-    QList<qbrew::FormulaDTO> selected = formulalist_->getSelected();
+    QList<qbrew::FormulaDTO> selected = formulalist_->getSelectedFavorite();
     for (qbrew::FormulaDTO f : selected)
     {
         qbrew::addFavorite(f);
