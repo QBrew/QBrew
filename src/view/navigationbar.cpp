@@ -2,37 +2,35 @@
 
 #include <QButtonGroup>
 
-
 NavigationBar::NavigationBar(QWidget * parent) : QWidget(parent)
 {
     setButtons();
-    setGroup();
     this->setLayout(vBox_);
-}
-
-QPushButton * NavigationBar::all()
-{
-    return all_;
-}
-
-QPushButton * NavigationBar::installed()
-{
-    return installed_;
-}
-
-QPushButton * NavigationBar::favourite()
-{
-    return favourite_;
 }
 
 void NavigationBar::setButtons()
 {
     group_ = new QButtonGroup(this);
+    group_->setExclusive(true);
     vBox_ = new QVBoxLayout();
     vBox_->setContentsMargins(0, 0, 0, 0);
     vBox_->setSpacing(10);
     vBox_->setAlignment(Qt::AlignTop);
 
+    all_ = getPushButton(tr("All"));
+    installed_ = getPushButton(tr("Installed"));
+    favourite_ = getPushButton(tr("Favourite"));
+    favourite_->setChecked(true);
+    search_ = getPushButton(tr("Search"));
+
+    vBox_->addWidget(all_);
+    vBox_->addWidget(installed_);
+    vBox_->addWidget(favourite_);
+    vBox_->addWidget(search_);
+}
+
+QPushButton * NavigationBar::getPushButton(const QString & name)
+{
     QString style =
         "QPushButton{ "
         "text-align: left;"
@@ -46,28 +44,9 @@ void NavigationBar::setButtons()
         "QPushButton:checked {"
         "background-color:#CECECE;}";
 
-    all_ = new QPushButton(tr("All"));
-    all_->setCheckable(true);
-    all_->setChecked(true);
-    all_->setStyleSheet(style);
-
-    installed_ = new QPushButton(tr("Installed"));
-    installed_->setCheckable(true);
-    installed_->setStyleSheet(style);
-
-    favourite_ = new QPushButton(tr("Favourite"));
-    favourite_->setCheckable(true);
-    favourite_->setStyleSheet(style);
-
-    vBox_->addWidget(all_);
-    vBox_->addWidget(installed_);
-    vBox_->addWidget(favourite_);
-}
-
-void NavigationBar::setGroup()
-{
-    group_->addButton(all_);
-    group_->addButton(installed_);
-    group_->addButton(favourite_);
-    group_->setExclusive(true);
+    QPushButton * qpb = new QPushButton(name);
+    qpb->setCheckable(true);
+    qpb->setStyleSheet(style);
+    group_->addButton(qpb);
+    return qpb;
 }

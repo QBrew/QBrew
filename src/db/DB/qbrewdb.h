@@ -9,10 +9,11 @@ namespace qbrew
 QList<FormulaDTO> getAll();
 QList<FormulaDTO> getFavorite();
 QList<FormulaDTO> getInstalled();
+QList<FormulaDTO> getSearch(QString searchValue);
 
 FormulaDTO selectFormula(QString filename);
 bool addFormula(FormulaDTO formula);
-void updateFormula(FormulaDTO formula);
+void addFavorite(FormulaDTO formula);
 void deleteFormula(QString filename);
 }
 

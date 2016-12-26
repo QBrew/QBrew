@@ -27,11 +27,13 @@ class MainWindow : public QMainWindow
 
     void selectAllNone(bool isAll);
     void install();
+    void addFavorite();
     void onCustomContextMenu(const QPoint & point);
 
     void viewAll();
     void viewInstalled();
     void viewFavourite();
+    void viewSearch();
 
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);

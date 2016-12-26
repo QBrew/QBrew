@@ -10,7 +10,7 @@
 FormulaList::FormulaList(QWidget * parent)
 {
     QStringList qsl;
-    qsl << "" << "Filename" << "Name" << "Version" << "Favorite" << "Installed";
+    qsl << "" << "Filename" << "Name" << "Version" << "Installed" << "Favorite";
     this->setColumnCount(qsl.size());
     this->setHorizontalHeaderLabels(qsl);
 
@@ -24,23 +24,32 @@ FormulaList::FormulaList(QWidget * parent)
     this->setColumnWidth(1, 500);
     this->horizontalHeader()->setStretchLastSection(true);
 
-    this->setAll();
+    this->setFavorite();
 
 }
 
 void FormulaList::setAll()
 {
-    setList(qbrew::getAll());
+    formula_ = qbrew::getAll();
+    setList();
 }
 
 void FormulaList::setFavorite()
 {
-    setList(qbrew::getFavorite());
+    formula_ = qbrew::getFavorite();
+    setList();
 }
 
 void FormulaList::setInstalled()
 {
-    setList(qbrew::getInstalled());
+    formula_ = qbrew::getFavorite();
+    setList();
+}
+
+void FormulaList::search(QString searchValue)
+{
+    formula_ = qbrew::getSearch(searchValue);
+    setList();
 }
 
 void FormulaList::selectFormula(bool isAll)
@@ -59,11 +68,27 @@ void FormulaList::selectFormula(bool isAll)
     }
 }
 
-void FormulaList::setList(const QList<qbrew::FormulaDTO> & list)
+QList<qbrew::FormulaDTO> FormulaList::getSelected()
 {
-    this->setRowCount(list.size());
+    QList<qbrew::FormulaDTO> result;
+    int i{0};
+    for (QCheckBox * checkBox : checkBoxes_)
+    {
+        if (checkBox->isChecked())
+        {
+            result.append(formula_.at(i));
+        }
+        i++;
+    }
+    return result;
+}
+
+void FormulaList::setList()
+{
+    checkBoxes_.clear();
+    this->setRowCount(formula_.size());
     int i {0};
-    for (qbrew::FormulaDTO f : list)
+    for (qbrew::FormulaDTO f : formula_)
     {
         int j {0};
         QCheckBox * checkBox = new QCheckBox();
@@ -83,15 +108,17 @@ void FormulaList::setList(const QList<qbrew::FormulaDTO> & list)
         version->setFlags(version->flags() ^ Qt::ItemIsEditable);
         this->setItem(i, j++, version);
 
-        QCheckBox * isFavorite = new QCheckBox();
-        isInstalled->setChecked(f.isFavorite());
-        isFavorite->setCheckable(false);
-        this->setCellWidget(i, j++, isFavorite);
-
         QCheckBox * isInstalled = new QCheckBox();
         isInstalled->setChecked(f.isInstalled());
-        isInstalled->setCheckable(false);
-        this->setItem(i, j++, isInstalled);
+        isInstalled->setAttribute(Qt::WA_TransparentForMouseEvents);
+        isInstalled->setFocusPolicy(Qt::NoFocus);
+        this->setCellWidget(i, j++, isInstalled);
+
+        QCheckBox * isFavorite = new QCheckBox();
+        isFavorite->setChecked(f.isFavorite());
+        isFavorite->setAttribute(Qt::WA_TransparentForMouseEvents);
+        isFavorite->setFocusPolicy(Qt::NoFocus);
+        this->setCellWidget(i, j++, isFavorite);
 
         i++;
     }

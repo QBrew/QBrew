@@ -10,6 +10,7 @@ class FormulaList : public QTableWidget
 {
     Q_OBJECT
 
+    QList<qbrew::FormulaDTO> formula_;
     QList<QCheckBox *> checkBoxes_;
 
   public:
@@ -17,13 +18,15 @@ class FormulaList : public QTableWidget
     void setAll();
     void setFavorite();
     void setInstalled();
+    void search(QString searchValue);
 
     void selectFormula(bool isAll);
+    QList<qbrew::FormulaDTO> getSelected();
 
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);
   private:
-    void setList(const QList<qbrew::FormulaDTO> & list);
+    void setList();
   signals:
 
   public slots:

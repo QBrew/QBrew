@@ -32,6 +32,8 @@ class FormulaDTO
     inline const QString desc();
     inline bool isInstalled();
     inline bool isFavorite();
+    inline void setIsInstalled(bool isInstalled);
+    inline void setIsFavorite(bool isFavorite);
 
     QString toString();
 
@@ -82,6 +84,16 @@ bool FormulaDTO::isInstalled()
 bool FormulaDTO::isFavorite()
 {
     return isFavorite_;
+}
+
+void FormulaDTO::setIsInstalled(bool isInstalled)
+{
+    isInstalled_ = isInstalled;
+}
+
+void FormulaDTO::setIsFavorite(bool isFavorite)
+{
+    isFavorite_ = isFavorite;
 }
 
 }

@@ -11,14 +11,14 @@ class NavigationBar : public QWidget
     Q_OBJECT
 
     void setButtons();
-    void setGroup();
 
   public:
     explicit NavigationBar(QWidget * parent = 0);
 
-    QPushButton * all();
-    QPushButton * installed();
-    QPushButton * favourite();
+    inline QPushButton * all();
+    inline QPushButton * installed();
+    inline QPushButton * favourite();
+    inline QPushButton * search();
 
   signals:
 
@@ -29,7 +29,32 @@ class NavigationBar : public QWidget
     QPushButton * all_;
     QPushButton * installed_;
     QPushButton * favourite_;
+    QPushButton * search_;
     QVBoxLayout * vBox_;
+
+    QPushButton * getPushButton(const QString & name);
 };
+
+
+QPushButton * NavigationBar::all()
+{
+    return all_;
+}
+
+QPushButton * NavigationBar::installed()
+{
+    return installed_;
+}
+
+QPushButton * NavigationBar::favourite()
+{
+    return favourite_;
+}
+
+QPushButton * NavigationBar::search()
+{
+    return search_;
+}
+
 
 #endif // NAVIGATIONBAR_H

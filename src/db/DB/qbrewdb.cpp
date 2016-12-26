@@ -6,14 +6,13 @@
 namespace qbrew
 {
 
-QList<FormulaDTO> getAll()
+QList<FormulaDTO> getList(QSqlQuery query)
 {
     QList<FormulaDTO> list;
-    QSqlQuery query("SELECT * FROM FORMULA");
     while (query.next())
     {
-        bool isInstalled = (query.value(5).toInt() == 1);
-        bool isFavorite = (query.value(6).toInt() == 1);
+        bool isInstalled = (query.value(6).toInt() == 1);
+        bool isFavorite = (query.value(7).toInt() == 1);
         FormulaDTO formula {query.value(0).toString(), query.value(1).toString(),
                             query.value(2).toString(), query.value(3).toString(),
                             query.value(4).toString(), query.value(5).toString(),
@@ -21,40 +20,29 @@ QList<FormulaDTO> getAll()
         list.push_back(formula);
     }
     return list;
+}
+
+QList<FormulaDTO> getAll()
+{
+    return getList(QSqlQuery("SELECT * FROM FORMULA"));
 }
 
 
 QList<FormulaDTO> getFavorite()
 {
-    QList<FormulaDTO> list;
-    QSqlQuery query("SELECT * FROM FORMULA WHERE FAVORITE = 1");
-    while (query.next())
-    {
-        bool isInstalled = (query.value(5).toInt() == 1);
-        bool isFavorite = (query.value(6).toInt() == 1);
-        FormulaDTO formula {query.value(0).toString(), query.value(1).toString(),
-                            query.value(2).toString(), query.value(3).toString(),
-                            query.value(4).toString(), query.value(5).toString(),
-                            isInstalled, isFavorite};
-        list.push_back(formula);
-    }
-    return list;
+    return getList(QSqlQuery("SELECT * FROM FORMULA WHERE FAVORITE = 1"));
 }
 
 QList<FormulaDTO> getInstalled()
 {
-    QList<FormulaDTO> list;
-    QSqlQuery query("SELECT * FROM FORMULA WHERE INSTALL = 1");
-    while (query.next())
-    {
-        bool isInstalled = (query.value(5).toInt() == 1);
-        bool isFavorite = (query.value(6).toInt() == 1);
-        FormulaDTO formula {query.value(0).toString(), query.value(1).toString(),
-                            query.value(2).toString(), query.value(3).toString(),
-                            query.value(4).toString(), query.value(5).toString(),
-                            isInstalled, isFavorite};
-        list.push_back(formula);
-    }
+    return getList(QSqlQuery("SELECT * FROM FORMULA WHERE INSTALL = 1"));
+}
+
+QList<FormulaDTO> getSearch (QString searchValue)
+{
+    QString sql = "SELECT * FROM FORMULA WHERE FILENAME LIKE '%" + searchValue + "%'";
+    QSqlQuery query(sql);
+    QList<FormulaDTO> list =  getList(query);
     return list;
 }
 
@@ -93,16 +81,19 @@ bool addFormula(FormulaDTO formula)
     return query.exec();
 }
 
-void updateFormula(FormulaDTO formula)
+void addFavorite(FormulaDTO formula)
 {
-
+    QSqlQuery query;
+    query.prepare("UPDATE FORMULA SET FAVORITE = 1 WHERE FILENAME = :filename");
+    query.bindValue(":filename", formula.filename());
+    query.exec();
 }
 
 void deleteFormula(QString filename)
 {
     QSqlQuery query;
     query.prepare("DELETE FROM FORMULA WHERE FILENAME = :filename");
-    query.bindValue(0, filename);
+    query.bindValue(":filename", filename);
     query.exec();
 }
 }
