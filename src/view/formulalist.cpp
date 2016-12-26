@@ -10,7 +10,7 @@
 FormulaList::FormulaList(QWidget * parent)
 {
     QStringList qsl;
-    qsl << "" << "Name" << "Version";
+    qsl << "" << "Filename" << "Name" << "Version" << "Favorite" << "Installed";
     this->setColumnCount(qsl.size());
     this->setHorizontalHeaderLabels(qsl);
 
@@ -30,9 +30,17 @@ FormulaList::FormulaList(QWidget * parent)
 
 void FormulaList::setAll()
 {
-    QList<qbrew::FormulaDTO> list;
-    list = qbrew::getAll();
-    setList(list);
+    setList(qbrew::getAll());
+}
+
+void FormulaList::setFavorite()
+{
+    setList(qbrew::getFavorite());
+}
+
+void FormulaList::setInstalled()
+{
+    setList(qbrew::getInstalled());
 }
 
 void FormulaList::selectFormula(bool isAll)
@@ -57,18 +65,34 @@ void FormulaList::setList(const QList<qbrew::FormulaDTO> & list)
     int i {0};
     for (qbrew::FormulaDTO f : list)
     {
+        int j {0};
         QCheckBox * checkBox = new QCheckBox();
         checkBox->setChecked(false);
         checkBoxes_.append(checkBox);
-        this->setCellWidget(i, 0, checkBox);
+        this->setCellWidget(i, j++, checkBox);
+
+        QTableWidgetItem * filename = new QTableWidgetItem(f.filename());
+        filename->setFlags(filename->flags() ^ Qt::ItemIsEditable);
+        this->setItem(i, j++, filename);
 
         QTableWidgetItem * name = new QTableWidgetItem(f.name());
         name->setFlags(name->flags() ^ Qt::ItemIsEditable);
-        this->setItem(i, 1, name);
+        this->setItem(i, j++, name);
 
         QTableWidgetItem * version = new QTableWidgetItem(f.version());
         version->setFlags(version->flags() ^ Qt::ItemIsEditable);
-        this->setItem(i, 2, version);
+        this->setItem(i, j++, version);
+
+        QCheckBox * isFavorite = new QCheckBox();
+        isInstalled->setChecked(f.isFavorite());
+        isFavorite->setCheckable(false);
+        this->setCellWidget(i, j++, isFavorite);
+
+        QCheckBox * isInstalled = new QCheckBox();
+        isInstalled->setChecked(f.isInstalled());
+        isInstalled->setCheckable(false);
+        this->setItem(i, j++, isInstalled);
+
         i++;
     }
 }

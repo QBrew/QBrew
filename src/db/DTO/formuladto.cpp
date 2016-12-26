@@ -6,6 +6,7 @@ namespace qbrew
 QString FormulaDTO::toString()
 {
     QString result;
+    result.append("Filename : " + filename_);
     result.append("Name : " + name_);
     result.append("\nVersion : " + version_);
     result.append("\nURL : " + url_);

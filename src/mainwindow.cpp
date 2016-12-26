@@ -82,17 +82,19 @@ void MainWindow::install()
 void MainWindow::viewAll()
 {
     qDebug() << "ALL";
+    formulalist_->setAll();
 }
 
 void MainWindow::viewInstalled()
 {
     qDebug() << "INSTALL";
-    formulalist_->setRowCount(0);
+    formulalist_->setInstalled();
 }
 
 void MainWindow::viewFavourite()
 {
     qDebug() << "FAVOURITE";
+    formulalist_->setFavorite();
 }
 
 void MainWindow::tableItemClicked(int row, int column)

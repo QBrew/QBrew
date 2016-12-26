@@ -15,7 +15,11 @@ class FormulaList : public QTableWidget
   public:
     explicit FormulaList(QWidget * parent = 0);
     void setAll();
+    void setFavorite();
+    void setInstalled();
+
     void selectFormula(bool isAll);
+
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);
   private:

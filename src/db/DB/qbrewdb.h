@@ -7,10 +7,13 @@
 namespace qbrew
 {
 QList<FormulaDTO> getAll();
-FormulaDTO selectFormula(QString name);
+QList<FormulaDTO> getFavorite();
+QList<FormulaDTO> getInstalled();
+
+FormulaDTO selectFormula(QString filename);
 bool addFormula(FormulaDTO formula);
 void updateFormula(FormulaDTO formula);
-void deleteFormula(QString name);
+void deleteFormula(QString filename);
 }
 
 #endif // QBREWDB_H
