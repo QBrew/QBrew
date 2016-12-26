@@ -30,25 +30,7 @@ int main(int argc, char * argv[])
     //exécutées lors du premier lancement de l'application
     QSettings settings("Projet", "QBrew");
     settings.setValue("path", "/usr/local/HomeBrew");
-    //
+
     return app.exec();
     close();
-    /*
-    connection();
-    //dropTable();
-    //createTable();
-    FormulaDTO formula("un 4e package", "12.23", "www.monurl.com",
-                       "www.monurl.dl.com", "Bonjour!", true, false);
-    if (addFormula(formula))
-    {
-        //qDebug() << "Formula added";
-    }
-    //deleteFormula("un 3e package");
-    for (auto f : getAll())
-    {
-        qDebug().noquote() << f.toString();
-        qDebug() << "";
-    }
-    return 0;
-    */
 }

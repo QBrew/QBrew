@@ -20,24 +20,19 @@ SOURCES += src/main.cpp\
     src/qbrewapplication.cpp \
     src/mainwindow.cpp \
     src/view/toolbar.cpp \
-    src/view/packageitem.cpp \
-    src/view/packagelist.cpp \
-    src/view/packagemodel.cpp \
     src/db/db/dbmanager.cpp \
     src/view/menubar.cpp \
     src/menu/about.cpp \
     src/menu/preferences.cpp \
     src/db/db/qbrewdb.cpp \
     src/db/dto/formuladto.cpp \
-    src/view/navigationbar.cpp
+    src/view/navigationbar.cpp \
+    src/view/formulalist.cpp
 
 HEADERS  += \
     src/process/process.h \
-    src/view/packagelist.h \
     src/qbrewapplication.h \
     src/view/toolbar.h \
-    src/view/packageitem.h \
-    src/view/packagemodel.h \
     src/mainwindow.h \
     src/db/db/dbmanager.h \
     src/view/menubar.h \
@@ -45,7 +40,8 @@ HEADERS  += \
     src/view/navigationbar.h \
     src/db/dto/formuladto.h \
     src/menu/preferences.h \
-    src/db/db/qbrewdb.h
+    src/db/db/qbrewdb.h \
+    src/view/formulalist.h
 
 FORMS    +=
 

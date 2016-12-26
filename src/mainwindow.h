@@ -8,10 +8,12 @@
 #include <QStatusBar>
 #include <QToolBar>
 #include <QHBoxLayout>
+#include <QTableWidget>
 
 #include "view/navigationbar.h"
 #include "view/toolbar.h"
-#include "view/packagelist.h"
+#include "view/formulalist.h"
+
 
 class MainWindow : public QMainWindow
 {
@@ -31,6 +33,9 @@ class MainWindow : public QMainWindow
     void viewInstalled();
     void viewFavourite();
 
+    void tableItemClicked(int row, int column);
+    void tableItemDoubleClicked(int row, int column);
+
   private:
 
     QHBoxLayout * hbox_;
@@ -40,7 +45,7 @@ class MainWindow : public QMainWindow
     ToolBar     *    toolBar_;
     QMenuBar    *    menuBar_;
     QStatusBar   *   statusBar_;
-    PackageList * packageList_;
+    FormulaList * formulalist_;
 
     void connectToolbar();
     void connectNavigationBar();

@@ -1,7 +1,11 @@
 #include "mainwindow.h"
-#include "view/packagelist.h"
-#include "view/packagemodel.h"
 #include "view/menubar.h"
+#include "view/formulalist.h"
+
+#include <QTableWidget>
+#include <src/db/DB/qbrewdb.h>
+#include <src/db/DTO/formuladto.h>
+#include <QHeaderView>
 
 #include <QDebug>
 #include <QLineEdit>
@@ -17,8 +21,9 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
     stackedWidget_ = new QStackedWidget(this);
 
-    packageList_ = new PackageList(this);
-    stackedWidget_->addWidget(packageList_);
+    formulalist_ = new FormulaList(this);
+    stackedWidget_->addWidget(formulalist_);
+
     navigationBar_ = new NavigationBar();
     hbox_->addWidget(navigationBar_);
     hbox_->addWidget(stackedWidget_);
@@ -36,15 +41,22 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     setCentralWidget(root_);
 
     showMaximized();
+    formulalist_->setFocus();
 
-    packageList_->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(packageList_, SIGNAL(customContextMenuRequested(const QPoint &)), this,
-            SLOT(onCustomContextMenu(const QPoint &)));
+    //packageList_->setContextMenuPolicy(Qt::CustomContextMenu);
+    /*connect(packageList_, SIGNAL(customContextMenuRequested(const QPoint &)), this,
+            SLOT(onCustomContextMenu(const QPoint &)));*/
+
+    connect(formulalist_, SIGNAL(cellClicked(int, int)), this,
+            SLOT(tableItemClicked(int, int)));
+    connect(formulalist_, SIGNAL(cellDoubleClicked(int, int)), this,
+            SLOT(tableItemDoubleClicked(int, int)));
+
 }
 
 void MainWindow::selectAllNone(bool isAll)
 {
-    static_cast<PackageModel *>(packageList_->model())->selectAllNone(isAll);
+    formulalist_->selectFormula(isAll);
 }
 
 void MainWindow::install()
@@ -75,11 +87,23 @@ void MainWindow::viewAll()
 void MainWindow::viewInstalled()
 {
     qDebug() << "INSTALL";
+    formulalist_->setRowCount(0);
 }
 
 void MainWindow::viewFavourite()
 {
     qDebug() << "FAVOURITE";
+}
+
+void MainWindow::tableItemClicked(int row, int column)
+{
+    formulalist_->tableItemClicked(row, column);
+    formulalist_->setFocus();
+}
+
+void MainWindow::tableItemDoubleClicked(int row, int column)
+{
+    formulalist_->tableItemDoubleClicked(row, column);
 }
 
 void MainWindow::connectToolbar()
@@ -91,15 +115,16 @@ void MainWindow::connectToolbar()
 
 void MainWindow::onCustomContextMenu(const QPoint & point)
 {
-    QModelIndex index = packageList_->indexAt(point);
+    /*QModelIndex index = packageList_->indexAt(point);
     if (index.isValid())
     {
         QMenu * contextMenu = new QMenu(packageList_);
         QAction * select = new QAction("Select", contextMenu);
         contextMenu->addAction(select);
         contextMenu->exec(packageList_->mapToGlobal(point));
-    }
+    }*/
 }
+
 
 void MainWindow::connectNavigationBar()
 {
