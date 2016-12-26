@@ -7,6 +7,8 @@
 #include <src/db/DTO/formuladto.h>
 #include <QHeaderView>
 
+#include <QInputDialog>
+
 #include <QDebug>
 #include <QLineEdit>
 #include <QProgressDialog>
@@ -80,20 +82,41 @@ void MainWindow::install()
     progress->setLabelText("Installation");
 }
 
+void MainWindow::addFavorite()
+{
+    QList<qbrew::FormulaDTO> selected = formulalist_->getSelectedFavorite();
+    for (qbrew::FormulaDTO f : selected)
+    {
+        qbrew::addFavorite(f);
+    }
+
+}
+
 void MainWindow::viewAll()
 {
-    qDebug() << "ALL";
+    //formulalist_->setAll()
 }
 
 void MainWindow::viewInstalled()
 {
-    qDebug() << "INSTALL";
-    formulalist_->setRowCount(0);
+    formulalist_->setInstalled();
 }
 
 void MainWindow::viewFavourite()
 {
-    qDebug() << "FAVOURITE";
+    formulalist_->setFavorite();
+}
+
+void MainWindow::viewSearch()
+{
+    formulalist_->setRowCount(0);
+    QInputDialog * qid = new QInputDialog;
+    QString text = QInputDialog::getText(this, tr("Search"),
+                                         "Name or part of name\n(at least 3 characters)");
+    if (text.size() > 3)
+    {
+        formulalist_->search(text);
+    }
 }
 
 void MainWindow::tableItemClicked(int row, int column)
@@ -112,6 +135,7 @@ void MainWindow::connectToolbar()
     connect(toolBar_, &ToolBar::selectAllClicked, this, [this] {selectAllNone(true);});
     connect(toolBar_, &ToolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
     connect(toolBar_, &ToolBar::installClicked, this, [this] {install();});
+    connect(toolBar_, &ToolBar::addFavoriClicked, this, [this] {addFavorite();});
 }
 
 void MainWindow::connectNavigationBar()
@@ -121,6 +145,8 @@ void MainWindow::connectNavigationBar()
             SLOT(viewInstalled()));
     connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,
             SLOT(viewFavourite()));
+    connect(navigationBar_->search(), SIGNAL(clicked(bool)), this,
+            SLOT(viewSearch()));
 }
 
 void MainWindow::onCustomContextMenu(const QPoint &point)

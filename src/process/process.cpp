@@ -156,9 +156,8 @@ void createDB(bool cask)
         if (it.fileInfo().isFile())
         {
             QMap<QString, QString> map (infoPackage(it.fileInfo().baseName(), true));
-            FormulaDTO formula {map.value("name"), map.value("version"),
-                                map.value("homepage"), map.value("url"),
-                                map.value("desc")};
+            FormulaDTO formula {map.value("filename"), map.value("name"), map.value("version"),
+                                map.value("homepage"), map.value("url"), map.value("desc")};
             addFormula(formula);
         }
 
@@ -170,7 +169,8 @@ QMap<QString, QString> infoPackage(QString filename, bool cask)
     QMap<QString, QString> map;
     QStringList infos (QStringList() << "  version " << "  url "
                        << "  name " );//<< "  homepage "  << "  desc ");
-    map.insert("name", filename);
+    map.insert("filename", filename);
+    map.insert("name", "");
     map.insert("version", "");
     map.insert("url", "");
     map.insert("desc", "");

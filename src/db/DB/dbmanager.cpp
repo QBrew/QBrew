@@ -34,7 +34,8 @@ void createTable()
     {
         QSqlQuery query;
         query.exec("CREATE TABLE FORMULA"
-                   "(NAME       TEXT NOT NULL PRIMARY KEY,"
+                   "(FILENAME   TEXT NOT NULL PRIMARY KEY,"
+                   "NAME        TEXT NOT NULL,"
                    "VERSION     TEXT NOT NULL,"
                    "URL         TEXT NOT NULL,"
                    "HOMEPAGE    TEXT NOT NULL,"
