@@ -25,9 +25,9 @@ SOURCES += src/main.cpp\
     src/menu/about.cpp \
     src/menu/preferences.cpp \
     src/db/db/qbrewdb.cpp \
-    src/db/dto/formuladto.cpp \
     src/view/navigationbar.cpp \
-    src/view/formulalist.cpp
+    src/db/dto/packagedto.cpp \
+    src/view/packagelist.cpp
 
 HEADERS  += \
     src/process/process.h \
@@ -38,10 +38,10 @@ HEADERS  += \
     src/view/menubar.h \
     src/menu/about.h \
     src/view/navigationbar.h \
-    src/db/dto/formuladto.h \
     src/menu/preferences.h \
     src/db/db/qbrewdb.h \
-    src/view/formulalist.h
+    src/db/dto/packagedto.h \
+    src/view/packagelist.h
 
 FORMS    +=
 

@@ -33,7 +33,7 @@ void createTable()
     if (db.tables().isEmpty())
     {
         QSqlQuery query;
-        query.exec("CREATE TABLE FORMULA"
+        query.exec("CREATE TABLE PACKAGES"
                    "(FILENAME   TEXT NOT NULL PRIMARY KEY,"
                    "NAME        TEXT NOT NULL,"
                    "VERSION     TEXT NOT NULL,"
@@ -49,7 +49,7 @@ void createTable()
 void dropTable()
 {
     QSqlQuery query;
-    query.exec("DROP TABLE IF EXISTS FORMULA");
+    query.exec("DROP TABLE IF EXISTS PACKAGES");
 }
 
 }

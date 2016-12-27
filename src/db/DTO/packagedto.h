@@ -1,5 +1,5 @@
-#ifndef FORMULADTO_H
-#define FORMULADTO_H
+#ifndef PACKAGEDTO_H
+#define PACKAGEDTO_H
 
 #include <QString>
 #include <QDebug>
@@ -7,7 +7,7 @@
 namespace qbrew
 {
 
-class FormulaDTO
+class PackageDTO
 {
   private :
     QString filename_;
@@ -20,10 +20,10 @@ class FormulaDTO
     bool isFavorite_;
 
   public:
-    inline FormulaDTO(QString filename, QString name, QString version,
+    inline PackageDTO(QString filename, QString name, QString version,
                       QString homepage, QString url, QString desc,
                       bool isInstalled = false, bool isFavorite = false);
-    inline FormulaDTO() : FormulaDTO("", "", "", "", "", "", false, false) {}
+    inline PackageDTO() : PackageDTO("", "", "", "", "", "", false, false) {}
     inline const QString filename();
     inline const QString name();
     inline const QString version();
@@ -39,63 +39,65 @@ class FormulaDTO
 
 };
 
-FormulaDTO::FormulaDTO(QString filename, QString name, QString version, QString homepage,
+PackageDTO::PackageDTO(QString filename, QString name, QString version,
+                       QString homepage,
                        QString url, QString desc, bool isInstalled, bool isFavorite) :
-    filename_ {filename}, name_{name}, version_{version}, homepage_{homepage}, url_{url}, desc_{desc},
+    filename_ {filename}, name_{name}, version_{version}, homepage_{homepage}, url_{url},
+    desc_{desc},
     isInstalled_{isInstalled}, isFavorite_{isFavorite}
 {
 }
 
-const QString FormulaDTO::filename()
+const QString PackageDTO::filename()
 {
     return filename_;
 }
 
-const QString FormulaDTO::name()
+const QString PackageDTO::name()
 {
     return name_;
 }
 
-const QString FormulaDTO::version()
+const QString PackageDTO::version()
 {
     return version_;
 }
 
-const QString FormulaDTO::homepage()
+const QString PackageDTO::homepage()
 {
     return homepage_;
 }
 
-const QString FormulaDTO::url()
+const QString PackageDTO::url()
 {
     return url_;
 }
 
-const QString FormulaDTO::desc()
+const QString PackageDTO::desc()
 {
     return desc_;
 }
 
-bool FormulaDTO::isInstalled()
+bool PackageDTO::isInstalled()
 {
     return isInstalled_;
 }
 
-bool FormulaDTO::isFavorite()
+bool PackageDTO::isFavorite()
 {
     return isFavorite_;
 }
 
-void FormulaDTO::setIsInstalled(bool isInstalled)
+void PackageDTO::setIsInstalled(bool isInstalled)
 {
     isInstalled_ = isInstalled;
 }
 
-void FormulaDTO::setIsFavorite(bool isFavorite)
+void PackageDTO::setIsFavorite(bool isFavorite)
 {
     isFavorite_ = isFavorite;
 }
 
 }
 
-#endif // FORMULADTO_H
+#endif // PACKAGEDTO_H

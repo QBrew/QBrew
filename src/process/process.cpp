@@ -6,7 +6,7 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QTextStream>
-#include "../db/dto/formuladto.h"
+#include "../db/dto/packagedto.h"
 #include "../db/db/qbrewdb.h"
 
 #include <QDebug>
@@ -143,9 +143,9 @@ void createDB(bool cask)
         if (it.fileInfo().isFile())
         {
             QMap<QString, QString> map (infoPackage(it.fileInfo().baseName(), true));
-            FormulaDTO formula {map.value("filename"), map.value("name"), map.value("version"),
+            PackageDTO package {map.value("filename"), map.value("name"), map.value("version"),
                                 map.value("homepage"), map.value("url"), map.value("desc")};
-            addFormula(formula);
+            addPackage(package);
         }
 
     }

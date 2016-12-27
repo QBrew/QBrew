@@ -1,8 +1,8 @@
 #include "qbrewapplication.h"
 #include <QApplication>
-#include "DB/DB/dbmanager.h"
-#include "DB/DB/qbrewdb.h"
-#include "DB/DTO/formuladto.h"
+#include "db/db/dbmanager.h"
+#include "db/db/qbrewdb.h"
+#include "db/dto/packagedto.h"
 #include "Process/process.h"
 #include <QSqlDatabase>
 
@@ -15,7 +15,7 @@ using namespace qbrew;
 int main(int argc, char * argv[])
 {
     connection();
-    //dropTable();
+    dropTable();
 
     QSqlDatabase db = QSqlDatabase::database();
     if (db.tables().isEmpty())

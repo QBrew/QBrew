@@ -2,19 +2,19 @@
 #define QBREWDB_H
 
 #include <QList>
-#include "../DTO/formuladto.h"
+#include "../dto/packagedto.h"
 
 namespace qbrew
 {
-QList<FormulaDTO> getAll();
-QList<FormulaDTO> getFavorite();
-QList<FormulaDTO> getInstalled();
-QList<FormulaDTO> getSearch(QString searchValue);
+QList<PackageDTO> getAll();
+QList<PackageDTO> getFavorite();
+QList<PackageDTO> getInstalled();
+QList<PackageDTO> getSearch(QString searchValue);
 
-FormulaDTO selectFormula(QString filename);
-bool addFormula(FormulaDTO formula);
-void addFavorite(FormulaDTO formula);
-void deleteFormula(QString filename);
+PackageDTO selectPackage(QString filename);
+bool addPackage(PackageDTO package);
+void addFavorite(PackageDTO package);
+void deletePackage(QString filename);
 void updateInstalled(QStringList filenames);
 void addInstalled(QString filename);
 void removeInstalled();

@@ -1,13 +1,15 @@
-#include "formulalist.h"
+#include "packagelist.h"
 #include <QHeaderView>
 #include <QCheckBox>
 #include <QHBoxLayout>
 
-#include <src/db/DB/qbrewdb.h>
-#include <src/db/DTO/formuladto.h>
+#include <src/db/db/qbrewdb.h>
+#include <src/db/dto/packagedto.h>
+
+using namespace qbrew;
 
 
-FormulaList::FormulaList(QWidget * parent)
+PackageList::PackageList(QWidget * parent)
 {
     QStringList qsl;
     qsl << "" << "Filename" << "Name" << "Version" << "Installed" << "Favorite";
@@ -28,31 +30,31 @@ FormulaList::FormulaList(QWidget * parent)
     this->setInstalled();
 }
 
-void FormulaList::setAll()
+void PackageList::setAll()
 {
-    formula_ = qbrew::getAll();
+    packages_ = qbrew::getAll();
     setList();
 }
 
-void FormulaList::setFavorite()
+void PackageList::setFavorite()
 {
-    formula_ = qbrew::getFavorite();
+    packages_ = qbrew::getFavorite();
     setList();
 }
 
-void FormulaList::setInstalled()
+void PackageList::setInstalled()
 {
-    formula_ = qbrew::getInstalled();
+    packages_ = qbrew::getInstalled();
     setList();
 }
 
-void FormulaList::search(QString searchValue)
+void PackageList::search(QString searchValue)
 {
-    formula_ = qbrew::getSearch(searchValue);
+    packages_ = qbrew::getSearch(searchValue);
     setList();
 }
 
-void FormulaList::selectFormula(bool isAll)
+void PackageList::selectPackage(bool isAll)
 {
     if (isAll)
     {
@@ -68,15 +70,15 @@ void FormulaList::selectFormula(bool isAll)
     }
 }
 
-QList<qbrew::FormulaDTO> FormulaList::getSelectedFavorite()
+QList<qbrew::PackageDTO> PackageList::getSelectedFavorite()
 {
-    QList<qbrew::FormulaDTO> result;
+    QList<qbrew::PackageDTO> result;
     int i{0};
     for (QCheckBox * checkBox : checkBoxes_)
     {
         if (checkBox->isChecked())
         {
-            qbrew::FormulaDTO f = formula_.at(i);
+            qbrew::PackageDTO f = packages_.at(i);
             f.setIsFavorite(true);
             result.append(f);
         }
@@ -85,12 +87,12 @@ QList<qbrew::FormulaDTO> FormulaList::getSelectedFavorite()
     return result;
 }
 
-void FormulaList::setList()
+void PackageList::setList()
 {
     checkBoxes_.clear();
-    this->setRowCount(formula_.size());
+    this->setRowCount(packages_.size());
     int i {0};
-    for (qbrew::FormulaDTO f : formula_)
+    for (qbrew::PackageDTO f : packages_)
     {
         int j {0};
         QCheckBox * checkBox = new QCheckBox();
@@ -127,7 +129,7 @@ void FormulaList::setList()
 }
 
 
-void FormulaList::tableItemClicked(int row, int column)
+void PackageList::tableItemClicked(int row, int column)
 {
     this->clearSelection();
     int i {0};
@@ -145,7 +147,7 @@ void FormulaList::tableItemClicked(int row, int column)
     }
 }
 
-void FormulaList::tableItemDoubleClicked(int row, int column)
+void PackageList::tableItemDoubleClicked(int row, int column)
 {
     QCheckBox * checkBox = checkBoxes_.at(row);
     checkBox->setChecked(!checkBox->isChecked());

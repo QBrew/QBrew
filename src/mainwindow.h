@@ -13,8 +13,9 @@
 
 #include "view/navigationbar.h"
 #include "view/toolbar.h"
-#include "view/formulalist.h"
+#include "view/packagelist.h"
 
+using namespace qbrew;
 
 class MainWindow : public QMainWindow
 {
@@ -47,7 +48,7 @@ class MainWindow : public QMainWindow
     ToolBar     *    toolBar_;
     QMenuBar    *    menuBar_;
     QStatusBar   *   statusBar_;
-    FormulaList * formulalist_;
+    PackageList * packagelist_;
 
     QModelIndex clicked_;
 

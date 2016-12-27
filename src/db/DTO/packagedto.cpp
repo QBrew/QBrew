@@ -1,9 +1,9 @@
-#include "formuladto.h"
+#include "packagedto.h"
 
 namespace qbrew
 {
 
-QString FormulaDTO::toString()
+QString PackageDTO::toString()
 {
     QString result;
     result.append("Filename : " + filename_);

@@ -1,27 +1,30 @@
-#ifndef FORMULALIST_H
-#define FORMULALIST_H
+#ifndef PACKAGELIST_H
+#define PACKAGELIST_H
 
 #include <QTableWidget>
 #include <QCheckBox>
 #include <QList>
-#include <src/db/DTO/formuladto.h>
+#include <src/db/DTO/packagedto.h>
 
-class FormulaList : public QTableWidget
+namespace qbrew
+{
+
+class PackageList : public QTableWidget
 {
     Q_OBJECT
 
-    QList<qbrew::FormulaDTO> formula_;
+    QList<PackageDTO> packages_;
     QList<QCheckBox *> checkBoxes_;
 
   public:
-    explicit FormulaList(QWidget * parent = 0);
+    explicit PackageList(QWidget * parent = 0);
     void setAll();
     void setFavorite();
     void setInstalled();
     void search(QString searchValue);
 
-    void selectFormula(bool isAll);
-    QList<qbrew::FormulaDTO> getSelectedFavorite();
+    void selectPackage(bool isAll);
+    QList<PackageDTO> getSelectedFavorite();
 
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);
@@ -33,4 +36,6 @@ class FormulaList : public QTableWidget
 
 };
 
-#endif // FORMULALIST_H
+}
+
+#endif // PACKAGELIST_H

@@ -1,10 +1,10 @@
 #include "mainwindow.h"
 #include "view/menubar.h"
-#include "view/formulalist.h"
+#include "view/packagelist.h"
 
 #include <QTableWidget>
-#include <src/db/DB/qbrewdb.h>
-#include <src/db/DTO/formuladto.h>
+#include <src/db/db/qbrewdb.h>
+#include <src/db/dto/packagedto.h>
 #include <QHeaderView>
 
 #include <QInputDialog>
@@ -23,8 +23,8 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
     stackedWidget_ = new QStackedWidget(this);
 
-    formulalist_ = new FormulaList(this);
-    stackedWidget_->addWidget(formulalist_);
+    packagelist_ = new PackageList(this);
+    stackedWidget_->addWidget(packagelist_);
 
     navigationBar_ = new NavigationBar();
     hbox_->addWidget(navigationBar_);
@@ -43,15 +43,15 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     setCentralWidget(root_);
 
     showMaximized();
-    formulalist_->setFocus();
+    packagelist_->setFocus();
 
-    connect(formulalist_, SIGNAL(cellClicked(int, int)), this,
+    connect(packagelist_, SIGNAL(cellClicked(int, int)), this,
             SLOT(tableItemClicked(int, int)));
-    connect(formulalist_, SIGNAL(cellDoubleClicked(int, int)), this,
+    connect(packagelist_, SIGNAL(cellDoubleClicked(int, int)), this,
             SLOT(tableItemDoubleClicked(int, int)));
 
-    formulalist_->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(formulalist_, SIGNAL(customContextMenuRequested(const QPoint &)), this,
+    packagelist_->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(packagelist_, SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onCustomContextMenu(const QPoint &)));
 
 
@@ -59,7 +59,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
 void MainWindow::selectAllNone(bool isAll)
 {
-    formulalist_->selectFormula(isAll);
+    packagelist_->selectPackage(isAll);
 }
 
 void MainWindow::install()
@@ -84,8 +84,8 @@ void MainWindow::install()
 
 void MainWindow::addFavorite()
 {
-    QList<qbrew::FormulaDTO> selected = formulalist_->getSelectedFavorite();
-    for (qbrew::FormulaDTO f : selected)
+    QList<qbrew::PackageDTO> selected = packagelist_->getSelectedFavorite();
+    for (qbrew::PackageDTO f : selected)
     {
         qbrew::addFavorite(f);
     }
@@ -104,29 +104,29 @@ void MainWindow::searchPackages()
     {
         navigationBar_->search()->setChecked(true);
         toolBar_->searchField()->setPlaceholderText("Search");
-        formulalist_->search(searchText);
+        packagelist_->search(searchText);
     }
 }
 
 void MainWindow::viewInstalled()
 {
-    formulalist_->setInstalled();
+    packagelist_->setInstalled();
 }
 
 void MainWindow::viewFavourite()
 {
-    formulalist_->setFavorite();
+    packagelist_->setFavorite();
 }
 
 void MainWindow::tableItemClicked(int row, int column)
 {
-    formulalist_->tableItemClicked(row, column);
-    formulalist_->setFocus();
+    packagelist_->tableItemClicked(row, column);
+    packagelist_->setFocus();
 }
 
 void MainWindow::tableItemDoubleClicked(int row, int column)
 {
-    formulalist_->tableItemDoubleClicked(row, column);
+    packagelist_->tableItemDoubleClicked(row, column);
 }
 
 void MainWindow::connectToolbar()
@@ -148,12 +148,12 @@ void MainWindow::connectNavigationBar()
 
 void MainWindow::onCustomContextMenu(const QPoint & point)
 {
-    QModelIndex index = formulalist_->indexAt(point);
+    QModelIndex index = packagelist_->indexAt(point);
     if (index.isValid())
     {
         clicked_ = index;
-        QMenu * contextMenu = new QMenu(formulalist_);
-        QCheckBox * check = (QCheckBox *)formulalist_->cellWidget(index.row(), 0);
+        QMenu * contextMenu = new QMenu(packagelist_);
+        QCheckBox * check = (QCheckBox *)packagelist_->cellWidget(index.row(), 0);
         QAction * select;
         if (check->isChecked())
         {
@@ -172,6 +172,6 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
         contextMenu->addAction(select);
         contextMenu->addAction(install);
         contextMenu->addAction(favourite);
-        contextMenu->exec(formulalist_->mapToGlobal(point));
+        contextMenu->exec(packagelist_->mapToGlobal(point));
     }
 }
