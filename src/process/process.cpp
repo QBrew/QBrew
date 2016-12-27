@@ -144,7 +144,8 @@ void createDB(bool cask)
         {
             QMap<QString, QString> map (infoPackage(it.fileInfo().baseName(), true));
             PackageDTO package {map.value("filename"), map.value("name"), map.value("version"),
-                                map.value("homepage"), map.value("url"), map.value("desc")};
+                                map.value("homepage"), map.value("url"), map.value("desc"),
+                                cask, false, false};
             addPackage(package);
         }
 

@@ -16,20 +16,23 @@ class PackageDTO
     QString homepage_;
     QString url_;
     QString desc_;
+    bool isCask_;
     bool isInstalled_;
     bool isFavorite_;
 
   public:
     inline PackageDTO(QString filename, QString name, QString version,
                       QString homepage, QString url, QString desc,
-                      bool isInstalled = false, bool isFavorite = false);
-    inline PackageDTO() : PackageDTO("", "", "", "", "", "", false, false) {}
+                      bool isCask, bool isInstalled, bool isFavorite);
+    inline PackageDTO() : PackageDTO("", "", "", "", "", "",false, false, false) {}
+
     inline const QString filename();
     inline const QString name();
     inline const QString version();
     inline const QString homepage();
     inline const QString url();
     inline const QString desc();
+    inline bool isCask();
     inline bool isInstalled();
     inline bool isFavorite();
     inline void setIsInstalled(bool isInstalled);
@@ -40,11 +43,10 @@ class PackageDTO
 };
 
 PackageDTO::PackageDTO(QString filename, QString name, QString version,
-                       QString homepage,
-                       QString url, QString desc, bool isInstalled, bool isFavorite) :
+                       QString homepage, QString url, QString desc,
+                       bool isCask, bool isInstalled, bool isFavorite) :
     filename_ {filename}, name_{name}, version_{version}, homepage_{homepage}, url_{url},
-    desc_{desc},
-    isInstalled_{isInstalled}, isFavorite_{isFavorite}
+    desc_{desc}, isCask_{isCask}, isInstalled_{isInstalled}, isFavorite_{isFavorite}
 {
 }
 
@@ -76,6 +78,11 @@ const QString PackageDTO::url()
 const QString PackageDTO::desc()
 {
     return desc_;
+}
+
+bool PackageDTO::isCask()
+{
+    return isCask_;
 }
 
 bool PackageDTO::isInstalled()

@@ -40,6 +40,7 @@ void createTable()
                    "URL         TEXT NOT NULL,"
                    "HOMEPAGE    TEXT NOT NULL,"
                    "DESC        TEXT NOT NULL,"
+                   "CASK        INT NOT NULL,"
                    "INSTALL     INT NOT NULL,"
                    "FAVORITE    INT NOT NULL)");
     }
