@@ -17,14 +17,12 @@ void NavigationBar::setButtons()
     vBox_->setSpacing(10);
     vBox_->setAlignment(Qt::AlignTop);
 
-    all_ = getPushButton(tr("All"));
     installed_ = getPushButton(tr("Installed"));
     favourite_ = getPushButton(tr("Favourite"));
     search_ = getPushButton(tr("Search"));
 
     installed_->setChecked(true);
 
-    vBox_->addWidget(all_);
     vBox_->addWidget(installed_);
     vBox_->addWidget(favourite_);
     vBox_->addWidget(search_);

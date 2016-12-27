@@ -15,7 +15,6 @@ class NavigationBar : public QWidget
   public:
     explicit NavigationBar(QWidget * parent = 0);
 
-    inline QPushButton * all();
     inline QPushButton * installed();
     inline QPushButton * favourite();
     inline QPushButton * search();
@@ -26,7 +25,6 @@ class NavigationBar : public QWidget
 
   private:
     QButtonGroup * group_;
-    QPushButton * all_;
     QPushButton * installed_;
     QPushButton * favourite_;
     QPushButton * search_;
@@ -35,11 +33,6 @@ class NavigationBar : public QWidget
     QPushButton * getPushButton(const QString & name);
 };
 
-
-QPushButton * NavigationBar::all()
-{
-    return all_;
-}
 
 QPushButton * NavigationBar::installed()
 {

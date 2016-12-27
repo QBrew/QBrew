@@ -92,11 +92,6 @@ void MainWindow::addFavorite()
 
 }
 
-void MainWindow::viewAll()
-{
-    //formulalist_->setAll()
-}
-
 void MainWindow::viewInstalled()
 {
     formulalist_->setInstalled();
@@ -110,7 +105,6 @@ void MainWindow::viewFavourite()
 void MainWindow::viewSearch()
 {
     formulalist_->setRowCount(0);
-    QInputDialog * qid = new QInputDialog;
     QString text = QInputDialog::getText(this, tr("Search"),
                                          "Name or part of name\n(at least 3 characters)");
     if (text.size() >= 3)
@@ -140,7 +134,6 @@ void MainWindow::connectToolbar()
 
 void MainWindow::connectNavigationBar()
 {
-    connect(navigationBar_->all(), SIGNAL(clicked(bool)), this, SLOT(viewAll()));
     connect(navigationBar_->installed(), SIGNAL(clicked(bool)), this,
             SLOT(viewInstalled()));
     connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,
