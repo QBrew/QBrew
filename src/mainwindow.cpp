@@ -108,11 +108,6 @@ void MainWindow::searchPackages()
     }
 }
 
-void MainWindow::viewAll()
-{
-    //formulalist_->setAll()
-}
-
 void MainWindow::viewInstalled()
 {
     formulalist_->setInstalled();

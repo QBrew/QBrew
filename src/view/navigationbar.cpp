@@ -20,6 +20,7 @@ void NavigationBar::setButtons()
     installed_ = getPushButton(tr("Installed"));
     favourite_ = getPushButton(tr("Favourite"));
     search_ = getPushButton(tr("Search"));
+    search_->setDisabled(true);
 
     installed_->setChecked(true);
 
