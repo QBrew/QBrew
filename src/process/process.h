@@ -17,11 +17,11 @@ QPair<QString, QString> brewVersion2();
 
 void createDB(bool cask);
 
-int install(std::string package, bool cask);
 int install(QString package, bool cask);
+int install(std::string package, bool cask);
 
-std::vector<std::string> listArgument(std::string argument);
-std::vector<std::string> list(bool isCask);
+QStringList list();
+QStringList listArgument(QString argument);
 
 QMap<QString, QString> infoPackage(QString filename, bool cask);
 void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line);

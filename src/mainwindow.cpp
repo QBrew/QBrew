@@ -145,7 +145,6 @@ void MainWindow::connectToolbar()
 
 void MainWindow::connectNavigationBar()
 {
-    connect(navigationBar_->all(), SIGNAL(clicked(bool)), this, SLOT(viewAll()));
     connect(navigationBar_->installed(), SIGNAL(clicked(bool)), this,
             SLOT(viewInstalled()));
     connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,

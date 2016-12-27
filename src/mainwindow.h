@@ -32,7 +32,6 @@ class MainWindow : public QMainWindow
     void searchPackages();
     void onCustomContextMenu(const QPoint & point);
 
-    void viewAll();
     void viewInstalled();
     void viewFavourite();
 
