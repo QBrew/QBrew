@@ -17,7 +17,7 @@ class NavigationBar : public QWidget
 
     inline QPushButton * installed();
     inline QPushButton * favourite();
-    inline QPushButton * search();
+    inline QButtonGroup * group();
 
   signals:
 
@@ -27,7 +27,6 @@ class NavigationBar : public QWidget
     QButtonGroup * group_;
     QPushButton * installed_;
     QPushButton * favourite_;
-    QPushButton * search_;
     QVBoxLayout * vBox_;
 
     QPushButton * getPushButton(const QString & name);
@@ -44,9 +43,9 @@ QPushButton * NavigationBar::favourite()
     return favourite_;
 }
 
-QPushButton * NavigationBar::search()
+QButtonGroup * NavigationBar::group()
 {
-    return search_;
+    return group_;
 }
 
 

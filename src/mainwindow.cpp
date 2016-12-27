@@ -13,6 +13,7 @@
 #include <QLineEdit>
 #include <QProgressDialog>
 #include <QThread>
+#include <QButtonGroup>
 
 MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 {
@@ -102,7 +103,12 @@ void MainWindow::searchPackages()
     }
     else
     {
-        navigationBar_->search()->setChecked(true);
+        navigationBar_->group()->setExclusive(false);
+
+        navigationBar_->installed()->setChecked(false);
+        navigationBar_->favourite()->setChecked(false);
+        navigationBar_->group()->setExclusive(true);
+
         toolBar_->searchField()->setPlaceholderText("Search");
         packagelist_->search(searchText);
     }
