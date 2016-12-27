@@ -37,7 +37,7 @@ QPushButton * NavigationBar::getPushButton(const QString & name)
         "color:black;"
         "font-size: 14pt;"
         "border-style:raised;"
-        "width: 160px;"
+        "width: 191px;"
         "height: 20px;"
         "padding: 10px;}"
 

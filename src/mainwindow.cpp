@@ -92,6 +92,22 @@ void MainWindow::addFavorite()
 
 }
 
+void MainWindow::searchPackages()
+{
+    QString searchText = toolBar_->searchField()->text();
+    if (searchText.length() < 2)
+    {
+        toolBar_->searchField()->clear();
+        toolBar_->searchField()->setPlaceholderText("At least 2 letters");
+    }
+    else
+    {
+        navigationBar_->search()->setChecked(true);
+        toolBar_->searchField()->setPlaceholderText("Search");
+        formulalist_->search(searchText);
+    }
+}
+
 void MainWindow::viewAll()
 {
     //formulalist_->setAll()
@@ -105,18 +121,6 @@ void MainWindow::viewInstalled()
 void MainWindow::viewFavourite()
 {
     formulalist_->setFavorite();
-}
-
-void MainWindow::viewSearch()
-{
-    formulalist_->setRowCount(0);
-    QInputDialog * qid = new QInputDialog;
-    QString text = QInputDialog::getText(this, tr("Search"),
-                                         "Name or part of name\n(at least 3 characters)");
-    if (text.size() > 3)
-    {
-        formulalist_->search(text);
-    }
 }
 
 void MainWindow::tableItemClicked(int row, int column)
@@ -136,6 +140,7 @@ void MainWindow::connectToolbar()
     connect(toolBar_, &ToolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
     connect(toolBar_, &ToolBar::installClicked, this, [this] {install();});
     connect(toolBar_, &ToolBar::addFavoriClicked, this, [this] {addFavorite();});
+    connect(toolBar_, &ToolBar::searchPressed, this, [this] {searchPackages();});
 }
 
 void MainWindow::connectNavigationBar()
@@ -145,29 +150,31 @@ void MainWindow::connectNavigationBar()
             SLOT(viewInstalled()));
     connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,
             SLOT(viewFavourite()));
-    connect(navigationBar_->search(), SIGNAL(clicked(bool)), this,
-            SLOT(viewSearch()));
 }
 
-void MainWindow::onCustomContextMenu(const QPoint &point)
+void MainWindow::onCustomContextMenu(const QPoint & point)
 {
     QModelIndex index = formulalist_->indexAt(point);
-    if (index.isValid()) {
+    if (index.isValid())
+    {
         clicked_ = index;
-        QMenu* contextMenu = new QMenu(formulalist_);
-        QCheckBox * check = (QCheckBox*)formulalist_->cellWidget(index.row(),0);
-        QAction* select;
-        if(check->isChecked()){
-            select = new QAction("Unselect",contextMenu);
-        }else{
-            select = new QAction("Select",contextMenu);
+        QMenu * contextMenu = new QMenu(formulalist_);
+        QCheckBox * check = (QCheckBox *)formulalist_->cellWidget(index.row(), 0);
+        QAction * select;
+        if (check->isChecked())
+        {
+            select = new QAction("Unselect", contextMenu);
+        }
+        else
+        {
+            select = new QAction("Select", contextMenu);
         }
         connect(select, &QAction::triggered, [this]()
         {
-            tableItemDoubleClicked(clicked_.row(),0);
+            tableItemDoubleClicked(clicked_.row(), 0);
         });
-        QAction* install = new QAction("Install",contextMenu);
-        QAction* favourite = new QAction("Favourite",contextMenu);
+        QAction * install = new QAction("Install", contextMenu);
+        QAction * favourite = new QAction("Favourite", contextMenu);
         contextMenu->addAction(select);
         contextMenu->addAction(install);
         contextMenu->addAction(favourite);

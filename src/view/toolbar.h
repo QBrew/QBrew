@@ -3,6 +3,7 @@
 
 #include <QAction>
 #include <QToolBar>
+#include <QLineEdit>
 
 class ToolBar : public QToolBar
 {
@@ -16,13 +17,17 @@ class ToolBar : public QToolBar
     QAction * selectAll_;
     QAction * selectNone_;
 
+    QLineEdit * searchField_;
+
     void setActions();
     void setConnections();
     void setStatusTips();
     void setToolTips();
+    void setSearchField();
 
   public:
     explicit ToolBar(QWidget * parent = 0);
+    QLineEdit * searchField() const;
 
   signals:
     void updateClicked();
@@ -31,6 +36,7 @@ class ToolBar : public QToolBar
     void addFavoriClicked();
     void selectAllClicked();
     void selectNoneClicked();
+    void searchPressed();
 };
 
 #endif // TOOLBAR_H

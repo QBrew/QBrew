@@ -8,10 +8,16 @@ ToolBar::ToolBar(QWidget * parent) : QToolBar(parent)
     setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
     setActions();
+    setSearchField();
     setStatusTips();
     setToolTips();
     setConnections();
     setMovable(false);
+}
+
+QLineEdit * ToolBar::searchField() const
+{
+    return searchField_;
 }
 
 void ToolBar::setActions()
@@ -51,6 +57,16 @@ void ToolBar::setToolTips()
     favoriAction_->setToolTip(tr("Add selected packages to favori"));
 }
 
+void ToolBar::setSearchField()
+{
+    addSeparator();
+
+    searchField_ = new QLineEdit();
+    searchField_->setPlaceholderText("Search");
+    searchField_->setMaximumWidth(200);
+    addWidget(searchField_);
+}
+
 void ToolBar::setConnections()
 {
     connect(updateAction_, &QAction::triggered, this, &ToolBar::updateClicked);
@@ -62,4 +78,5 @@ void ToolBar::setConnections()
             &ToolBar::uninstallClicked);
     connect(favoriAction_, &QAction::triggered, this,
             &ToolBar::addFavoriClicked);
+    connect(searchField_, &QLineEdit::returnPressed, this, &ToolBar::searchPressed);
 }
