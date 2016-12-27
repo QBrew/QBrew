@@ -14,8 +14,6 @@
 namespace qbrew
 {
 
-
-
 QString getBrewPath(bool cask)
 {
     //TODO check if path is no default
@@ -118,32 +116,21 @@ void cleanup(bool cask)
     process.start(command);
 }
 
-std::vector<std::string> listArgument(std::string argument)
+QStringList list()
+{
+    QStringList result = listArgument("cask list -1");
+    result.append(listArgument("list -1"));
+    return result;
+}
+
+QStringList listArgument(QString argument)
 {
     QProcess process;
-    std::string str = "/usr/local/bin/brew " + argument;
-
-    process.start(QString::fromStdString(str));
+    process.start("/usr/local/bin/brew " + argument);
     process.waitForFinished(-1); // will wait forever until finished
-    QString stdout = process.readAllStandardOutput();
-
-    std::vector<std::string> results;
-    std::stringstream  stream;
-    stream.str(stdout.toStdString());
-    std::string line;
-    while (std::getline(stream, line))
-    {
-        results.push_back(line);
-    }
-
-    return results;
+    QString standardOutput = process.readAllStandardOutput();
+    return standardOutput.split("\n");
 }
-
-std::vector<std::string> list(bool isCask)
-{
-    return listArgument(isCask ? "cask list" : "list");
-}
-
 
 void createDB(bool cask)
 {

@@ -40,7 +40,9 @@ QList<FormulaDTO> getInstalled()
 
 QList<FormulaDTO> getSearch (QString searchValue)
 {
-    QString sql = "SELECT * FROM FORMULA WHERE FILENAME LIKE '%" + searchValue + "%'";
+    QString sql = "SELECT * FROM FORMULA WHERE "
+                  "FILENAME LIKE '%" + searchValue + "%'" +
+                  "OR NAME LIKE + '%" + searchValue + "%'";
     QSqlQuery query(sql);
     QList<FormulaDTO> list =  getList(query);
     return list;
@@ -96,4 +98,30 @@ void deleteFormula(QString filename)
     query.bindValue(":filename", filename);
     query.exec();
 }
+
+
+void updateInstalled(QStringList filenames)
+{
+    removeInstalled();
+    for (QString filename : filenames)
+    {
+        addInstalled(filename);
+    }
+}
+
+void addInstalled(QString filename)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE FORMULA SET INSTALL = 1 WHERE FILENAME = :filename");
+    query.bindValue(":filename", filename);
+    query.exec();
+}
+
+void removeInstalled()
+{
+    QSqlQuery query;
+    query.prepare("UPDATE FORMULA SET INSTALL = 0 WHERE INSTALL = 1");
+    query.exec();
+}
+
 }

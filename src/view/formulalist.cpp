@@ -21,11 +21,11 @@ FormulaList::FormulaList(QWidget * parent)
     this->setSelectionMode(MultiSelection);
 
     this->setColumnWidth(0, 50);
-    this->setColumnWidth(1, 500);
+    this->setColumnWidth(1, 300);
+    this->setColumnWidth(2, 300);
     this->horizontalHeader()->setStretchLastSection(true);
 
-    this->setFavorite();
-
+    this->setInstalled();
 }
 
 void FormulaList::setAll()
@@ -42,7 +42,7 @@ void FormulaList::setFavorite()
 
 void FormulaList::setInstalled()
 {
-    formula_ = qbrew::getFavorite();
+    formula_ = qbrew::getInstalled();
     setList();
 }
 

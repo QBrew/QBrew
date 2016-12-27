@@ -15,6 +15,9 @@ FormulaDTO selectFormula(QString filename);
 bool addFormula(FormulaDTO formula);
 void addFavorite(FormulaDTO formula);
 void deleteFormula(QString filename);
+void updateInstalled(QStringList filenames);
+void addInstalled(QString filename);
+void removeInstalled();
 }
 
 #endif // QBREWDB_H
