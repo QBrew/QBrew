@@ -13,7 +13,7 @@ QList<PackageDTO> getSearch(QString searchValue);
 
 PackageDTO selectPackage(QString filename);
 bool addPackage(PackageDTO package);
-void addFavorite(PackageDTO package);
+void updateFavorite(PackageDTO package);
 void deletePackage(QString filename);
 void updateInstalled(QStringList filenames);
 void addInstalled(QString filename);

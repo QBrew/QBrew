@@ -82,14 +82,14 @@ void MainWindow::install()
     progress->setLabelText("Installation");
 }
 
-void MainWindow::addFavorite()
+void MainWindow::updateFavorite(bool isFavorite)
 {
     QList<qbrew::PackageDTO> selected = packagelist_->getSelectedFavorite();
     for (qbrew::PackageDTO f : selected)
     {
-        qbrew::addFavorite(f);
+        f.setIsFavorite(isFavorite);
+        qbrew::updateFavorite(f);
     }
-
 }
 
 void MainWindow::searchPackages()
@@ -134,7 +134,8 @@ void MainWindow::connectToolbar()
     connect(toolBar_, &ToolBar::selectAllClicked, this, [this] {selectAllNone(true);});
     connect(toolBar_, &ToolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
     connect(toolBar_, &ToolBar::installClicked, this, [this] {install();});
-    connect(toolBar_, &ToolBar::addFavoriClicked, this, [this] {addFavorite();});
+    connect(toolBar_, &ToolBar::addFavoriClicked, this, [this] {updateFavorite(true);});
+    connect(toolBar_, &ToolBar::removeFavouriteClicked, this, [this] {updateFavorite(false);});
     connect(toolBar_, &ToolBar::searchPressed, this, [this] {searchPackages();});
 }
 

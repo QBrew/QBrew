@@ -83,11 +83,12 @@ bool addPackage(PackageDTO package)
     return query.exec();
 }
 
-void addFavorite(PackageDTO package)
+void updateFavorite(PackageDTO package)
 {
     QSqlQuery query;
-    query.prepare("UPDATE PACKAGES SET FAVORITE = 1 WHERE FILENAME = :filename");
+    query.prepare("UPDATE PACKAGES SET FAVORITE = :favorite WHERE FILENAME = :filename");
     query.bindValue(":filename", package.filename());
+    query.bindValue(":favorite", package.isFavorite() ? 1 : 0);
     query.exec();
 }
 

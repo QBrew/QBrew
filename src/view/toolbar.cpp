@@ -34,7 +34,9 @@ void ToolBar::setActions()
     installAction_ = addAction(QIcon(":/Icons/install"),  tr("Install"));
     uninstallAction_ = addAction(QIcon(":/Icons/uninstall"),
                                  tr("Uninstall"));
-    favoriAction_ = addAction(QIcon(":/Icons/favori"), tr("Favori"));
+    favoriAction_ = addAction(QIcon(":/Icons/favori"), tr("Favourite"));
+    removeFavouriteAction_ = addAction(QIcon(":Icons/noFavourite"),
+                                       tr("Remove\nfavourite"));
 }
 
 void ToolBar::setStatusTips()
@@ -44,7 +46,9 @@ void ToolBar::setStatusTips()
     selectNone_->setStatusTip(tr("Select none of the packages listed"));
     installAction_->setStatusTip(tr("Install selected packages"));
     uninstallAction_->setStatusTip(tr("Uninstall selected packages"));
-    favoriAction_->setStatusTip(tr("Add selected packages to favori"));
+    favoriAction_->setStatusTip(tr("Add selected packages to favourite"));
+    removeFavouriteAction_->setStatusTip(
+        tr("Remove selected packages from favourite"));
 }
 
 void ToolBar::setToolTips()
@@ -55,6 +59,8 @@ void ToolBar::setToolTips()
     installAction_->setToolTip(tr("Install selected packages"));
     uninstallAction_->setToolTip(tr("Uninstall selected packages"));
     favoriAction_->setToolTip(tr("Add selected packages to favori"));
+    removeFavouriteAction_->setToolTip(
+        tr("Remove selected packages from favourite"));
 }
 
 void ToolBar::setSearchField()
@@ -78,5 +84,7 @@ void ToolBar::setConnections()
             &ToolBar::uninstallClicked);
     connect(favoriAction_, &QAction::triggered, this,
             &ToolBar::addFavoriClicked);
+    connect(removeFavouriteAction_, &QAction::triggered, this,
+            &ToolBar::removeFavouriteClicked);
     connect(searchField_, &QLineEdit::returnPressed, this, &ToolBar::searchPressed);
 }

@@ -29,7 +29,7 @@ class MainWindow : public QMainWindow
 
     void selectAllNone(bool isAll);
     void install();
-    void addFavorite();
+    void updateFavorite(bool isFavorite);
     void searchPackages();
     void onCustomContextMenu(const QPoint & point);
 
