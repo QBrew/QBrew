@@ -19,6 +19,7 @@ class PackageList : public QTableWidget
     QIcon favouriteIcon_;
     QIcon noFavouriteIcon_;
     QList<QIcon> statusIcons_;
+    int row_;
 
   public:
     explicit PackageList(QWidget * parent = 0);
