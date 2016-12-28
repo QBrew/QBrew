@@ -7,6 +7,6 @@
         <file alias="noFavourite">icons/noFavourite.svg</file>
         <file alias="selectAll">icons/selectAll.svg</file>
         <file alias="selectNone">icons/selectNone.svg</file>
+        <file>icons/loader.gif</file>
     </qresource>
-    <qresource prefix="/"/>
 </RCC>
