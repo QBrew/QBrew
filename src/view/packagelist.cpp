@@ -2,6 +2,7 @@
 #include <QHeaderView>
 #include <QCheckBox>
 #include <QHBoxLayout>
+#include <QLabel>
 
 #include <src/db/db/qbrewdb.h>
 #include <src/db/dto/packagedto.h>
@@ -27,6 +28,7 @@ PackageList::PackageList(QWidget * parent)
     this->setColumnWidth(2, 300);
     this->horizontalHeader()->setStretchLastSection(true);
 
+    this->setIcons();
     this->setInstalled();
 }
 
@@ -46,6 +48,12 @@ void PackageList::setInstalled()
 {
     packages_ = qbrew::getInstalled();
     setList();
+}
+
+void PackageList::setIcons()
+{
+    statusIcons_ << QIcon(":/Icons/favori") << QIcon(":/Icons/noFavourite") <<
+                 QIcon(":/Icons/selectAll") << QIcon(":/Icons/selectNone");
 }
 
 void PackageList::search(QString searchValue)
@@ -98,7 +106,7 @@ void PackageList::setList()
         QCheckBox * checkBox = new QCheckBox();
         checkBox->setChecked(false);
         checkBoxes_.append(checkBox);
-        this->setCellWidget(i, j++, checkBox);
+        this->setCellWidget(i, j++, alignCheckBox(checkBox));
 
         QTableWidgetItem * filename = new QTableWidgetItem(f.filename());
         filename->setFlags(filename->flags() ^ Qt::ItemIsEditable);
@@ -112,20 +120,28 @@ void PackageList::setList()
         version->setFlags(version->flags() ^ Qt::ItemIsEditable);
         this->setItem(i, j++, version);
 
-        QCheckBox * isInstalled = new QCheckBox();
-        isInstalled->setChecked(f.isInstalled());
-        isInstalled->setAttribute(Qt::WA_TransparentForMouseEvents);
-        isInstalled->setFocusPolicy(Qt::NoFocus);
-        this->setCellWidget(i, j++, isInstalled);
+        QTableWidgetItem * installedIcon = new QTableWidgetItem;
+        installedIcon->setIcon(f.isInstalled() ? statusIcons_.at(2) : statusIcons_.at(
+                                   3));
+        this->setItem(i, j++, installedIcon);
 
-        QCheckBox * isFavorite = new QCheckBox();
-        isFavorite->setChecked(f.isFavorite());
-        isFavorite->setAttribute(Qt::WA_TransparentForMouseEvents);
-        isFavorite->setFocusPolicy(Qt::NoFocus);
-        this->setCellWidget(i, j++, isFavorite);
+        QTableWidgetItem * favoriteIcon = new QTableWidgetItem;
+        favoriteIcon->setIcon(f.isFavorite() ? statusIcons_.at(0) : statusIcons_.at(1));
+        this->setItem(i, j++, favoriteIcon);
 
         i++;
     }
+}
+
+QWidget * PackageList::alignCheckBox(QCheckBox * cb)
+{
+    QWidget * widget = new QWidget();
+    QHBoxLayout * layout = new QHBoxLayout(widget);
+    layout->addWidget(cb);
+    layout->setAlignment(Qt::AlignCenter);
+    layout->setContentsMargins(0, 0, 0, 0);
+    widget->setLayout(layout);
+    return widget;
 }
 
 

@@ -4,6 +4,7 @@
 #include <QTableWidget>
 #include <QCheckBox>
 #include <QList>
+#include <QIcon>
 #include <src/db/DTO/packagedto.h>
 
 namespace qbrew
@@ -15,12 +16,16 @@ class PackageList : public QTableWidget
 
     QList<PackageDTO> packages_;
     QList<QCheckBox *> checkBoxes_;
+    QIcon favouriteIcon_;
+    QIcon noFavouriteIcon_;
+    QList<QIcon> statusIcons_;
 
   public:
     explicit PackageList(QWidget * parent = 0);
     void setAll();
     void setFavorite();
     void setInstalled();
+    void setIcons();
     void search(QString searchValue);
 
     void selectPackage(bool isAll);
@@ -30,6 +35,7 @@ class PackageList : public QTableWidget
     void tableItemDoubleClicked(int row, int column);
   private:
     void setList();
+    QWidget * alignCheckBox(QCheckBox * cb);
   signals:
 
   public slots:
