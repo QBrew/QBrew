@@ -15,7 +15,7 @@ using namespace qbrew;
 int main(int argc, char * argv[])
 {
     connection();
-    //dropTable();
+    dropTable();
 
     QSqlDatabase db = QSqlDatabase::database();
     if (db.tables().isEmpty())

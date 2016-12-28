@@ -26,7 +26,7 @@ class PackageList : public QTableWidget
 
   public:
     explicit PackageList(QWidget * parent = 0);
-    void setFavorite();
+    void setFavourite();
     void setInstalled();
     void setIcons();
     PackageDTO getSelected();

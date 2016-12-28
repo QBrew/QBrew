@@ -79,16 +79,16 @@ void MainWindow::updateInfoBar()
     infoBar_->updateInfo(packagelist_->getSelected());
 }
 
-void MainWindow::updateFavorite(bool isFavorite)
+void MainWindow::updateFavourite(bool isFavourite)
 {
     QList<qbrew::PackageDTO> selected = packagelist_->getListSelected();
     for (qbrew::PackageDTO f : selected)
     {
-        f.setIsFavorite(isFavorite);
-        qbrew::updateFavorite(f);
+        f.setIsFavourite(isFavourite);
+        qbrew::updateFavourite(f);
     }
     packagelist_->update();
-    if (packagelist_->getStatus() == "Favorite")
+    if (packagelist_->getStatus() == "Favourite")
     {
         infoBar_->clear();
     }
@@ -123,7 +123,7 @@ void MainWindow::viewInstalled()
 
 void MainWindow::viewFavourite()
 {
-    packagelist_->setFavorite();
+    packagelist_->setFavourite();
     infoBar_->clear();
 }
 
@@ -144,8 +144,8 @@ void MainWindow::connectToolbar()
     connect(toolBar_, &ToolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
     connect(toolBar_, &ToolBar::installClicked, this, [this] {install();});
     connect(toolBar_, &ToolBar::uninstallClicked, this, [this] {uninstall();});
-    connect(toolBar_, &ToolBar::addFavoriClicked, this, [this] {updateFavorite(true);});
-    connect(toolBar_, &ToolBar::removeFavouriteClicked, this, [this] {updateFavorite(false);});
+    connect(toolBar_, &ToolBar::addFavouriteClicked, this, [this] {updateFavourite(true);});
+    connect(toolBar_, &ToolBar::removeFavouriteClicked, this, [this] {updateFavourite(false);});
     connect(toolBar_, &ToolBar::searchPressed, this, [this] {searchPackages();});
 }
 
@@ -180,8 +180,8 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
         connect(favourite, &QAction::triggered, [this]()
         {
             PackageDTO package = packagelist_->getPackage(clicked_.row());
-            package.setIsFavorite(!package.isFavorite());
-            qbrew::updateFavorite(package);
+            package.setIsFavourite(!package.isFavourite());
+            qbrew::updateFavourite(package);
             packagelist_->update();
 
         });

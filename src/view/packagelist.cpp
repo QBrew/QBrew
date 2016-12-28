@@ -18,7 +18,7 @@ QString PackageList::getStatus() const
 PackageList::PackageList(QWidget * parent)
 {
     QStringList qsl;
-    qsl << "" << "Filename" << "Name" << "Version" << "Installed" << "Favorite";
+    qsl << "" << "Filename" << "Name" << "Version" << "Installed" << "Favourite";
     this->setColumnCount(qsl.size());
     this->setHorizontalHeaderLabels(qsl);
 
@@ -42,11 +42,11 @@ PackageList::PackageList(QWidget * parent)
     status_ = "Installed";
 }
 
-void PackageList::setFavorite()
+void PackageList::setFavourite()
 {
-    packages_ = qbrew::getFavorite();
+    packages_ = qbrew::getFavourite();
     setList();
-    status_ = "Favorite";
+    status_ = "Favourite";
 }
 
 void PackageList::setInstalled()
@@ -58,7 +58,7 @@ void PackageList::setInstalled()
 
 void PackageList::setIcons()
 {
-    statusIcons_ << QIcon(":/Icons/favori") << QIcon(":/Icons/noFavourite") <<
+    statusIcons_ << QIcon(":/Icons/favourite") << QIcon(":/Icons/noFavourite") <<
                  QIcon(":/Icons/selectAll") << QIcon(":/Icons/selectNone");
 }
 
@@ -77,9 +77,9 @@ void PackageList::update()
     {
         filename = packages_.at(row_).filename();
     }
-    if (status_ == "Favorite")
+    if (status_ == "Favourite")
     {
-        setFavorite();
+        setFavourite();
     }
     else
     {
@@ -134,7 +134,7 @@ QList<PackageDTO> PackageList::getListSelected()
     if (row_ != -1 && !checkBoxes_.at(row_)->isChecked())
     {
         PackageDTO f = packages_.at(row_);
-        f.setIsFavorite(true);
+        f.setIsFavourite(true);
         result.append(f);
     }
     return result;
@@ -170,9 +170,10 @@ void PackageList::setList()
                                    3));
         this->setItem(i, j++, installedIcon);
 
-        QTableWidgetItem * favoriteIcon = new QTableWidgetItem;
-        favoriteIcon->setIcon(f.isFavorite() ? statusIcons_.at(0) : statusIcons_.at(1));
-        this->setItem(i, j++, favoriteIcon);
+        QTableWidgetItem * favouriteIcon = new QTableWidgetItem;
+        favouriteIcon->setIcon(f.isFavourite() ? statusIcons_.at(0) : statusIcons_.at(
+                                   1));
+        this->setItem(i, j++, favouriteIcon);
 
         i++;
     }

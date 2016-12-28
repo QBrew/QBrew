@@ -7,13 +7,13 @@
 namespace qbrew
 {
 QList<PackageDTO> getAll();
-QList<PackageDTO> getFavorite();
+QList<PackageDTO> getFavourite();
 QList<PackageDTO> getInstalled();
 QList<PackageDTO> getSearch(QString searchValue);
 
 PackageDTO selectPackage(QString filename);
 bool addPackage(PackageDTO package);
-void updateFavorite(PackageDTO package);
+void updateFavourite(PackageDTO package);
 void deletePackage(QString filename);
 void updateInstalled(QStringList filenames);
 void addInstalled(QString filename);

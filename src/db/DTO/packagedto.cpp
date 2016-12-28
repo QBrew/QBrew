@@ -14,8 +14,8 @@ QString PackageDTO::toString()
     result.append("\nDesc : " + desc_ );
     result.append("\nInstalled : ");
     result.append(isInstalled_ ? "true" : "false");
-    result.append("\nFavorite : ");
-    result.append(isFavorite_ ? "true" : "false");
+    result.append("\nFavourite : ");
+    result.append(isFavourite_ ? "true" : "false");
     return result;
 }
 

@@ -42,7 +42,7 @@ void createTable()
                    "DESC        TEXT NOT NULL,"
                    "CASK        INT NOT NULL,"
                    "INSTALL     INT NOT NULL,"
-                   "FAVORITE    INT NOT NULL)");
+                   "FAVOURITE    INT NOT NULL)");
     }
 
 }

@@ -13,11 +13,11 @@ QList<PackageDTO> getList(QSqlQuery query)
     {
         bool isCask = (query.value(6).toInt() == 1);
         bool isInstalled = (query.value(7).toInt() == 1);
-        bool isFavorite = (query.value(8).toInt() == 1);
+        bool isFavourite = (query.value(8).toInt() == 1);
         PackageDTO package {query.value(0).toString(), query.value(1).toString(),
                             query.value(2).toString(), query.value(3).toString(),
                             query.value(4).toString(), query.value(5).toString(),
-                            isCask, isInstalled, isFavorite};
+                            isCask, isInstalled, isFavourite};
         list.push_back(package);
     }
     return list;
@@ -29,9 +29,9 @@ QList<PackageDTO> getAll()
 }
 
 
-QList<PackageDTO> getFavorite()
+QList<PackageDTO> getFavourite()
 {
-    return getList(QSqlQuery("SELECT * FROM PACKAGES WHERE FAVORITE = 1"));
+    return getList(QSqlQuery("SELECT * FROM PACKAGES WHERE FAVOURITE = 1"));
 }
 
 QList<PackageDTO> getInstalled()
@@ -59,11 +59,11 @@ PackageDTO selectPackage(QString filename)
     {
         bool isCask = (query.value(6).toInt() == 1);
         bool isInstalled = (query.value(7).toInt() == 1);
-        bool isFavorite = (query.value(8).toInt() == 1);
+        bool isFavourite = (query.value(8).toInt() == 1);
         PackageDTO PACKAGE {query.value(0).toString(), query.value(1).toString(),
                             query.value(2).toString(), query.value(3).toString(),
                             query.value(4).toString(), query.value(5).toString(),
-                            isCask, isInstalled, isFavorite};
+                            isCask, isInstalled, isFavourite};
         result = PACKAGE;
     }
     return result;
@@ -83,16 +83,16 @@ bool addPackage(PackageDTO package)
     query.bindValue(":desc", package.desc());
     query.bindValue(":cask", package.isCask() ? 1 : 0);
     query.bindValue(":install", package.isInstalled() ? 1 : 0);
-    query.bindValue(":fav", package.isFavorite() ? 1 : 0);
+    query.bindValue(":fav", package.isFavourite() ? 1 : 0);
     return query.exec();
 }
 
-void updateFavorite(PackageDTO package)
+void updateFavourite(PackageDTO package)
 {
     QSqlQuery query;
-    query.prepare("UPDATE PACKAGES SET FAVORITE = :favorite WHERE FILENAME = :filename");
+    query.prepare("UPDATE PACKAGES SET FAVOURITE = :favourite WHERE FILENAME = :filename");
     query.bindValue(":filename", package.filename());
-    query.bindValue(":favorite", package.isFavorite() ? 1 : 0);
+    query.bindValue(":favourite", package.isFavourite() ? 1 : 0);
     query.exec();
 }
 

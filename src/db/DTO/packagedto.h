@@ -18,12 +18,12 @@ class PackageDTO
     QString desc_;
     bool isCask_;
     bool isInstalled_;
-    bool isFavorite_;
+    bool isFavourite_;
 
   public:
     inline PackageDTO(QString filename, QString name, QString version,
                       QString homepage, QString url, QString desc,
-                      bool isCask, bool isInstalled, bool isFavorite);
+                      bool isCask, bool isInstalled, bool isFavourite);
     inline PackageDTO() : PackageDTO("", "", "", "", "", "",false, false, false) {}
 
     inline QString filename() const;
@@ -34,9 +34,9 @@ class PackageDTO
     inline QString desc() const;
     inline bool isCask();
     inline bool isInstalled();
-    inline bool isFavorite();
+    inline bool isFavourite();
     inline void setIsInstalled(bool isInstalled);
-    inline void setIsFavorite(bool isFavorite);
+    inline void setIsFavourite(bool isFavourite);
 
     QString toString();
 
@@ -44,9 +44,9 @@ class PackageDTO
 
 PackageDTO::PackageDTO(QString filename, QString name, QString version,
                        QString homepage, QString url, QString desc,
-                       bool isCask, bool isInstalled, bool isFavorite) :
+                       bool isCask, bool isInstalled, bool isFavourite) :
     filename_ {filename}, name_{name}, version_{version}, homepage_{homepage}, url_{url},
-    desc_{desc}, isCask_{isCask}, isInstalled_{isInstalled}, isFavorite_{isFavorite}
+    desc_{desc}, isCask_{isCask}, isInstalled_{isInstalled}, isFavourite_{isFavourite}
 {
 }
 
@@ -90,9 +90,9 @@ bool PackageDTO::isInstalled()
     return isInstalled_;
 }
 
-bool PackageDTO::isFavorite()
+bool PackageDTO::isFavourite()
 {
-    return isFavorite_;
+    return isFavourite_;
 }
 
 void PackageDTO::setIsInstalled(bool isInstalled)
@@ -100,9 +100,9 @@ void PackageDTO::setIsInstalled(bool isInstalled)
     isInstalled_ = isInstalled;
 }
 
-void PackageDTO::setIsFavorite(bool isFavorite)
+void PackageDTO::setIsFavourite(bool isFavourite)
 {
-    isFavorite_ = isFavorite;
+    isFavourite_ = isFavourite;
 }
 
 }

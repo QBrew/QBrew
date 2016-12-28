@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/Icons">
-        <file alias="favori">icons/favori.svg</file>
+        <file alias="favourite">icons/favourite.svg</file>
         <file alias="install">icons/install.svg</file>
         <file alias="uninstall">icons/uninstall.svg</file>
         <file alias="update">icons/update.svg</file>

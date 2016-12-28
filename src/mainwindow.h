@@ -33,7 +33,7 @@ class MainWindow : public QMainWindow
     void install();
     void uninstall();
     void updateInfoBar();
-    void updateFavorite(bool isFavorite);
+    void updateFavourite(bool isFavourite);
     void searchPackages();
 
     void onCustomContextMenu(const QPoint & point);
