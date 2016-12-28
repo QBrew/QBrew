@@ -26,12 +26,12 @@ class PackageDTO
                       bool isCask, bool isInstalled, bool isFavorite);
     inline PackageDTO() : PackageDTO("", "", "", "", "", "",false, false, false) {}
 
-    inline const QString filename();
-    inline const QString name();
-    inline const QString version();
-    inline const QString homepage();
-    inline const QString url();
-    inline const QString desc();
+    inline QString filename() const;
+    inline QString name() const;
+    inline QString version() const;
+    inline QString homepage() const;
+    inline QString url() const;
+    inline QString desc() const;
     inline bool isCask();
     inline bool isInstalled();
     inline bool isFavorite();
@@ -50,32 +50,32 @@ PackageDTO::PackageDTO(QString filename, QString name, QString version,
 {
 }
 
-const QString PackageDTO::filename()
+QString PackageDTO::filename() const
 {
     return filename_;
 }
 
-const QString PackageDTO::name()
+QString PackageDTO::name() const
 {
     return name_;
 }
 
-const QString PackageDTO::version()
+QString PackageDTO::version() const
 {
     return version_;
 }
 
-const QString PackageDTO::homepage()
+QString PackageDTO::homepage() const
 {
     return homepage_;
 }
 
-const QString PackageDTO::url()
+QString PackageDTO::url() const
 {
     return url_;
 }
 
-const QString PackageDTO::desc()
+QString PackageDTO::desc() const
 {
     return desc_;
 }

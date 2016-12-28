@@ -66,6 +66,7 @@ void PackageList::setSearch(QString searchValue)
 void PackageList::update()
 {
     int row = row_;
+    QString filename = packages_.at(row_).filename();
     if (status == "Favorite")
     {
         setFavorite();
@@ -81,7 +82,8 @@ void PackageList::update()
             setSearch(status);
         }
     }
-    if (row != -1)
+    if (row != -1 && row < packages_.size()
+            && filename == packages_.at(row).filename())
     {
         row_ = row;
         selectRow(row_);
@@ -95,14 +97,6 @@ PackageDTO PackageList::getSelected()
 
 void PackageList::selectPackage(bool isAll)
 {
-    if (isAll)
-    {
-        this->selectAll();
-    }
-    else
-    {
-        this->clearSelection();
-    }
     for (QCheckBox * checkBox : checkBoxes_)
     {
         checkBox->setChecked(isAll);
