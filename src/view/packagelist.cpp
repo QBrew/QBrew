@@ -10,6 +10,11 @@
 using namespace qbrew;
 
 
+QString PackageList::getStatus() const
+{
+    return status_;
+}
+
 PackageList::PackageList(QWidget * parent)
 {
     QStringList qsl;
@@ -33,21 +38,21 @@ PackageList::PackageList(QWidget * parent)
     this->setInstalled();
 
     row_ = -1;
-    status = "Installed";
+    status_ = "Installed";
 }
 
 void PackageList::setFavorite()
 {
     packages_ = qbrew::getFavorite();
     setList();
-    status = "Favorite";
+    status_ = "Favorite";
 }
 
 void PackageList::setInstalled()
 {
     packages_ = qbrew::getInstalled();
     setList();
-    status = "Installed";
+    status_ = "Installed";
 }
 
 void PackageList::setIcons()
@@ -60,25 +65,25 @@ void PackageList::setSearch(QString searchValue)
 {
     packages_ = qbrew::getSearch(searchValue);
     setList();
-    status = searchValue;
+    status_ = searchValue;
 }
 
 void PackageList::update()
 {
     int row = row_;
-    if (status == "Favorite")
+    if (status_ == "Favorite")
     {
         setFavorite();
     }
     else
     {
-        if (status == "Installed")
+        if (status_ == "Installed")
         {
             setInstalled();
         }
         else
         {
-            setSearch(status);
+            setSearch(status_);
         }
     }
     if (row != -1)

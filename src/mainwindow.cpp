@@ -88,6 +88,10 @@ void MainWindow::updateFavorite(bool isFavorite)
         qbrew::updateFavorite(f);
     }
     packagelist_->update();
+    if (packagelist_->getStatus() == "Favorite")
+    {
+        infoBar_->clear();
+    }
 }
 
 void MainWindow::searchPackages()

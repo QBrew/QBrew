@@ -14,7 +14,7 @@ class PackageList : public QTableWidget
 {
     Q_OBJECT
 
-    QString status;
+    QString status_;
 
     QList<PackageDTO> packages_;
     QList<QCheckBox *> checkBoxes_;
@@ -39,6 +39,8 @@ class PackageList : public QTableWidget
 
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);
+    QString getStatus() const;
+
   private:
     void setList();
     QWidget * alignCheckBox(QCheckBox * cb);
