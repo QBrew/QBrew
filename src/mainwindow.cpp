@@ -62,7 +62,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
 void MainWindow::selectAllNone(bool isAll)
 {
-    QList<qbrew::PackageDTO> selected = packagelist_->getListSelected();
+    packagelist_->selectPackage(isAll);
 }
 
 void MainWindow::install()
