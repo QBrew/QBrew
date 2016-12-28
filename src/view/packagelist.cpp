@@ -31,6 +31,7 @@ PackageList::PackageList(QWidget * parent)
     this->setColumnWidth(0, 50);
     this->setColumnWidth(1, 300);
     this->setColumnWidth(2, 300);
+    this->setColumnWidth(3, 300);
     this->horizontalHeader()->setStretchLastSection(true);
 
     this->setIcons();
