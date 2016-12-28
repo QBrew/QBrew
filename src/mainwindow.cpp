@@ -164,16 +164,8 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
     {
         clicked_ = index;
         QMenu * contextMenu = new QMenu(packagelist_);
-        QCheckBox * check = (QCheckBox *)packagelist_->cellWidget(index.row(), 0);
         QAction * select;
-        if (check->isChecked())
-        {
-            select = new QAction("Unselect", contextMenu);
-        }
-        else
-        {
-            select = new QAction("Select", contextMenu);
-        }
+        select = new QAction("Select/Unselect", contextMenu);
         connect(select, &QAction::triggered, [this]()
         {
             tableItemDoubleClicked(clicked_.row(), 0);

@@ -31,6 +31,8 @@ PackageList::PackageList(QWidget * parent)
     this->setIcons();
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->setInstalled();
+
+    row_ = -1;
 }
 
 void PackageList::setAll()
@@ -87,11 +89,17 @@ QList<qbrew::PackageDTO> PackageList::getSelectedFavorite()
     {
         if (checkBox->isChecked())
         {
-            qbrew::PackageDTO f = packages_.at(i);
+            PackageDTO f = packages_.at(i);
             f.setIsFavorite(true);
             result.append(f);
         }
         i++;
+    }
+    if (!checkBoxes_.at(row_)->isChecked())
+    {
+        PackageDTO f = packages_.at(row_);
+        f.setIsFavorite(true);
+        result.append(f);
     }
     return result;
 }
@@ -99,6 +107,7 @@ QList<qbrew::PackageDTO> PackageList::getSelectedFavorite()
 void PackageList::setList()
 {
     checkBoxes_.clear();
+    this->clearSelection();
     this->setRowCount(packages_.size());
     int i {0};
     for (qbrew::PackageDTO f : packages_)
@@ -149,18 +158,11 @@ QWidget * PackageList::alignCheckBox(QCheckBox * cb)
 void PackageList::tableItemClicked(int row, int column)
 {
     this->clearSelection();
-    int i {0};
-    for (QCheckBox * checkBox : checkBoxes_)
+    this->selectRow(row);
+    if (row_ != row)
     {
-        if (checkBox->isChecked())
-        {
-            this->selectRow(i);
-        }
-        i++;
-    }
-    if (!checkBoxes_.at(row)->isChecked())
-    {
-        this->selectRow(row);
+        //send signal;
+        row_ = row;
     }
 }
 
