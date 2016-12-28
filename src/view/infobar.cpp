@@ -63,3 +63,13 @@ void infoBar::initialize()
     homepage_ = new QLabel();
     desc_ = new QLabel();
 }
+
+void infoBar::clear()
+{
+    name_->clear();
+    filename_->clear();
+    version_->clear();
+    url_->clear();
+    homepage_->clear();
+    desc_->clear();
+}

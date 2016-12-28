@@ -63,6 +63,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 void MainWindow::selectAllNone(bool isAll)
 {
     packagelist_->selectPackage(isAll);
+    infoBar_->clear();
 }
 
 void MainWindow::install()
@@ -113,11 +114,13 @@ void MainWindow::searchPackages()
 void MainWindow::viewInstalled()
 {
     packagelist_->setInstalled();
+    infoBar_->clear();
 }
 
 void MainWindow::viewFavourite()
 {
     packagelist_->setFavorite();
+    infoBar_->clear();
 }
 
 void MainWindow::tableItemClicked(int row, int column)

@@ -14,8 +14,8 @@ class infoBar : public QWidget
     explicit infoBar(QWidget * parent = 0);
 
     void updateInfo(qbrew::PackageDTO package);
-
     void initialize();
+    void clear();
     QHBoxLayout * hBoxCreator(QString text);
 
   signals:
