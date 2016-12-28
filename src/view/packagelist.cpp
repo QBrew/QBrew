@@ -29,6 +29,7 @@ PackageList::PackageList(QWidget * parent)
     this->horizontalHeader()->setStretchLastSection(true);
 
     this->setIcons();
+    this->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->setInstalled();
 }
 
