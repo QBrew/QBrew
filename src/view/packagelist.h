@@ -29,6 +29,7 @@ class PackageList : public QTableWidget
     void setFavorite();
     void setInstalled();
     void setIcons();
+    PackageDTO getSelected();
     void setSearch(QString searchValue);
 
     void update();
@@ -42,6 +43,7 @@ class PackageList : public QTableWidget
     void setList();
     QWidget * alignCheckBox(QCheckBox * cb);
   signals:
+    void clickedItemChange();
 
   public slots:
 

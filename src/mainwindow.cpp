@@ -26,10 +26,14 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
     packagelist_ = new PackageList(this);
     stackedWidget_->addWidget(packagelist_);
+    infoBar_ = new infoBar();
 
     navigationBar_ = new NavigationBar();
     hbox_->addWidget(navigationBar_);
-    hbox_->addWidget(stackedWidget_);
+    QVBoxLayout * vBox = new QVBoxLayout();
+    vBox->addWidget(stackedWidget_);
+    vBox->addWidget(infoBar_);
+    hbox_->addLayout(vBox);
     root_->setLayout(hbox_);
 
     menuBar_       = new MenuBar(this);
@@ -67,6 +71,11 @@ void MainWindow::install()
 
 void MainWindow::uninstall()
 {
+}
+
+void MainWindow::updateInfoBar()
+{
+    infoBar_->updateInfo(packagelist_->getSelected());
 }
 
 void MainWindow::updateFavorite(bool isFavorite)
@@ -139,6 +148,7 @@ void MainWindow::connectNavigationBar()
             SLOT(viewInstalled()));
     connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,
             SLOT(viewFavourite()));
+    connect(packagelist_, &PackageList::clickedItemChange, this, [this] {updateInfoBar();});
 }
 
 void MainWindow::onCustomContextMenu(const QPoint & point)

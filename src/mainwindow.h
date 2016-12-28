@@ -14,6 +14,7 @@
 #include "view/navigationbar.h"
 #include "view/toolbar.h"
 #include "view/packagelist.h"
+#include "view/infobar.h"
 
 using namespace qbrew;
 
@@ -31,7 +32,7 @@ class MainWindow : public QMainWindow
 
     void install();
     void uninstall();
-
+    void updateInfoBar();
     void updateFavorite(bool isFavorite);
     void searchPackages();
 
@@ -53,6 +54,7 @@ class MainWindow : public QMainWindow
     QMenuBar    *    menuBar_;
     QStatusBar   *   statusBar_;
     PackageList * packagelist_;
+    infoBar * infoBar_;
 
     QModelIndex clicked_;
 
