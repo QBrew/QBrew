@@ -35,7 +35,7 @@ class PackageList : public QTableWidget
     void update();
 
     void selectPackage(bool isAll);
-    QList<PackageDTO> getSelected();
+    QList<PackageDTO> getListSelected();
 
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);

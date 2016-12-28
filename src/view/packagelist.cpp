@@ -109,7 +109,7 @@ void PackageList::selectPackage(bool isAll)
     }
 }
 
-QList<PackageDTO> PackageList::getSelected()
+QList<PackageDTO> PackageList::getListSelected()
 {
     QList<qbrew::PackageDTO> result;
     int i{0};
