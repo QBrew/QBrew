@@ -65,6 +65,11 @@ void PackageList::search(QString searchValue)
     setList();
 }
 
+PackageDTO PackageList::getSelected()
+{
+    return packages_.at(row_);
+}
+
 void PackageList::selectPackage(bool isAll)
 {
     if (isAll)
@@ -161,8 +166,8 @@ void PackageList::tableItemClicked(int row, int column)
     this->selectRow(row);
     if (row_ != row)
     {
-        //send signal;
         row_ = row;
+        emit clickedItemChange();
     }
 }
 

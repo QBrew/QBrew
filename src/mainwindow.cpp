@@ -87,6 +87,11 @@ void MainWindow::install()
     progress->setLabelText("Installation");
 }
 
+void MainWindow::updateInfoBar()
+{
+    infoBar_->updateInfo(packagelist_->getSelected());
+}
+
 void MainWindow::updateFavorite(bool isFavorite)
 {
     QList<qbrew::PackageDTO> selected = packagelist_->getSelectedFavorite();
@@ -155,6 +160,7 @@ void MainWindow::connectNavigationBar()
             SLOT(viewInstalled()));
     connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,
             SLOT(viewFavourite()));
+    connect(packagelist_, &PackageList::clickedItemChange, this, [this] {updateInfoBar();});
 }
 
 void MainWindow::onCustomContextMenu(const QPoint & point)

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QHBoxLayout>
 
 #include "src/db/DTO/packagedto.h"
 
@@ -13,6 +14,9 @@ class infoBar : public QWidget
     explicit infoBar(QWidget * parent = 0);
 
     void updateInfo(qbrew::PackageDTO package);
+
+    void initialize();
+    QHBoxLayout * hBoxCreator(QString text);
 
   signals:
 
