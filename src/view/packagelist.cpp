@@ -71,7 +71,11 @@ void PackageList::setSearch(QString searchValue)
 void PackageList::update()
 {
     int row = row_;
-    QString filename = packages_.at(row_).filename();
+    QString filename;
+    if (row != -1)
+    {
+        filename = packages_.at(row_).filename();
+    }
     if (status_ == "Favorite")
     {
         setFavorite();
