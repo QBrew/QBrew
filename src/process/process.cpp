@@ -156,7 +156,7 @@ QMap<QString, QString> infoPackage(QString filename, bool cask)
 {
     QMap<QString, QString> map;
     QStringList infos (QStringList() << "  version " << "  url "
-                       << "  name " );//<< "  homepage "  << "  desc ");
+                       << "  name " << "  homepage "  << "  desc ");
     map.insert("filename", filename);
     map.insert("name", "");
     map.insert("version", "");

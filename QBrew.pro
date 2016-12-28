@@ -27,7 +27,8 @@ SOURCES += src/main.cpp\
     src/db/db/qbrewdb.cpp \
     src/view/navigationbar.cpp \
     src/db/dto/packagedto.cpp \
-    src/view/packagelist.cpp
+    src/view/packagelist.cpp \
+    src/view/infobar.cpp
 
 HEADERS  += \
     src/process/process.h \
@@ -41,7 +42,8 @@ HEADERS  += \
     src/menu/preferences.h \
     src/db/db/qbrewdb.h \
     src/db/dto/packagedto.h \
-    src/view/packagelist.h
+    src/view/packagelist.h \
+    src/view/infobar.h
 
 FORMS    +=
 

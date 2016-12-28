@@ -26,10 +26,14 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
     packagelist_ = new PackageList(this);
     stackedWidget_->addWidget(packagelist_);
+    infoBar_ = new infoBar();
 
     navigationBar_ = new NavigationBar();
     hbox_->addWidget(navigationBar_);
-    hbox_->addWidget(stackedWidget_);
+    QVBoxLayout * vBox = new QVBoxLayout();
+    vBox->addWidget(stackedWidget_);
+    vBox->addWidget(infoBar_);
+    hbox_->addLayout(vBox);
     root_->setLayout(hbox_);
 
     menuBar_       = new MenuBar(this);
