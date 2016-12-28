@@ -30,6 +30,7 @@ class PackageList : public QTableWidget
     void setInstalled();
     void setIcons();
     PackageDTO getSelected();
+    PackageDTO getPackage(int row);
     void setSearch(QString searchValue);
 
     void update();

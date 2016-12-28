@@ -104,6 +104,11 @@ PackageDTO PackageList::getSelected()
     return packages_.at(row_);
 }
 
+PackageDTO PackageList::getPackage(int row)
+{
+    return packages_.at(row);
+}
+
 void PackageList::selectPackage(bool isAll)
 {
     for (QCheckBox * checkBox : checkBoxes_)

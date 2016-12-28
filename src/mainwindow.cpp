@@ -171,8 +171,20 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
         {
             tableItemDoubleClicked(clicked_.row(), 0);
         });
-        QAction * install = new QAction("Install", contextMenu);
-        QAction * favourite = new QAction("Favourite", contextMenu);
+        QAction * install = new QAction("Install/Uninstall", contextMenu);
+        connect(install, &QAction::triggered, [this]()
+        {
+
+        });
+        QAction * favourite = new QAction("Favourite/Unfavourite", contextMenu);
+        connect(favourite, &QAction::triggered, [this]()
+        {
+            PackageDTO package = packagelist_->getPackage(clicked_.row());
+            package.setIsFavorite(!package.isFavorite());
+            qbrew::updateFavorite(package);
+            packagelist_->update();
+
+        });
         contextMenu->addAction(select);
         contextMenu->addAction(install);
         contextMenu->addAction(favourite);
