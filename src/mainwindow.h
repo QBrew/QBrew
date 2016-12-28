@@ -28,9 +28,13 @@ class MainWindow : public QMainWindow
   public slots:
 
     void selectAllNone(bool isAll);
+
     void install();
+    void uninstall();
+
     void updateFavorite(bool isFavorite);
     void searchPackages();
+
     void onCustomContextMenu(const QPoint & point);
 
     void viewInstalled();

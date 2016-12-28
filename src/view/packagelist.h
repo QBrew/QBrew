@@ -14,6 +14,8 @@ class PackageList : public QTableWidget
 {
     Q_OBJECT
 
+    QString status;
+
     QList<PackageDTO> packages_;
     QList<QCheckBox *> checkBoxes_;
     QIcon favouriteIcon_;
@@ -21,16 +23,18 @@ class PackageList : public QTableWidget
     QList<QIcon> statusIcons_;
     int row_;
 
+
   public:
     explicit PackageList(QWidget * parent = 0);
-    void setAll();
     void setFavorite();
     void setInstalled();
     void setIcons();
-    void search(QString searchValue);
+    void setSearch(QString searchValue);
+
+    void update();
 
     void selectPackage(bool isAll);
-    QList<PackageDTO> getSelectedFavorite();
+    QList<PackageDTO> getSelected();
 
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);

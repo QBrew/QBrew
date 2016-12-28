@@ -33,24 +33,21 @@ PackageList::PackageList(QWidget * parent)
     this->setInstalled();
 
     row_ = -1;
-}
-
-void PackageList::setAll()
-{
-    packages_ = qbrew::getAll();
-    setList();
+    status = "Installed";
 }
 
 void PackageList::setFavorite()
 {
     packages_ = qbrew::getFavorite();
     setList();
+    status = "Favorite";
 }
 
 void PackageList::setInstalled()
 {
     packages_ = qbrew::getInstalled();
     setList();
+    status = "Installed";
 }
 
 void PackageList::setIcons()
@@ -59,10 +56,36 @@ void PackageList::setIcons()
                  QIcon(":/Icons/selectAll") << QIcon(":/Icons/selectNone");
 }
 
-void PackageList::search(QString searchValue)
+void PackageList::setSearch(QString searchValue)
 {
     packages_ = qbrew::getSearch(searchValue);
     setList();
+    status = searchValue;
+}
+
+void PackageList::update()
+{
+    int row = row_;
+    if (status == "Favorite")
+    {
+        setFavorite();
+    }
+    else
+    {
+        if (status == "Installed")
+        {
+            setInstalled();
+        }
+        else
+        {
+            setSearch(status);
+        }
+    }
+    if (row != -1)
+    {
+        row_ = row;
+        selectRow(row_);
+    }
 }
 
 void PackageList::selectPackage(bool isAll)
@@ -81,7 +104,7 @@ void PackageList::selectPackage(bool isAll)
     }
 }
 
-QList<qbrew::PackageDTO> PackageList::getSelectedFavorite()
+QList<PackageDTO> PackageList::getSelected()
 {
     QList<qbrew::PackageDTO> result;
     int i{0};
@@ -90,12 +113,11 @@ QList<qbrew::PackageDTO> PackageList::getSelectedFavorite()
         if (checkBox->isChecked())
         {
             PackageDTO f = packages_.at(i);
-            f.setIsFavorite(true);
             result.append(f);
         }
         i++;
     }
-    if (!checkBoxes_.at(row_)->isChecked())
+    if (row_ != -1 && !checkBoxes_.at(row_)->isChecked())
     {
         PackageDTO f = packages_.at(row_);
         f.setIsFavorite(true);
@@ -107,7 +129,6 @@ QList<qbrew::PackageDTO> PackageList::getSelectedFavorite()
 void PackageList::setList()
 {
     checkBoxes_.clear();
-    this->clearSelection();
     this->setRowCount(packages_.size());
     int i {0};
     for (qbrew::PackageDTO f : packages_)
@@ -141,6 +162,8 @@ void PackageList::setList()
 
         i++;
     }
+    this->clearSelection();
+    row_ = -1;
 }
 
 QWidget * PackageList::alignCheckBox(QCheckBox * cb)

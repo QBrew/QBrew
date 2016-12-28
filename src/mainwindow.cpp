@@ -54,43 +54,30 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     packagelist_->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(packagelist_, SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onCustomContextMenu(const QPoint &)));
-
-
 }
 
 void MainWindow::selectAllNone(bool isAll)
 {
-    packagelist_->selectPackage(isAll);
+    QList<qbrew::PackageDTO> selected = packagelist_->getSelected();
 }
 
 void MainWindow::install()
 {
-    QProgressDialog * progress = new QProgressDialog("Downloading", "", 0, 100000);
+}
 
-    progress->setCancelButton(NULL);
-    progress->setWindowModality(Qt::WindowModal);
-    progress->show();
-
-    for (int i = 0; i < 100000; i++)
-    {
-        progress->setValue(i);
-        QThread::usleep(10);
-
-        if (progress->wasCanceled())
-            break;
-    }
-
-    progress->setLabelText("Installation");
+void MainWindow::uninstall()
+{
 }
 
 void MainWindow::updateFavorite(bool isFavorite)
 {
-    QList<qbrew::PackageDTO> selected = packagelist_->getSelectedFavorite();
+    QList<qbrew::PackageDTO> selected = packagelist_->getSelected();
     for (qbrew::PackageDTO f : selected)
     {
         f.setIsFavorite(isFavorite);
         qbrew::updateFavorite(f);
     }
+    packagelist_->update();
 }
 
 void MainWindow::searchPackages()
@@ -110,7 +97,7 @@ void MainWindow::searchPackages()
         navigationBar_->group()->setExclusive(true);
 
         toolBar_->searchField()->setPlaceholderText("Search");
-        packagelist_->search(searchText);
+        packagelist_->setSearch(searchText);
     }
 }
 
@@ -140,6 +127,7 @@ void MainWindow::connectToolbar()
     connect(toolBar_, &ToolBar::selectAllClicked, this, [this] {selectAllNone(true);});
     connect(toolBar_, &ToolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
     connect(toolBar_, &ToolBar::installClicked, this, [this] {install();});
+    connect(toolBar_, &ToolBar::uninstallClicked, this, [this] {uninstall();});
     connect(toolBar_, &ToolBar::addFavoriClicked, this, [this] {updateFavorite(true);});
     connect(toolBar_, &ToolBar::removeFavouriteClicked, this, [this] {updateFavorite(false);});
     connect(toolBar_, &ToolBar::searchPressed, this, [this] {searchPackages();});
