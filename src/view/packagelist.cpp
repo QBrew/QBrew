@@ -100,7 +100,7 @@ void PackageList::update()
     }
 }
 
-PackageDTO PackageList::getSelected()
+PackageDTO PackageList::selected()
 {
     return packages_.at(row_);
 }
@@ -110,7 +110,7 @@ PackageDTO PackageList::getPackage(int row)
     return packages_.at(row);
 }
 
-void PackageList::selectPackage(bool isAll)
+void PackageList::setSelectPackage(bool isAll)
 {
     for (QCheckBox * checkBox : checkBoxes_)
     {
@@ -118,7 +118,7 @@ void PackageList::selectPackage(bool isAll)
     }
 }
 
-QList<PackageDTO> PackageList::getListSelected()
+QList<PackageDTO> PackageList::listSelected()
 {
     QList<qbrew::PackageDTO> result;
     int i{0};

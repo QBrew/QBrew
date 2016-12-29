@@ -29,14 +29,14 @@ class PackageList : public QTableWidget
     void setFavourite();
     void setInstalled();
     void setIcons();
-    PackageDTO getSelected();
+    PackageDTO selected();
     PackageDTO getPackage(int row);
     void setSearch(QString searchValue);
 
     void update();
 
-    void selectPackage(bool isAll);
-    QList<PackageDTO> getListSelected();
+    void setSelectPackage(bool isAll);
+    QList<PackageDTO> listSelected();
 
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);

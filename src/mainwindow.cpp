@@ -62,12 +62,13 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
 void MainWindow::selectAllNone(bool isAll)
 {
-    packagelist_->selectPackage(isAll);
+    packagelist_->setSelectPackage(isAll);
     infoBar_->clear();
 }
 
 void MainWindow::install()
 {
+
 }
 
 void MainWindow::uninstall()
@@ -76,12 +77,12 @@ void MainWindow::uninstall()
 
 void MainWindow::updateInfoBar()
 {
-    infoBar_->updateInfo(packagelist_->getSelected());
+    infoBar_->updateInfo(packagelist_->selected());
 }
 
 void MainWindow::updateFavourite(bool isFavourite)
 {
-    QList<qbrew::PackageDTO> selected = packagelist_->getListSelected();
+    QList<qbrew::PackageDTO> selected = packagelist_->listSelected();
     for (qbrew::PackageDTO f : selected)
     {
         f.setIsFavourite(isFavourite);
