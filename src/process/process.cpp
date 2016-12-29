@@ -86,18 +86,20 @@ int install(std::string package, bool cask)
     return 0;
 }
 
-int install(QString package, bool cask)
+int install(PackageDTO package)
 {
-    QProcess process;
     QString command = "/usr/local/bin/brew ";
-    command.append(cask ? "cask install " : "install " + package);
+    command.append(package.isCask() ? "cask install " : "install ");
+    command.append(package.filename());
+
+    QProcess process;
     process.start(command);
     process.waitForFinished(-1); // will wait forever until finished
 
     if (process.exitCode() == 0)
     {
         //already install or install
-        cleanup(cask);
+        cleanup(package.isCask());
         return 0;
     }
     else
@@ -134,7 +136,6 @@ QStringList listArgument(QString argument)
 
 void createDB(bool cask)
 {
-    QList<QMap<QString, QString>> maps;
     QDir currentDir(getBrewPath(cask));
     QDirIterator it(currentDir);
     while (it.hasNext())
@@ -146,7 +147,7 @@ void createDB(bool cask)
             PackageDTO package {map.value("filename"), map.value("name"), map.value("version"),
                                 map.value("homepage"), map.value("url"), map.value("desc"),
                                 cask, false, false};
-            addPackage(package);
+            addPackage(package); //add the new package to the DB
         }
 
     }

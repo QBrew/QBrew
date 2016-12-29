@@ -17,7 +17,7 @@ QPair<QString, QString> brewVersion2();
 
 void createDB(bool cask);
 
-int install(QString package, bool cask);
+int install(PackageDTO package);
 int install(std::string package, bool cask);
 
 QStringList list();
