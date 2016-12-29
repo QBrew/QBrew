@@ -1,14 +1,12 @@
 #include "mainwindow.h"
 #include "view/menubar.h"
 #include "view/packagelist.h"
+#include "process/process.h"
 
 #include <QTableWidget>
 #include <src/db/db/qbrewdb.h>
 #include <src/db/dto/packagedto.h>
 #include <QHeaderView>
-
-#include <QInputDialog>
-
 #include <QDebug>
 #include <QLineEdit>
 #include <QProgressDialog>
@@ -30,6 +28,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
     navigationBar_ = new NavigationBar();
     hbox_->addWidget(navigationBar_);
+
     QVBoxLayout * vBox = new QVBoxLayout();
     vBox->addWidget(stackedWidget_);
     vBox->addWidget(infoBar_);
@@ -68,11 +67,52 @@ void MainWindow::selectAllNone(bool isAll)
 
 void MainWindow::install()
 {
-
+    progressDialog(true);
 }
 
 void MainWindow::uninstall()
 {
+    progressDialog(false);
+}
+
+void MainWindow::progressDialog(bool install)
+{
+    QList<qbrew::PackageDTO> selected = packagelist_->listSelected();
+
+    QProgressDialog * progress = new QProgressDialog("", "", 0,
+            selected.size());
+    progress->setWindowTitle(install ? "Installing ..." : "Uninstalling ...");
+    progress->setCancelButton(NULL);
+    progress->setWindowModality(Qt::WindowModal);
+
+    progress->setValue(0);
+    progress->setLabelText("0/" + QString::number(selected.size()));
+    QThread::sleep(2);
+
+    for (int i = 0; i < selected.size(); i++)
+    {
+        QString label = QString::number(i + 1) + "/"
+                        + QString::number(selected.size());
+        label.append("\n" + selected.at(i).filename());
+        progress->setLabelText(label);
+        progress->setValue(i);
+        QThread::sleep(2);
+
+        if (install)
+        {
+            //qbrew::install(package);
+        }
+        else
+        {
+            //uninstall
+        }
+
+        if (progress->wasCanceled())
+            break;
+    }
+    progress->setValue(selected.size());
+    //cleanup
+    //packagelist_->update();
 }
 
 void MainWindow::updateInfoBar()
