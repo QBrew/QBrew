@@ -40,8 +40,9 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     statusBar_     = new QStatusBar(this);
 
     addToolBar(toolBar_);
-    connectToolbar();
+    connectToolBar();
     connectNavigationBar();
+    connectInfoBar();
     setMenuBar(menuBar_);
     setStatusBar(statusBar_);
     setCentralWidget(root_);
@@ -87,6 +88,7 @@ void MainWindow::progressDialog(bool install)
 
     progress->setValue(0);
     progress->setLabelText("0/" + QString::number(selected.size()));
+    progress->showNormal();
     QThread::sleep(2);
 
     for (int i = 0; i < selected.size(); i++)
@@ -101,6 +103,7 @@ void MainWindow::progressDialog(bool install)
         if (install)
         {
             //qbrew::install(package);
+            //updateDB
         }
         else
         {
@@ -179,7 +182,7 @@ void MainWindow::tableItemDoubleClicked(int row, int column)
     packagelist_->tableItemDoubleClicked(row, column);
 }
 
-void MainWindow::connectToolbar()
+void MainWindow::connectToolBar()
 {
     connect(toolBar_, &ToolBar::selectAllClicked, this, [this] {selectAllNone(true);});
     connect(toolBar_, &ToolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
@@ -196,7 +199,12 @@ void MainWindow::connectNavigationBar()
             SLOT(viewInstalled()));
     connect(navigationBar_->favourite(), SIGNAL(clicked(bool)), this,
             SLOT(viewFavourite()));
+}
+
+void MainWindow::connectInfoBar()
+{
     connect(packagelist_, &PackageList::clickedItemChange, this, [this] {updateInfoBar();});
+
 }
 
 void MainWindow::onCustomContextMenu(const QPoint & point)

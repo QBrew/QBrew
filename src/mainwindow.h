@@ -59,8 +59,9 @@ class MainWindow : public QMainWindow
 
     QModelIndex clicked_;
 
-    void connectToolbar();
+    void connectToolBar();
     void connectNavigationBar();
+    void connectInfoBar();
 };
 
 #endif // MAINWINDOWS_H
