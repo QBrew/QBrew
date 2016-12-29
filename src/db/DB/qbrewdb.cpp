@@ -105,9 +105,9 @@ void deletePackage(QString filename)
 }
 
 
-void updateInstalled(QStringList filenames)
+void addListInstalled(QStringList filenames)
 {
-    removeInstalled();
+    removeAllInstalled();
     for (QString filename : filenames)
     {
         addInstalled(filename);
@@ -122,7 +122,7 @@ void addInstalled(QString filename)
     query.exec();
 }
 
-void removeInstalled()
+void removeAllInstalled()
 {
     QSqlQuery query;
     query.prepare("UPDATE PACKAGES SET INSTALL = 0 WHERE INSTALL = 1");

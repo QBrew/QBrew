@@ -15,9 +15,9 @@ PackageDTO selectPackage(QString filename);
 bool addPackage(PackageDTO package);
 void updateFavourite(PackageDTO package);
 void deletePackage(QString filename);
-void updateInstalled(QStringList filenames);
+void addListInstalled(QStringList filenames);
 void addInstalled(QString filename);
-void removeInstalled();
+void removeAllInstalled();
 }
 
 #endif // QBREWDB_H
