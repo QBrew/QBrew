@@ -1,19 +1,27 @@
 #include "dbmanager.h"
 #include <QtSql>
 #include <QDir>
-#include <QSqlQuery>
 #include <QDebug>
+
+#include <QSqlDatabase>
+#include <QSqlDriver>
+#include <QSqlError>
+#include <QSqlQuery>
 
 namespace qbrew
 {
 
 bool connection()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("QBrewDB.sqlite");
-    db.setUserName("root");
-    db.setPassword("rootroot");
-    return db.open();
+    const QString DRIVER("QSQLITE");
+
+    if(QSqlDatabase::isDriverAvailable(DRIVER))
+    {
+            QSqlDatabase db = QSqlDatabase::addDatabase(DRIVER);
+            db.setDatabaseName(QDir::homePath() + "/.QBrewDB");
+            return db.open();
+    }
+    return false;
 }
 
 void close()
