@@ -4,8 +4,6 @@
 #include <QDebug>
 
 #include <QSqlDatabase>
-#include <QSqlDriver>
-#include <QSqlError>
 #include <QSqlQuery>
 
 namespace qbrew
