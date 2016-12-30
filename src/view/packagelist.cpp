@@ -18,7 +18,8 @@ QString PackageList::getStatus() const
 PackageList::PackageList(QWidget * parent)
 {
     QStringList qsl;
-    qsl << "" << "Filename" << "Name" << "Version" << "Installed" << "Favourite";
+    qsl << "" << "Filename" << "Cask" << "Name" << "Version"
+        << "Installed" << "Favourite";
     this->setColumnCount(qsl.size());
     this->setHorizontalHeaderLabels(qsl);
 
@@ -28,14 +29,18 @@ PackageList::PackageList(QWidget * parent)
     this->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->setSelectionMode(MultiSelection);
 
-    this->setColumnWidth(0, 50);
-    this->setColumnWidth(1, 300);
-    this->setColumnWidth(2, 300);
-    this->setColumnWidth(3, 300);
+    int i = 0;
+    this->setColumnWidth(i++, 30);      //check
+    this->setColumnWidth(i++, 300);     //filename
+    this->setColumnWidth(i++, 60);      //cask
+    this->setColumnWidth(i++, 300);     //name
+    this->setColumnWidth(i++, 300);     //version
+    this->setColumnWidth(i++, 60);      //installed
     this->horizontalHeader()->setStretchLastSection(true);
 
     this->setIcons();
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     this->setInstalled();
 
     row_ = -1;
@@ -157,6 +162,10 @@ void PackageList::setList()
         filename->setFlags(filename->flags() ^ Qt::ItemIsEditable);
         this->setItem(i, j++, filename);
 
+        QTableWidgetItem * caskIcon = new QTableWidgetItem;
+        caskIcon->setIcon(f.isCask() ? statusIcons_.at(2) : statusIcons_.at(3));
+        this->setItem(i, j++, caskIcon);
+
         QTableWidgetItem * name = new QTableWidgetItem(f.name());
         name->setFlags(name->flags() ^ Qt::ItemIsEditable);
         this->setItem(i, j++, name);
@@ -166,13 +175,13 @@ void PackageList::setList()
         this->setItem(i, j++, version);
 
         QTableWidgetItem * installedIcon = new QTableWidgetItem;
-        installedIcon->setIcon(f.isInstalled() ? statusIcons_.at(2) : statusIcons_.at(
-                                   3));
+        installedIcon->setIcon(f.isInstalled() ?
+                               statusIcons_.at(2) : statusIcons_.at(3));
         this->setItem(i, j++, installedIcon);
 
         QTableWidgetItem * favouriteIcon = new QTableWidgetItem;
-        favouriteIcon->setIcon(f.isFavourite() ? statusIcons_.at(0) : statusIcons_.at(
-                                   1));
+        favouriteIcon->setIcon(f.isFavourite() ?
+                               statusIcons_.at(0) : statusIcons_.at(1));
         this->setItem(i, j++, favouriteIcon);
 
         i++;

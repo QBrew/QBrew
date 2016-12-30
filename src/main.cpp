@@ -21,7 +21,8 @@ int main(int argc, char * argv[])
     if (db.tables().isEmpty())
     {
         createTable();
-        createDB(true);
+        createDB(true); //db for brew cask
+        createDB(false); //db for brew
     }
 
     addListInstalled(list());

@@ -33,16 +33,18 @@ void createTable()
     if (db.tables().isEmpty())
     {
         QSqlQuery query;
-        query.exec("CREATE TABLE PACKAGES"
-                   "(FILENAME   TEXT NOT NULL PRIMARY KEY,"
-                   "NAME        TEXT NOT NULL,"
-                   "VERSION     TEXT NOT NULL,"
-                   "URL         TEXT NOT NULL,"
-                   "HOMEPAGE    TEXT NOT NULL,"
-                   "DESC        TEXT NOT NULL,"
-                   "CASK        INT NOT NULL,"
-                   "INSTALL     INT NOT NULL,"
-                   "FAVOURITE    INT NOT NULL)");
+        query.exec("CREATE TABLE PACKAGES ("
+                   "FILENAME    TEXT    NOT NULL,"
+                   "NAME        TEXT    NOT NULL,"
+                   "VERSION     TEXT    NOT NULL,"
+                   "URL         TEXT    NOT NULL,"
+                   "HOMEPAGE    TEXT    NOT NULL,"
+                   "DESC        TEXT    NOT NULL,"
+                   "CASK        INT     NOT NULL,"
+                   "INSTALL     INT     NOT NULL,"
+                   "FAVOURITE   INT     NOT NULL,"
+                   "PRIMARY KEY (FILENAME, CASK)"
+                   ")");
     }
 
 }

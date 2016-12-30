@@ -120,8 +120,8 @@ void cleanup(bool cask)
 
 QStringList list()
 {
-    QStringList result = listArgument("cask list -1");
-    result.append(listArgument("list -1"));
+    QStringList result = listArgument("cask list -1"); //brew cask installed
+    result.append(listArgument("list -1")); //brew installed
     return result;
 }
 
@@ -143,13 +143,12 @@ void createDB(bool cask)
         it.next();
         if (it.fileInfo().isFile())
         {
-            QMap<QString, QString> map (infoPackage(it.fileInfo().baseName(), true));
+            QMap<QString, QString> map (infoPackage(it.fileInfo().baseName(), cask));
             PackageDTO package {map.value("filename"), map.value("name"), map.value("version"),
                                 map.value("homepage"), map.value("url"), map.value("desc"),
                                 cask, false, false};
             addPackage(package); //add the new package to the DB
         }
-
     }
 }
 
@@ -186,6 +185,7 @@ void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line)
     {
         if (line.indexOf(info) != -1)
         {
+
             line.remove('"');
             line.remove('\'');
             line.remove(':');
