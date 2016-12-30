@@ -29,7 +29,7 @@ QList<PackageDTO> getAll()
 }
 
 
-QList<PackageDTO> getFavourite()
+QList<PackageDTO> getFavourites()
 {
     return getList(QSqlQuery("SELECT * FROM PACKAGES WHERE FAVOURITE = 1"));
 }
@@ -87,6 +87,14 @@ bool addPackage(PackageDTO package)
     return query.exec();
 }
 
+void addFavourite(QString filename)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE PACKAGES SET FAVOURITE = 1 WHERE FILENAME = :filename");
+    query.bindValue(":filename", filename);
+    query.exec();
+}
+
 void updateFavourite(PackageDTO package)
 {
     QSqlQuery query;
@@ -126,6 +134,13 @@ void removeAllInstalled()
 {
     QSqlQuery query;
     query.prepare("UPDATE PACKAGES SET INSTALL = 0 WHERE INSTALL = 1");
+    query.exec();
+}
+
+void removeAllFavourites()
+{
+    QSqlQuery query;
+    query.prepare("UPDATE PACKAGES SET FAVOURITE = 0 WHERE FAVOURITE = 1");
     query.exec();
 }
 

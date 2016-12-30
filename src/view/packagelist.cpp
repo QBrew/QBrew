@@ -49,7 +49,7 @@ PackageList::PackageList(QWidget * parent)
 
 void PackageList::setFavourite()
 {
-    packages_ = qbrew::getFavourite();
+    packages_ = qbrew::getFavourites();
     setList();
     status_ = "Favourite";
 }

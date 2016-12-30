@@ -12,6 +12,7 @@
 #include <QProgressDialog>
 #include <QThread>
 #include <QButtonGroup>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 {
@@ -35,7 +36,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     hbox_->addLayout(vBox);
     root_->setLayout(hbox_);
 
-    menuBar_       = new MenuBar(this);
+    menuBar_       = new MenuBar(this, packagelist_);
     toolBar_       = new ToolBar(this);
     statusBar_     = new QStatusBar(this);
 
@@ -43,12 +44,13 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     connectToolBar();
     connectNavigationBar();
     connectInfoBar();
+
     setMenuBar(menuBar_);
     setStatusBar(statusBar_);
     setCentralWidget(root_);
 
-    showMaximized();
     packagelist_->setFocus();
+    showMaximized();
 
     connect(packagelist_, SIGNAL(cellClicked(int, int)), this,
             SLOT(tableItemClicked(int, int)));
@@ -68,18 +70,30 @@ void MainWindow::selectAllNone(bool isAll)
 
 void MainWindow::install()
 {
-    progressDialog(true);
+    QStringList * list = new QStringList;
+    int i = progressDialog(true, list);
+    QMessageBox message;
+    message.setText(QString::number(i) +
+                    " package(s) installed succesfully");
+    message.setStandardButtons(QMessageBox::Ok);
+    message.exec();
 }
 
 void MainWindow::uninstall()
 {
-    progressDialog(false);
+    QStringList * list = new QStringList;
+    int i = progressDialog(false, list);
+    QMessageBox message;
+    message.setText(QString::number(i) +
+                    " package(s) removed succesfully");
+    message.setStandardButtons(QMessageBox::Ok);
+    message.exec();
 }
 
-void MainWindow::progressDialog(bool install)
+int MainWindow::progressDialog(bool install, QStringList * list)
 {
     QList<qbrew::PackageDTO> selected = packagelist_->listSelected();
-
+    int numberInstalled {0};
     QProgressDialog * progress = new QProgressDialog("", "", 0,
             selected.size());
     progress->setWindowTitle(install ? "Installing ..." : "Uninstalling ...");
@@ -87,23 +101,31 @@ void MainWindow::progressDialog(bool install)
     progress->setWindowModality(Qt::WindowModal);
 
     progress->setValue(0);
-    progress->setLabelText("0/" + QString::number(selected.size()));
+    progress->setLabelText("0 / " + QString::number(selected.size()));
     progress->showNormal();
-    QThread::sleep(2);
+    QThread::sleep(1);
 
     for (int i = 0; i < selected.size(); i++)
     {
-        QString label = QString::number(i + 1) + "/"
+        QString label = QString::number(i + 1) + " / "
                         + QString::number(selected.size());
         label.append("\n" + selected.at(i).filename());
         progress->setLabelText(label);
         progress->setValue(i);
-        QThread::sleep(2);
+        QThread::sleep(1);
 
         if (install)
         {
-            //qbrew::install(package);
-            //updateDB
+            //if (qbrew::install(selected.at(i).filename()))
+            if (true)
+            {
+                //updateDB();
+                numberInstalled++;
+            }
+            else
+            {
+                list->append(selected.at(i).filename()); //failed install
+            }
         }
         else
         {
@@ -116,6 +138,7 @@ void MainWindow::progressDialog(bool install)
     progress->setValue(selected.size());
     //cleanup
     //packagelist_->update();
+    return numberInstalled;
 }
 
 void MainWindow::updateInfoBar()
@@ -215,17 +238,17 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
         clicked_ = index;
         QMenu * contextMenu = new QMenu(packagelist_);
         QAction * select;
-        select = new QAction("Select/Unselect", contextMenu);
+        select = new QAction("Select / Unselect", contextMenu);
         connect(select, &QAction::triggered, [this]()
         {
             tableItemDoubleClicked(clicked_.row(), 0);
         });
-        QAction * install = new QAction("Install/Uninstall", contextMenu);
+        QAction * install = new QAction("Install / Uninstall", contextMenu);
         connect(install, &QAction::triggered, [this]()
         {
 
         });
-        QAction * favourite = new QAction("Favourite/Unfavourite", contextMenu);
+        QAction * favourite = new QAction("Favourite / Unfavourite", contextMenu);
         connect(favourite, &QAction::triggered, [this]()
         {
             PackageDTO package = packagelist_->getPackage(clicked_.row());
