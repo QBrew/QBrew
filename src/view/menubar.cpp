@@ -76,7 +76,8 @@ void MenuBar::importPopup()
         QTextStream in(&file);
         while (!in.atEnd())
         {
-            addFavourite(in.readLine());
+            QStringList s = in.readLine().split(" ");
+            addFavourite(s.at(0), s.at(1) == "1");
         }
         file.close();
         list_->update();
@@ -87,12 +88,17 @@ void MenuBar::exportPopup()
 {
     QString path = QFileDialog::getSaveFileName(this, tr("Export Favourites"),
                    QDir::homePath() + "/fav.qbrew");
+    if (path == "")
+    {
+        return;
+    }
     QFile file(path);
     file.open(QIODevice::WriteOnly);
     QTextStream out(&file);
     for (PackageDTO p : getFavourites())
     {
-        out << p.filename() << "\n";
+        out << p.filename() << " ";
+        out << QString::number(p.isCask() ? 1 : 0) << "\n";
     }
     file.close();
 }

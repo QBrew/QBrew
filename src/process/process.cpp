@@ -104,11 +104,16 @@ void cleanup(bool cask)
     process.start(command);
 }
 
-QStringList list()
+QStringList list(bool isCask)
 {
-    QStringList result = listArgument("cask list -1"); //brew cask installed
-    result.append(listArgument("list -1")); //brew installed
-    return result;
+    if (isCask)
+    {
+        return listArgument("cask list -1"); //brew cask installed
+    }
+    else
+    {
+        return listArgument("list -1"); //brew installed
+    }
 }
 
 QStringList listArgument(QString argument)

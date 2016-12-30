@@ -20,7 +20,7 @@ void createDB(bool cask);
 int install(PackageDTO package);
 int uninstall(PackageDTO package);
 
-QStringList list();
+QStringList list(bool isCask);
 QStringList listArgument(QString argument);
 
 QMap<QString, QString> infoPackage(QString filename, bool cask);

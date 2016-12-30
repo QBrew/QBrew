@@ -50,11 +50,14 @@ QList<PackageDTO> getSearch (QString searchValue)
 }
 
 
-PackageDTO selectPackage(QString filename)
+PackageDTO selectPackage(QString filename, bool isCask)
 {
     PackageDTO result{};
-    QSqlQuery query("SELECT * FROM PACKAGES WHERE NAME = :filename");
+    QSqlQuery query("SELECT * FROM PACKAGES "
+                    "WHERE NAME = :filename "
+                    "AND CASK = :cask");
     query.bindValue(":filename", filename);
+    query.bindValue(":cask", isCask ? 1 : 0);
     if (query.next())
     {
         bool isCask = (query.value(6).toInt() == 1);
@@ -87,55 +90,80 @@ bool addPackage(PackageDTO package)
     return query.exec();
 }
 
-void addFavourite(QString filename)
+void addFavourite(QString filename, bool isCask)
 {
     QSqlQuery query;
-    query.prepare("UPDATE PACKAGES SET FAVOURITE = 1 WHERE FILENAME = :filename");
+    query.prepare("UPDATE PACKAGES SET FAVOURITE = 1 "
+                  "WHERE FILENAME = :filename "
+                  "AND CASK = :cask");
     query.bindValue(":filename", filename);
+    query.bindValue(":cask", isCask ? 1 : 0);
     query.exec();
 }
 
 void updateFavourite(PackageDTO package)
 {
     QSqlQuery query;
-    query.prepare("UPDATE PACKAGES SET FAVOURITE = :favourite WHERE FILENAME = :filename");
+    query.prepare("UPDATE PACKAGES SET FAVOURITE = :favourite "
+                  "WHERE FILENAME = :filename "
+                  "AND CASK = :cask");
     query.bindValue(":filename", package.filename());
     query.bindValue(":favourite", package.isFavourite() ? 1 : 0);
+    query.bindValue(":cask", package.isCask() ? 1 : 0);
     query.exec();
 }
 
-void deletePackage(QString filename)
+void deletePackage(QString filename, bool isCask)
 {
     QSqlQuery query;
-    query.prepare("DELETE FROM PACKAGES WHERE FILENAME = :filename");
+    query.prepare("DELETE FROM PACKAGES WHERE "
+                  "FILENAME = :filename "
+                  "AND CASK = :cask");
     query.bindValue(":filename", filename);
+    query.bindValue(":cask", isCask ? 1 : 0);
     query.exec();
 }
 
 
-void addListInstalled(QStringList filenames)
+void addListInstalled(QStringList filenames, bool isCask)
 {
-    removeAllInstalled();
     for (QString filename : filenames)
     {
-        addInstalled(filename);
+        addInstalled(filename, isCask);
     }
 }
 
-void addInstalled(QString filename)
+
+void addInstalled(PackageDTO package)
+{
+    addInstalled(package.filename(), package.isCask());
+}
+
+void addInstalled(QString filename, bool isCask)
 {
     QSqlQuery query;
-    query.prepare("UPDATE PACKAGES SET INSTALL = 1 WHERE FILENAME = :filename");
+    query.prepare("UPDATE PACKAGES SET INSTALL = 1 "
+                  "WHERE FILENAME = :filename "
+                  "AND CASK = :cask");
     query.bindValue(":filename", filename);
+    query.bindValue(":cask", isCask ? 1 : 0);
     query.exec();
 }
 
+void removeInstalled(PackageDTO package)
+{
+    removeInstalled(package.filename(), package.isCask());
+}
 
-void removeInstalled(QString filename)
+
+void removeInstalled(QString filename, bool isCask)
 {
     QSqlQuery query;
-    query.prepare("UPDATE PACKAGES SET INSTALL = 0 WHERE FILENAME = :filename");
+    query.prepare("UPDATE PACKAGES SET INSTALL = 0 "
+                  "WHERE FILENAME = :filename "
+                  "AND CASK = :cask");
     query.bindValue(":filename", filename);
+    query.bindValue(":cask", isCask ? 1 : 0);
     query.exec();
 }
 

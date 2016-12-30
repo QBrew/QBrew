@@ -11,16 +11,19 @@ QList<PackageDTO> getFavourites();
 QList<PackageDTO> getInstalled();
 QList<PackageDTO> getSearch(QString searchValue);
 
-PackageDTO selectPackage(QString filename);
+PackageDTO selectPackage(QString filename, bool isCask);
 bool addPackage(PackageDTO package);
-void addFavourite(QString filename);
+void addFavourite(QString filename, bool isCask);
 
 void updateFavourite(PackageDTO package);
-void deletePackage(QString filename);
+void deletePackage(QString filename, bool isCask);
 
-void addListInstalled(QStringList filenames);
-void addInstalled(QString filename);
-void removeInstalled(QString filename);
+void addListInstalled(QStringList filenames, bool isCask);
+void addInstalled(PackageDTO package);
+void addInstalled(QString filename, bool isCask);
+
+void removeInstalled(PackageDTO package);
+void removeInstalled(QString filename, bool isCask);
 
 void removeAllInstalled();
 void removeAllFavourites();

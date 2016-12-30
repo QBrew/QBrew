@@ -115,7 +115,7 @@ int MainWindow::installOrUninstallDialog(bool install)
             //if (qbrew::install(selected.at(i)) == 0)
             if (true)
             {
-                addInstalled(selected.at(i).filename());
+                addInstalled(selected.at(i));
                 number++;
             }
         }
@@ -124,7 +124,7 @@ int MainWindow::installOrUninstallDialog(bool install)
             //if (qbrew::uninstall(selected.at(i)) == 0)
             if (true)
             {
-                removeInstalled(selected.at(i).filename());
+                removeInstalled(selected.at(i));
                 number++;
             }
         }
