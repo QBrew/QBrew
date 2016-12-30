@@ -13,12 +13,12 @@ namespace qbrew
 bool isBrewCaskInstalled();
 QString getBrewPath(bool cask);
 
-QPair<QString, QString> brewVersion2();
+QPair<QString, QString> brewVersion();
 
 void createDB(bool cask);
 
 int install(PackageDTO package);
-int install(std::string package, bool cask);
+int uninstall(PackageDTO package);
 
 QStringList list();
 QStringList listArgument(QString argument);

@@ -32,7 +32,7 @@ class MainWindow : public QMainWindow
 
     void install();
     void uninstall();
-    int progressDialog(bool install);
+    int installOrUninstallDialog(bool install);
     void updateInfoBar();
     void updateFavourite(bool isFavourite);
     void searchPackages();

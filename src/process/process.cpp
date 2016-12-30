@@ -50,42 +50,6 @@ QPair<QString, QString> brewVersion()
     return QPair<QString, QString> (brew, brewCask);
 }
 
-int install(std::string package, bool cask)
-{
-    QProcess process;
-    std::string str = "/usr/local/bin/brew ";
-    str += cask ? "cask install " : "install ";
-    str += package;
-    process.start(QString::fromStdString(str));
-    process.waitForFinished(-1); // will wait forever until finished
-    QString stdout = process.readAllStandardOutput();
-    QString stderr = process.readAllStandardError();
-
-    //if no matching package
-    if (stderr.toStdString().find("No available") != std::string::npos)
-    {
-        return -1;
-    }
-
-    //if already installed
-    if (stderr.toStdString().find("already installed") != std::string::npos)
-    {
-        return -2;
-    }
-
-    //if connection problems
-    if (stderr.toStdString().find("failed") != std::string::npos)
-    {
-        return -3;
-    }
-
-    //install well done
-    str = "/usr/local/bin/brew ";
-    str += cask ? "cask cleanup" : "cleanup";
-    process.start(QString::fromStdString(str));
-    return 0;
-}
-
 int install(PackageDTO package)
 {
     QString command = "/usr/local/bin/brew ";
@@ -108,6 +72,28 @@ int install(PackageDTO package)
         return -1;
     }
 
+}
+
+
+int uninstall(PackageDTO package)
+{
+    QString command = "/usr/local/bin/brew ";
+    command.append(package.isCask() ? "cask uninstall " : "uninstall ");
+    command.append(package.filename());
+
+    QProcess process;
+    process.start(command);
+    process.waitForFinished(-1); // will wait forever until finished
+
+    if (process.exitCode() == 0)
+    {
+        return 0;
+    }
+    else
+    {
+        //error
+        return -1;
+    }
 }
 
 void cleanup(bool cask)
@@ -205,7 +191,6 @@ void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line)
         }
     }
 }
-
 
 
 } //namespace qbrew

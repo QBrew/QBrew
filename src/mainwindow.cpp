@@ -70,7 +70,7 @@ void MainWindow::selectAllNone(bool isAll)
 
 void MainWindow::install()
 {
-    int i = progressDialog(true);
+    int i = installOrUninstallDialog(true);
     QMessageBox message;
     message.setText(QString::number(i) +
                     " package(s) installed succesfully");
@@ -80,7 +80,7 @@ void MainWindow::install()
 
 void MainWindow::uninstall()
 {
-    int i = progressDialog(false);
+    int i = installOrUninstallDialog(false);
     QMessageBox message;
     message.setText(QString::number(i) +
                     " package(s) removed succesfully");
@@ -88,10 +88,10 @@ void MainWindow::uninstall()
     message.exec();
 }
 
-int MainWindow::progressDialog(bool install)
+int MainWindow::installOrUninstallDialog(bool install)
 {
     QList<qbrew::PackageDTO> selected = packagelist_->listSelected();
-    int numberInstalled {0};
+    int number {0};
     QProgressDialog * progress = new QProgressDialog("", "", 0,
             selected.size());
     progress->setWindowTitle(install ? "Installing ..." : "Uninstalling ...");
@@ -101,7 +101,6 @@ int MainWindow::progressDialog(bool install)
     progress->setValue(0);
     progress->setLabelText("0 / " + QString::number(selected.size()));
     progress->showNormal();
-    QThread::sleep(1);
 
     for (int i = 0; i < selected.size(); i++)
     {
@@ -110,29 +109,34 @@ int MainWindow::progressDialog(bool install)
         label.append("\n" + selected.at(i).filename());
         progress->setLabelText(label);
         progress->setValue(i);
-        QThread::sleep(1);
 
         if (install)
         {
-            //if (qbrew::install(selected.at(i).filename()))
+            //if (qbrew::install(selected.at(i)) == 0)
             if (true)
             {
                 addInstalled(selected.at(i).filename());
-                numberInstalled++;
+                number++;
             }
         }
         else
         {
-            //uninstall
+            //if (qbrew::uninstall(selected.at(i)) == 0)
+            if (true)
+            {
+                removeInstalled(selected.at(i).filename());
+                number++;
+            }
         }
 
         if (progress->wasCanceled())
             break;
     }
     progress->setValue(selected.size());
-    //cleanup
-    //packagelist_->update();
-    return numberInstalled;
+
+    packagelist_->update();
+    infoBar_->clear();
+    return number;
 }
 
 void MainWindow::updateInfoBar()

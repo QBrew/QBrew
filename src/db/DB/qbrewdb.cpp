@@ -130,6 +130,15 @@ void addInstalled(QString filename)
     query.exec();
 }
 
+
+void removeInstalled(QString filename)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE PACKAGES SET INSTALL = 0 WHERE FILENAME = :filename");
+    query.bindValue(":filename", filename);
+    query.exec();
+}
+
 void removeAllInstalled()
 {
     QSqlQuery query;

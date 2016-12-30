@@ -14,10 +14,14 @@ QList<PackageDTO> getSearch(QString searchValue);
 PackageDTO selectPackage(QString filename);
 bool addPackage(PackageDTO package);
 void addFavourite(QString filename);
+
 void updateFavourite(PackageDTO package);
 void deletePackage(QString filename);
+
 void addListInstalled(QStringList filenames);
 void addInstalled(QString filename);
+void removeInstalled(QString filename);
+
 void removeAllInstalled();
 void removeAllFavourites();
 }
