@@ -70,8 +70,7 @@ void MainWindow::selectAllNone(bool isAll)
 
 void MainWindow::install()
 {
-    QStringList * list = new QStringList;
-    int i = progressDialog(true, list);
+    int i = progressDialog(true);
     QMessageBox message;
     message.setText(QString::number(i) +
                     " package(s) installed succesfully");
@@ -81,8 +80,7 @@ void MainWindow::install()
 
 void MainWindow::uninstall()
 {
-    QStringList * list = new QStringList;
-    int i = progressDialog(false, list);
+    int i = progressDialog(false);
     QMessageBox message;
     message.setText(QString::number(i) +
                     " package(s) removed succesfully");
@@ -90,7 +88,7 @@ void MainWindow::uninstall()
     message.exec();
 }
 
-int MainWindow::progressDialog(bool install, QStringList * list)
+int MainWindow::progressDialog(bool install)
 {
     QList<qbrew::PackageDTO> selected = packagelist_->listSelected();
     int numberInstalled {0};
@@ -119,12 +117,8 @@ int MainWindow::progressDialog(bool install, QStringList * list)
             //if (qbrew::install(selected.at(i).filename()))
             if (true)
             {
-                //updateDB();
+                addInstalled(selected.at(i).filename());
                 numberInstalled++;
-            }
-            else
-            {
-                list->append(selected.at(i).filename()); //failed install
             }
         }
         else
