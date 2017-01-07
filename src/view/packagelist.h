@@ -15,20 +15,15 @@ class PackageList : public QTableWidget
     Q_OBJECT
 
     QString status_;
+    int row_;
 
     QList<PackageDTO> packages_;
     QList<QCheckBox *> checkBoxes_;
-    QIcon favouriteIcon_;
-    QIcon noFavouriteIcon_;
-    QList<QIcon> statusIcons_;
-    int row_;
-
 
   public:
     explicit PackageList(QWidget * parent = 0);
     void setFavourite();
     void setInstalled();
-    void setIcons();
     PackageDTO selected();
     PackageDTO getPackage(int row);
     void setSearch(QString searchValue);

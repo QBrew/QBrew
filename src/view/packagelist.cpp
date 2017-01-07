@@ -38,7 +38,6 @@ PackageList::PackageList(QWidget * parent)
     this->setColumnWidth(i++, 60);      //installed
     this->horizontalHeader()->setStretchLastSection(true);
 
-    this->setIcons();
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     this->setInstalled();
@@ -59,12 +58,6 @@ void PackageList::setInstalled()
     packages_ = qbrew::getInstalled();
     setList();
     status_ = "Installed";
-}
-
-void PackageList::setIcons()
-{
-    statusIcons_ << QIcon(":/Icons/favourite") << QIcon(":/Icons/noFavourite") <<
-                 QIcon(":/Icons/selectAll") << QIcon(":/Icons/selectNone");
 }
 
 void PackageList::setSearch(QString searchValue)
@@ -136,17 +129,17 @@ QList<PackageDTO> PackageList::listSelected()
         }
         i++;
     }
-    if (row_ != -1 && !checkBoxes_.at(row_)->isChecked())
-    {
-        PackageDTO f = packages_.at(row_);
-        f.setIsFavourite(true);
-        result.append(f);
-    }
     return result;
 }
 
 void PackageList::setList()
 {
+
+    QList<QIcon> statusIcons;
+    statusIcons << QIcon(":/Icons/favourite")
+                << QIcon(":/Icons/noFavourite")
+                << QIcon(":/Icons/selectAll")
+                << QIcon(":/Icons/selectNone");
     checkBoxes_.clear();
     this->setRowCount(packages_.size());
     int i {0};
@@ -163,7 +156,7 @@ void PackageList::setList()
         this->setItem(i, j++, filename);
 
         QTableWidgetItem * caskIcon = new QTableWidgetItem;
-        caskIcon->setIcon(f.isCask() ? statusIcons_.at(2) : statusIcons_.at(3));
+        caskIcon->setIcon(f.isCask() ? statusIcons.at(2) : statusIcons.at(3));
         this->setItem(i, j++, caskIcon);
 
         QTableWidgetItem * name = new QTableWidgetItem(f.name());
@@ -176,12 +169,12 @@ void PackageList::setList()
 
         QTableWidgetItem * installedIcon = new QTableWidgetItem;
         installedIcon->setIcon(f.isInstalled() ?
-                               statusIcons_.at(2) : statusIcons_.at(3));
+                               statusIcons.at(2) : statusIcons.at(3));
         this->setItem(i, j++, installedIcon);
 
         QTableWidgetItem * favouriteIcon = new QTableWidgetItem;
         favouriteIcon->setIcon(f.isFavourite() ?
-                               statusIcons_.at(0) : statusIcons_.at(1));
+                               statusIcons.at(0) : statusIcons.at(1));
         this->setItem(i, j++, favouriteIcon);
 
         i++;
@@ -200,7 +193,6 @@ QWidget * PackageList::alignCheckBox(QCheckBox * cb)
     widget->setLayout(layout);
     return widget;
 }
-
 
 void PackageList::tableItemClicked(int row, int column)
 {

@@ -23,27 +23,26 @@ QList<PackageDTO> getList(QSqlQuery query)
     return list;
 }
 
-QList<PackageDTO> getAll()
-{
-    return getList(QSqlQuery("SELECT * FROM PACKAGES"));
-}
-
-
 QList<PackageDTO> getFavourites()
 {
-    return getList(QSqlQuery("SELECT * FROM PACKAGES WHERE FAVOURITE = 1"));
+    return getList(QSqlQuery("SELECT * FROM PACKAGES "
+                             "WHERE FAVOURITE = 1 "
+                             "ORDER BY FILENAME"));
 }
 
 QList<PackageDTO> getInstalled()
 {
-    return getList(QSqlQuery("SELECT * FROM PACKAGES WHERE INSTALL = 1"));
+    return getList(QSqlQuery("SELECT * FROM PACKAGES "
+                             "WHERE INSTALL = 1 "
+                             "ORDER BY FILENAME"));
 }
 
 QList<PackageDTO> getSearch (QString searchValue)
 {
     QString sql = "SELECT * FROM PACKAGES WHERE "
                   "FILENAME LIKE '%" + searchValue + "%'" +
-                  "OR NAME LIKE + '%" + searchValue + "%'";
+                  "OR NAME LIKE + '%" + searchValue + "%'" +
+                  "ORDER BY FILENAME";
     QSqlQuery query(sql);
     QList<PackageDTO> list =  getList(query);
     return list;
@@ -170,14 +169,18 @@ void removeInstalled(QString filename, bool isCask)
 void removeAllInstalled()
 {
     QSqlQuery query;
-    query.prepare("UPDATE PACKAGES SET INSTALL = 0 WHERE INSTALL = 1");
+    query.prepare("UPDATE PACKAGES "
+                  "SET INSTALL = 0 "
+                  "WHERE INSTALL = 1");
     query.exec();
 }
 
 void removeAllFavourites()
 {
     QSqlQuery query;
-    query.prepare("UPDATE PACKAGES SET FAVOURITE = 0 WHERE FAVOURITE = 1");
+    query.prepare("UPDATE PACKAGES "
+                  "SET FAVOURITE = 0 "
+                  "WHERE FAVOURITE = 1");
     query.exec();
 }
 
