@@ -28,6 +28,7 @@ class PackageList : public QTableWidget
      * \brief Status string indicating wether displayed list is set on favourite, installed or search
      */
     QString status_;
+    int row_;
 
     /*!
      * \brief List of homebrew packages to display
@@ -38,23 +39,6 @@ class PackageList : public QTableWidget
      * \brief List of all checkboxes matching their package
      */
     QList<QCheckBox *> checkBoxes_;
-
-    /*!
-     * \brief The favourite icon
-     */
-    QIcon favouriteIcon_;
-
-    /*!
-     * \brief The not favourite icon
-     */
-    QIcon noFavouriteIcon_;
-
-    /*!
-     * \brief List of all the icons used for installed and favourite status
-     */
-    QList<QIcon> statusIcons_;
-    int row_;
-
 
   public:
     /*!
@@ -72,12 +56,6 @@ class PackageList : public QTableWidget
      * \brief Set list of packages to installed only
      */
     void setInstalled();
-
-    /*!
-     * \brief Set the icons used for installed and favourite status
-     */
-    void setIcons();
-
     /*!
      * \brief Getter for selected package at private attribute row_
      * \return selected PackageDTO

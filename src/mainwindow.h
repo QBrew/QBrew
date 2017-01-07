@@ -65,6 +65,7 @@ class MainWindow : public QMainWindow
      * \brief Uninstall selected packages
      */
     void uninstall();
+    void update();
 
     /*!
      * \brief Install/uninstall progress bar popup
@@ -104,6 +105,7 @@ class MainWindow : public QMainWindow
      * \brief View favourite packages
      */
     void viewFavourite();
+    void setBackgroundColor(QWidget * qWidget, QRgb color);
 
     /*!
      * \brief Click on a package

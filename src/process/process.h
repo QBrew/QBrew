@@ -55,6 +55,8 @@ int install(PackageDTO package);
  */
 int uninstall(PackageDTO package);
 
+void updateHomebrew();
+
 /*!
  * \brief Get list of all packages
  * \param isCask true = homebrew cask packages, false = homebrew packages

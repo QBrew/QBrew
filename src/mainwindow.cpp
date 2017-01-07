@@ -5,6 +5,7 @@
 
 #include <QTableWidget>
 #include <src/db/db/qbrewdb.h>
+#include <src/db/DB/dbmanager.h>
 #include <src/db/dto/packagedto.h>
 #include <QHeaderView>
 #include <QDebug>
@@ -13,6 +14,7 @@
 #include <QThread>
 #include <QButtonGroup>
 #include <QMessageBox>
+#include <QSqlDatabase>
 
 MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 {
@@ -28,6 +30,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     infoBar_ = new infoBar();
 
     navigationBar_ = new NavigationBar();
+    setBackgroundColor(navigationBar_, 0x00f6f6f6);
     hbox_->addWidget(navigationBar_);
 
     QVBoxLayout * vBox = new QVBoxLayout();
@@ -73,7 +76,7 @@ void MainWindow::install()
     int i = installOrUninstallDialog(true);
     QMessageBox message;
     message.setText(QString::number(i) +
-                    " package(s) installed succesfully");
+                    " package(s) installed");
     message.setStandardButtons(QMessageBox::Ok);
     message.exec();
 }
@@ -83,54 +86,94 @@ void MainWindow::uninstall()
     int i = installOrUninstallDialog(false);
     QMessageBox message;
     message.setText(QString::number(i) +
-                    " package(s) removed succesfully");
+                    " package(s) removed");
     message.setStandardButtons(QMessageBox::Ok);
     message.exec();
+}
+
+void MainWindow::update()
+{
+    QProgressDialog * progress = new QProgressDialog("", "Cancel", 0,
+            3, this);
+
+    progress->setWindowModality(Qt::WindowModal);
+
+    progress->setMinimumDuration(0);
+    progress->setLabelText("Save favourites");
+    progress->setValue(0);
+    progress->show();
+
+    QList<PackageDTO> temp = getFavourites();
+
+    progress->setLabelText("Update Homebrew");
+    progress->setValue(1);
+    updateHomebrew();
+
+    progress->setLabelText("Update database");
+    progress->setValue(2);
+    dropTable();
+
+    QSqlDatabase db = QSqlDatabase::database();
+    if (db.tables().isEmpty())
+    {
+        createTable();
+        createDB(true);
+        createDB(false);
+    }
+
+    addListInstalled(list(true), true);
+    addListInstalled(list(false), false);
+
+    for (PackageDTO package : temp)
+    {
+        qbrew::updateFavourite(package);
+    }
+    progress->setValue(3);
+
+    packagelist_->update();
+    infoBar_->clear();
 }
 
 int MainWindow::installOrUninstallDialog(bool install)
 {
     QList<qbrew::PackageDTO> selected = packagelist_->listSelected();
     int number {0};
-    QProgressDialog * progress = new QProgressDialog("", "", 0,
-            selected.size());
-    progress->setWindowTitle(install ? "Installing ..." : "Uninstalling ...");
-    progress->setCancelButton(NULL);
+    QProgressDialog * progress = new QProgressDialog("", "Cancel", 0,
+            selected.size(), this);
+
     progress->setWindowModality(Qt::WindowModal);
 
+    progress->setMinimumDuration(0);
+    progress->setLabelText(install ? "Installing ..." : "Uninstalling ...");
     progress->setValue(0);
-    progress->setLabelText("0 / " + QString::number(selected.size()));
-    progress->showNormal();
+    progress->show();
 
     for (int i = 0; i < selected.size(); i++)
     {
-        QString label = QString::number(i + 1) + " / "
-                        + QString::number(selected.size());
-        label.append("\n" + selected.at(i).filename());
-        progress->setLabelText(label);
         progress->setValue(i);
 
-        if (install)
+        if (install && !selected.at(i).isInstalled())
         {
-            //if (qbrew::install(selected.at(i)) == 0)
             if (true)
+                //if (qbrew::install(selected.at(i)) == 0)
             {
                 addInstalled(selected.at(i));
                 number++;
             }
         }
-        else
+        if (!install && selected.at(i).isInstalled())
         {
-            //if (qbrew::uninstall(selected.at(i)) == 0)
             if (true)
+                //if (qbrew::uninstall(selected.at(i)) == 0)
             {
                 removeInstalled(selected.at(i));
                 number++;
             }
         }
-
         if (progress->wasCanceled())
             break;
+        QThread::sleep(1);
+
     }
     progress->setValue(selected.size());
 
@@ -192,6 +235,14 @@ void MainWindow::viewFavourite()
     infoBar_->clear();
 }
 
+void MainWindow::setBackgroundColor(QWidget * qWidget, QRgb color)
+{
+    QPalette pal = palette();
+    pal.setColor(QPalette::Background, color);
+    qWidget->setAutoFillBackground(true);
+    qWidget->setPalette(pal);
+}
+
 void MainWindow::tableItemClicked(int row, int column)
 {
     packagelist_->tableItemClicked(row, column);
@@ -205,6 +256,7 @@ void MainWindow::tableItemDoubleClicked(int row, int column)
 
 void MainWindow::connectToolBar()
 {
+    connect(toolBar_, &ToolBar::updateClicked, this, [this] {update();});
     connect(toolBar_, &ToolBar::selectAllClicked, this, [this] {selectAllNone(true);});
     connect(toolBar_, &ToolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
     connect(toolBar_, &ToolBar::installClicked, this, [this] {install();});

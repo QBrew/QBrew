@@ -12,17 +12,6 @@
 
 namespace qbrew
 {
-
-/*!
- * \brief Getter for list with all of the packages
- * \return  list with all of the packages
- */
-QList<PackageDTO> getAll();
-
-/*!
- * \brief Getter for list with favourite packages only
- * \return List with favourite packages only
- */
 QList<PackageDTO> getFavourites();
 
 /*!

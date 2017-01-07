@@ -201,17 +201,17 @@ QString PackageDTO::desc() const
     return desc_;
 }
 
-bool PackageDTO::isCask()
+bool PackageDTO::isCask() const
 {
     return isCask_;
 }
 
-bool PackageDTO::isInstalled()
+bool PackageDTO::isInstalled() const
 {
     return isInstalled_;
 }
 
-bool PackageDTO::isFavourite()
+bool PackageDTO::isFavourite() const
 {
     return isFavourite_;
 }
