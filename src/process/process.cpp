@@ -174,14 +174,11 @@ void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line)
     {
         if (line.indexOf(info) != -1)
         {
-
-            line.remove('"');
-            line.remove('\'');
-            line.remove(':');
+            line.remove(QRegExp("'|\"|:"));
             QStringList items = line.split(" ", QString::SkipEmptyParts);
             QString key (items.at(0));
             QString value (items.at(1));
-            if (info == "  name ")
+            if (info == "  name " || info == "  desc ")
             {
                 for (int i = 2 ; i < items.size() ; i++)
                 {
@@ -190,7 +187,7 @@ void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line)
             }
             map.insert(key, value);
             infos.removeOne(info);
-            break;
+            return;
         }
     }
 }

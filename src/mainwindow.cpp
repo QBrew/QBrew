@@ -99,7 +99,7 @@ void MainWindow::update()
     progress->setWindowModality(Qt::WindowModal);
 
     progress->setMinimumDuration(0);
-    progress->setLabelText("Save favourite");
+    progress->setLabelText("Save favourites");
     progress->setValue(0);
     progress->show();
 
@@ -129,6 +129,9 @@ void MainWindow::update()
         qbrew::updateFavourite(package);
     }
     progress->setValue(3);
+
+    packagelist_->update();
+    infoBar_->clear();
 }
 
 int MainWindow::installOrUninstallDialog(bool install)
@@ -173,7 +176,6 @@ int MainWindow::installOrUninstallDialog(bool install)
 
     }
     progress->setValue(selected.size());
-    progress->close();
 
     packagelist_->update();
     infoBar_->clear();
