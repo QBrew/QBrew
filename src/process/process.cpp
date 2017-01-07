@@ -195,5 +195,12 @@ void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line)
     }
 }
 
+void updateHomebrew()
+{
+    QProcess process;
+    process.start("/usr/local/bin/brew update");
+    process.waitForFinished(-1);
+}
+
 
 } //namespace qbrew

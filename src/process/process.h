@@ -20,6 +20,8 @@ void createDB(bool cask);
 int install(PackageDTO package);
 int uninstall(PackageDTO package);
 
+void updateHomebrew();
+
 QStringList list(bool isCask);
 QStringList listArgument(QString argument);
 

@@ -5,6 +5,7 @@
 
 #include <QTableWidget>
 #include <src/db/db/qbrewdb.h>
+#include <src/db/DB/dbmanager.h>
 #include <src/db/dto/packagedto.h>
 #include <QHeaderView>
 #include <QDebug>
@@ -13,6 +14,7 @@
 #include <QThread>
 #include <QButtonGroup>
 #include <QMessageBox>
+#include <QSqlDatabase>
 
 MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 {
@@ -86,6 +88,46 @@ void MainWindow::uninstall()
                     " package(s) removed");
     message.setStandardButtons(QMessageBox::Ok);
     message.exec();
+}
+
+void MainWindow::update()
+{
+    QProgressDialog * progress = new QProgressDialog("", "Cancel", 0,
+            3, this);
+
+    progress->setWindowModality(Qt::WindowModal);
+
+    progress->setMinimumDuration(0);
+    progress->setLabelText("Save favourite");
+    progress->setValue(0);
+    progress->show();
+
+    QList<PackageDTO> temp = getFavourites();
+
+    progress->setLabelText("Update Homebrew");
+    progress->setValue(1);
+    updateHomebrew();
+
+    progress->setLabelText("Update database");
+    progress->setValue(2);
+    dropTable();
+
+    QSqlDatabase db = QSqlDatabase::database();
+    if (db.tables().isEmpty())
+    {
+        createTable();
+        createDB(true);
+        createDB(false);
+    }
+
+    addListInstalled(list(true), true);
+    addListInstalled(list(false), false);
+
+    for (PackageDTO package : temp)
+    {
+        qbrew::updateFavourite(package);
+    }
+    progress->setValue(3);
 }
 
 int MainWindow::installOrUninstallDialog(bool install)
@@ -203,6 +245,7 @@ void MainWindow::tableItemDoubleClicked(int row, int column)
 
 void MainWindow::connectToolBar()
 {
+    connect(toolBar_, &ToolBar::updateClicked, this, [this] {update();});
     connect(toolBar_, &ToolBar::selectAllClicked, this, [this] {selectAllNone(true);});
     connect(toolBar_, &ToolBar::selectNoneClicked, this, [this] {selectAllNone(false);});
     connect(toolBar_, &ToolBar::installClicked, this, [this] {install();});
