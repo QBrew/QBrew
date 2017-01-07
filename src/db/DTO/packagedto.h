@@ -32,9 +32,9 @@ class PackageDTO
     inline QString homepage() const;
     inline QString url() const;
     inline QString desc() const;
-    inline bool isCask();
-    inline bool isInstalled();
-    inline bool isFavourite();
+    inline bool isCask() const;
+    inline bool isInstalled() const;
+    inline bool isFavourite() const;
     inline void setIsInstalled(bool isInstalled);
     inline void setIsFavourite(bool isFavourite);
 
@@ -80,17 +80,17 @@ QString PackageDTO::desc() const
     return desc_;
 }
 
-bool PackageDTO::isCask()
+bool PackageDTO::isCask() const
 {
     return isCask_;
 }
 
-bool PackageDTO::isInstalled()
+bool PackageDTO::isInstalled() const
 {
     return isInstalled_;
 }
 
-bool PackageDTO::isFavourite()
+bool PackageDTO::isFavourite() const
 {
     return isFavourite_;
 }

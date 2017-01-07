@@ -73,7 +73,7 @@ void MainWindow::install()
     int i = installOrUninstallDialog(true);
     QMessageBox message;
     message.setText(QString::number(i) +
-                    " package(s) installed succesfully");
+                    " package(s) installed");
     message.setStandardButtons(QMessageBox::Ok);
     message.exec();
 }
@@ -83,7 +83,7 @@ void MainWindow::uninstall()
     int i = installOrUninstallDialog(false);
     QMessageBox message;
     message.setText(QString::number(i) +
-                    " package(s) removed succesfully");
+                    " package(s) removed");
     message.setStandardButtons(QMessageBox::Ok);
     message.exec();
 }
@@ -92,47 +92,45 @@ int MainWindow::installOrUninstallDialog(bool install)
 {
     QList<qbrew::PackageDTO> selected = packagelist_->listSelected();
     int number {0};
-    QProgressDialog * progress = new QProgressDialog("", "", 0,
-            selected.size());
-    progress->setWindowTitle(install ? "Installing ..." : "Uninstalling ...");
-    progress->setCancelButton(NULL);
+    QProgressDialog * progress = new QProgressDialog("", "Cancel", 0,
+            selected.size(), this);
+
     progress->setWindowModality(Qt::WindowModal);
 
+    progress->setMinimumDuration(0);
+    progress->setLabelText(install ? "Installing ..." : "Uninstalling ...");
     progress->setValue(0);
-    progress->setLabelText("0 / " + QString::number(selected.size()));
-    progress->showNormal();
+    progress->show();
 
     for (int i = 0; i < selected.size(); i++)
     {
-        QString label = QString::number(i + 1) + " / "
-                        + QString::number(selected.size());
-        label.append("\n" + selected.at(i).filename());
-        progress->setLabelText(label);
         progress->setValue(i);
 
-        if (install)
+        if (install && !selected.at(i).isInstalled())
         {
-            //if (qbrew::install(selected.at(i)) == 0)
             if (true)
+                //if (qbrew::install(selected.at(i)) == 0)
             {
                 addInstalled(selected.at(i));
                 number++;
             }
         }
-        else
+        if (!install && selected.at(i).isInstalled())
         {
-            //if (qbrew::uninstall(selected.at(i)) == 0)
             if (true)
+                //if (qbrew::uninstall(selected.at(i)) == 0)
             {
                 removeInstalled(selected.at(i));
                 number++;
             }
         }
-
         if (progress->wasCanceled())
             break;
+        QThread::sleep(1);
+
     }
     progress->setValue(selected.size());
+    progress->close();
 
     packagelist_->update();
     infoBar_->clear();

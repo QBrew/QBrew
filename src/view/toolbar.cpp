@@ -22,7 +22,7 @@ QLineEdit * ToolBar::searchField() const
 
 void ToolBar::setActions()
 {
-    updateAction_ = addAction(QIcon(":/Icons/update"),    tr("Update"));
+    updateAction_ = addAction(QIcon(":/Icons/update"), tr("Update"));
 
     addSeparator();
 
@@ -75,16 +75,20 @@ void ToolBar::setSearchField()
 
 void ToolBar::setConnections()
 {
-    connect(updateAction_, &QAction::triggered, this, &ToolBar::updateClicked);
-    connect(selectAll_, &QAction::triggered, this, &ToolBar::selectAllClicked);
-    connect(selectNone_, &QAction::triggered, this, &ToolBar::selectNoneClicked);
-    connect(installAction_, &QAction::triggered, this,
-            &ToolBar::installClicked);
-    connect(uninstallAction_, &QAction::triggered, this,
-            &ToolBar::uninstallClicked);
-    connect(favouriteAction_, &QAction::triggered, this,
-            &ToolBar::addFavouriteClicked);
-    connect(removeFavouriteAction_, &QAction::triggered, this,
-            &ToolBar::removeFavouriteClicked);
-    connect(searchField_, &QLineEdit::returnPressed, this, &ToolBar::searchPressed);
+    connect(updateAction_, &QAction::triggered,
+            this, &ToolBar::updateClicked);
+    connect(selectAll_, &QAction::triggered,
+            this, &ToolBar::selectAllClicked);
+    connect(selectNone_, &QAction::triggered,
+            this, &ToolBar::selectNoneClicked);
+    connect(installAction_, &QAction::triggered,
+            this, &ToolBar::installClicked);
+    connect(uninstallAction_, &QAction::triggered,
+            this, &ToolBar::uninstallClicked);
+    connect(favouriteAction_, &QAction::triggered,
+            this, &ToolBar::addFavouriteClicked);
+    connect(removeFavouriteAction_, &QAction::triggered,
+            this, &ToolBar::removeFavouriteClicked);
+    connect(searchField_, &QLineEdit::returnPressed,
+            this, &ToolBar::searchPressed);
 }

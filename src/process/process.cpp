@@ -60,15 +60,13 @@ int install(PackageDTO package)
     process.start(command);
     process.waitForFinished(-1); // will wait forever until finished
 
-    if (process.exitCode() == 0)
+    if (process.exitCode() == 0) //already install or install
     {
-        //already install or install
         cleanup(package.isCask());
         return 0;
     }
-    else
+    else //error
     {
-        //error
         return -1;
     }
 
