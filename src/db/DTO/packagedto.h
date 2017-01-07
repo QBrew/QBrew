@@ -129,19 +129,19 @@ class PackageDTO
      * \brief Getter for isCask information
      * \return isCask_
      */
-    inline bool isCask();
+    inline bool isCask() const;
 
     /*!
      * \brief Getter for isInstalled information
      * \return isInstalled_
      */
-    inline bool isInstalled();
+    inline bool isInstalled() const;
 
     /*!
      * \brief Getter for isFavourite information
      * \return isFavourite_
      */
-    inline bool isFavourite();
+    inline bool isFavourite() const;
 
     /*!
      * \brief Setter for isInstalled information
