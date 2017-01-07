@@ -42,6 +42,7 @@ class MainWindow : public QMainWindow
 
     void viewInstalled();
     void viewFavourite();
+    void setBackgroundColor(QWidget * qWidget, QRgb color);
 
     void tableItemClicked(int row, int column);
     void tableItemDoubleClicked(int row, int column);
