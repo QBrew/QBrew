@@ -28,9 +28,9 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     packagelist_ = new PackageList(this);
     stackedWidget_->addWidget(packagelist_);
     infoBar_ = new infoBar();
-    setBackgroundColor(infoBar_, 0x00cecece);
 
     navigationBar_ = new NavigationBar();
+    setBackgroundColor(navigationBar_, 0x00f6f6f6);
     hbox_->addWidget(navigationBar_);
 
     QVBoxLayout * vBox = new QVBoxLayout();
