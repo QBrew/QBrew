@@ -12,6 +12,11 @@
 
 namespace qbrew
 {
+
+/*!
+ * \brief Getter for list with favourite packages only
+ * \return List with favourite packages only
+ */
 QList<PackageDTO> getFavourites();
 
 /*!

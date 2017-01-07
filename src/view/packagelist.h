@@ -28,6 +28,10 @@ class PackageList : public QTableWidget
      * \brief Status string indicating wether displayed list is set on favourite, installed or search
      */
     QString status_;
+
+    /*!
+     * \brief row of clicked on item in QTreeView
+     */
     int row_;
 
     /*!

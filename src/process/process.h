@@ -55,6 +55,9 @@ int install(PackageDTO package);
  */
 int uninstall(PackageDTO package);
 
+/*!
+ * \brief execute the brew update command
+ */
 void updateHomebrew();
 
 /*!

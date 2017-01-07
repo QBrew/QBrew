@@ -14,7 +14,7 @@
 #include "src/db/DTO/packagedto.h"
 
 /*!
- * \class inforBar
+ * \class infoBar
  * \brief The info bar of the application
  */
 class infoBar : public QWidget

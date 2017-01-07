@@ -65,6 +65,10 @@ class MainWindow : public QMainWindow
      * \brief Uninstall selected packages
      */
     void uninstall();
+
+    /*!
+     * \brief update action to update homebrew then database
+     */
     void update();
 
     /*!
@@ -105,6 +109,12 @@ class MainWindow : public QMainWindow
      * \brief View favourite packages
      */
     void viewFavourite();
+
+    /*!
+     * \brief Set backgroundColor of given widget to given color
+     * \param qWidget the widget to change the backgroundColor of
+     * \param color The color of the new background
+     */
     void setBackgroundColor(QWidget * qWidget, QRgb color);
 
     /*!
