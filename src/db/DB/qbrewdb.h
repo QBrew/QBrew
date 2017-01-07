@@ -6,7 +6,6 @@
 
 namespace qbrew
 {
-QList<PackageDTO> getAll();
 QList<PackageDTO> getFavourites();
 QList<PackageDTO> getInstalled();
 QList<PackageDTO> getSearch(QString searchValue);
