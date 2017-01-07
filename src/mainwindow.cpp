@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     packagelist_ = new PackageList(this);
     stackedWidget_->addWidget(packagelist_);
     infoBar_ = new infoBar();
+    setBackgroundColor(infoBar_, 0x00cecece);
 
     navigationBar_ = new NavigationBar();
     hbox_->addWidget(navigationBar_);
@@ -232,6 +233,14 @@ void MainWindow::viewFavourite()
 {
     packagelist_->setFavourite();
     infoBar_->clear();
+}
+
+void MainWindow::setBackgroundColor(QWidget * qWidget, QRgb color)
+{
+    QPalette pal = palette();
+    pal.setColor(QPalette::Background, color);
+    qWidget->setAutoFillBackground(true);
+    qWidget->setPalette(pal);
 }
 
 void MainWindow::tableItemClicked(int row, int column)
