@@ -136,12 +136,6 @@ QList<PackageDTO> PackageList::listSelected()
         }
         i++;
     }
-    if (row_ != -1 && !checkBoxes_.at(row_)->isChecked())
-    {
-        PackageDTO f = packages_.at(row_);
-        f.setIsFavourite(true);
-        result.append(f);
-    }
     return result;
 }
 
