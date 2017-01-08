@@ -43,7 +43,7 @@ HEADERS  += \
     src/view/packagelist.h \
     src/view/infobar.h
 
-FORMS    +=
+TRANSLATIONS = translations/qbrew_fr.ts
 
 RESOURCES += \
     ressources.qrc

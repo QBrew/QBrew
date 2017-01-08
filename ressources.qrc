@@ -9,4 +9,7 @@
         <file alias="selectNone">icons/selectNone.svg</file>
         <file>icons/loader.gif</file>
     </qresource>
+    <qresource prefix="/Translations">
+        <file alias="qbrew_fr">translations/qbrew_fr.qm</file>
+    </qresource>
 </RCC>
