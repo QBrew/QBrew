@@ -43,7 +43,7 @@ HEADERS  += \
     src/view/infobar.h \
     src/db/db/dbactions.h
 
-FORMS    +=
+TRANSLATIONS = translations/qbrew_fr.ts
 
 RESOURCES += \
     ressources.qrc

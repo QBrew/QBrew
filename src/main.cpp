@@ -7,6 +7,7 @@
 #include <QSqlDatabase>
 #include "QDebug"
 #include <QSettings>
+#include <QTranslator>
 
 /*!
   * \mainpage QBrew
@@ -24,6 +25,11 @@ int main(int argc, char * argv[])
 {
     qbrewdb::initialize();
     QBrewApplication app(argc, argv);
+
+    QTranslator translator;
+    qDebug() <<
+             translator.load(":/Translations/qbrew_fr");
+    qDebug() << app.installTranslator(&translator);
 
     //Valeur par défaut, à mettre parmis les fonctions
     //exécutées lors du premier lancement de l'application
