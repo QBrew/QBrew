@@ -120,16 +120,14 @@ class MainWindow : public QMainWindow
     /*!
      * \brief Click on a package
      * \param row row of package in packagelist_
-     * \param column column of package in packagelist_
      */
-    void tableItemClicked(int row, int column);
+    void tableItemClicked(int row);
 
     /*!
      * \brief Double click on package
      * \param row row of package in packagelist_
-     * \param column column of package in packagelist_
      */
-    void tableItemDoubleClicked(int row, int column);
+    void tableItemDoubleClicked(int row);
 
   private:
 

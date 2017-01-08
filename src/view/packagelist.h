@@ -3,7 +3,7 @@
 
 /*!
  * \file packagelist.h
- * \brief List of all the packages of homebrew
+ * \brief List of all the packages of Homebrew
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
@@ -18,7 +18,7 @@ namespace qbrew
 
 /*!
  * \class PackageList
- * \brief List of all the packages of homebrew
+ * \brief List of packages
  */
 class PackageList : public QTableWidget
 {
@@ -30,12 +30,12 @@ class PackageList : public QTableWidget
     QString status_;
 
     /*!
-     * \brief row of clicked on item in QTreeView
+     * \brief Row of clicked on item in QTreeView
      */
     int row_;
 
     /*!
-     * \brief List of homebrew packages to display
+     * \brief List of Homebrew packages to display
      */
     QList<PackageDTO> packages_;
 
@@ -47,7 +47,7 @@ class PackageList : public QTableWidget
   public:
     /*!
      * \brief Constructor
-     * \param parent widget from which this list will depend
+     * \param parent Widget from which this list will depend
      */
     explicit PackageList(QWidget * parent = 0);
 
@@ -68,8 +68,8 @@ class PackageList : public QTableWidget
 
     /*!
      * \brief Getter for selected package at specified position
-     * \param row specified position for desired package
-     * \return Seleected PackageDTO
+     * \param row Specified position for desired package
+     * \return Selected PackageDTO
      */
     PackageDTO getPackage(int row);
 
@@ -80,13 +80,13 @@ class PackageList : public QTableWidget
     void setSearch(QString searchValue);
 
     /*!
-     * \brief update the viewed list
+     * \brief Update the viewed list
      */
     void update();
 
     /*!
      * \brief Select or unselect all packages
-     * \param isAll true = select all, false = unselect all
+     * \param isAll True = select all, false = unselect all
      */
     void setSelectPackage(bool isAll);
 
@@ -98,17 +98,15 @@ class PackageList : public QTableWidget
 
     /*!
      * \brief Click action on a package
-     * \param row row of package in list of packages
-     * \param column column of package in list of packages
+     * \param row Row of package in list of packages
      */
-    void tableItemClicked(int row, int column);
+    void tableItemClicked(int row);
 
     /*!
      * \brief Double click action on a package
-     * \param row row of package in list of packages
-     * \param column column of package in list of packages
+     * \param row Row of package in list of packages
      */
-    void tableItemDoubleClicked(int row, int column);
+    void tableItemDoubleClicked(int row);
 
     /*!
      * \brief Getter for status_ QString

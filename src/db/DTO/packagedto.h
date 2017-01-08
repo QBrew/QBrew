@@ -15,14 +15,14 @@ namespace qbrew
 
 /*!
  * \class PackageDTO
- * \brief database access for packages
+ * \brief Data transfert object for packages
  */
 class PackageDTO
 {
   private :
 
     /*!
-     * \brief the name of the file of the package
+     * \brief The name of the file of the package
      */
     QString filename_;
 
@@ -37,7 +37,7 @@ class PackageDTO
     QString version_;
 
     /*!
-     * \brief the homepage for the package maker
+     * \brief The homepage for the package maker
      */
     QString homepage_;
 
@@ -70,15 +70,15 @@ class PackageDTO
 
     /*!
      * \brief Constructor
-     * \param filename name of the file of the package
-     * \param name name of the package
-     * \param version version of the package
-     * \param homepage homepage of the package maker
-     * \param url url for more information about the package
-     * \param desc description of the package
-     * \param isCask wether package is a cask package or not
-     * \param isInstalled wether package is installed or not
-     * \param isFavourite wether package is favourite or not
+     * \param filename Name of the file of the package
+     * \param name Name of the package
+     * \param version Version of the package
+     * \param homepage Homepage of the package maker
+     * \param url Url for more information about the package
+     * \param desc Description of the package
+     * \param isCask Wether package is a cask package or not
+     * \param isInstalled Wether package is installed or not
+     * \param isFavourite Wether package is favourite or not
      */
     inline PackageDTO(QString filename, QString name, QString version,
                       QString homepage, QString url, QString desc,
@@ -157,7 +157,7 @@ class PackageDTO
 
     /*!
      * \brief Caster to string
-     * \return string with all information
+     * \return String with all information
      */
     QString toString();
 

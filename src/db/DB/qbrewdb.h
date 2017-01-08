@@ -3,7 +3,7 @@
 
 /*!
  * \file qbrewdb.h
- * \brief Database for homebrew and homebrew cask packages
+ * \brief Database for Homebrew and Homebrew Cask packages
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
@@ -27,63 +27,63 @@ QList<PackageDTO> getInstalled();
 
 /*!
  * \brief Getter for list with packages matching given string
- * \param searchValue string to match to packages name
- * \return List with packages matching given string
+ * \param searchValue String to match to packages name
+ * \return List with Packages matching given string
  */
 QList<PackageDTO> getSearch(QString searchValue);
 
 /*!
  * \brief Get single package with matching filename
- * \param filename the name of the file of the package
- * \param isCask wether that package is a homebrew cask package or not
- * \return
+ * \param filename The name of the file of the package
+ * \param isCask Wether that package is a Homebrew Cask package or not
+ * \return Selected package
  */
 PackageDTO selectPackage(QString filename, bool isCask);
 
 /*!
  * \brief Insert given package into the database
- * \param package the package to insert
- * \return true if insertion was succesful, false otherwise
+ * \param package The package to insert
+ * \return True if insertion was succesful, false otherwise
  */
 bool addPackage(PackageDTO package);
 
 /*!
- * \brief set package matching filename to favourite in the database
- * \param filename the name of the file of the package
- * \param isCask wether the package is a homebrew cask package or not
+ * \brief Set package matching filename to favourite in the database
+ * \param filename The name of the file of the package
+ * \param isCask Wether the package is a Homebrew Cask package or not
  */
 void addFavourite(QString filename, bool isCask);
 
 /*!
- * \brief update package in database with given package information
- * \param package the updated package information
+ * \brief update Package in database with given package information
+ * \param package The updated package information
  */
 void updateFavourite(PackageDTO package);
 
 /*!
- * \brief delete package from its filename in the database
- * \param filename name of the file of the package to delete
- * \param isCask wether the package is  homebrew cask package or not
+ * \brief Delete package from its filename in the database
+ * \param filename Name of the file of the package to delete
+ * \param isCask Wether the package is  Homebrew Cask package or not
  */
 void deletePackage(QString filename, bool isCask);
 
 /*!
  * \brief Set list of packages to installed in the database
- * \param filenames list of filenames of all the packages to update
- * \param isCask wether those packages are homebrew cask packages or not
+ * \param filenames List of filenames of all the packages to update
+ * \param isCask Wether those packages are Homebrew Cask packages or not
  */
 void addListInstalled(QStringList filenames, bool isCask);
 
 /*!
- * \brief set given package to installed in the database
- * \param package the package to update
+ * \brief Set given package to installed in the database
+ * \param Package the package to update
  */
 void addInstalled(PackageDTO package);
 
 /*!
- * \brief set package matching filename to installed in the database
- * \param filename the name of the file of the package
- * \param isCask wether the package is a homebrew cask package or not
+ * \brief Set package matching filename to installed in the database
+ * \param filename The name of the file of the package
+ * \param isCask Wether the package is a Homebrew Cask package or not
  */
 void addInstalled(QString filename, bool isCask);
 
@@ -94,9 +94,9 @@ void addInstalled(QString filename, bool isCask);
 void removeInstalled(PackageDTO package);
 
 /*!
- * \brief set package matching filename to uninstalled in the database
- * \param filename name of the file of the package
- * \param isCask wether the package is a homebrew cask package or not
+ * \brief Set package matching filename to uninstalled in the database
+ * \param filename Name of the file of the package
+ * \param isCask Wether the package is a Homebrew Cask package or not
  */
 void removeInstalled(QString filename, bool isCask);
 

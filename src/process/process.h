@@ -3,7 +3,7 @@
 
 /*!
  * \file process.h
- * \brief The homebrew processes
+ * \brief The Homebrew processes
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
@@ -17,27 +17,27 @@ namespace qbrew
 {
 
 /*!
- * \brief Checks if homebrew cask is installed on machine
- * \return true if homebrew cask is installed, false otherwise
+ * \brief Checks if Homebrew cask is installed on machine
+ * \return True if Homebrew cask is installed, false otherwise
  */
 bool isBrewCaskInstalled();
 
 /*!
- * \brief Get the homebrew path
- * \param cask true = get homebrew cask path, false = get homebrew path
- * \return the asked for path
+ * \brief Get the Homebrew path
+ * \param cask True = get Homebrew Cask path, false = get Homebrew path
+ * \return The asked for path
  */
 QString getBrewPath(bool cask);
 
 /*!
- * \brief Get version of homebrew and homebrew cask
- * \return QPair with homebrew version and homebrew cask version
+ * \brief Get version of Homebrew and Homebrew cask
+ * \return QPair with Homebrew version and Homebrew Cask version
  */
 QPair<QString, QString> brewVersion();
 
 /*!
- * \brief create database with all packages
- * \param cask true = homebrew cask packages, false = homebrew packages
+ * \brief Create database with all packages
+ * \param cask True = Homebrew Cask packages, false = Homebrew packages
  */
 void createDB(bool cask);
 
@@ -49,21 +49,21 @@ void createDB(bool cask);
 int install(PackageDTO package);
 
 /*!
- * \brief uninstall desired package
+ * \brief Uninstall desired package
  * \param package The package to uninstall
  * \return 0 if succesful, -1 if error
  */
 int uninstall(PackageDTO package);
 
 /*!
- * \brief execute the brew update command
+ * \brief Execute the brew update command
  */
 void updateHomebrew();
 
 /*!
  * \brief Get list of all packages
- * \param isCask true = homebrew cask packages, false = homebrew packages
- * \return list of string of packages
+ * \param isCask True = Homebrew Cask packages, false = Homebrew packages
+ * \return List of string of packages
  */
 QStringList list(bool isCask);
 
@@ -75,24 +75,24 @@ QStringList list(bool isCask);
 QStringList listArgument(QString argument);
 
 /*!
- * \brief Get all informations from package in given homebrew file
- * \param filename The desired homebrew file
- * \param cask true = homebrew cask file, false = homebrew file
+ * \brief Get all informations from package in given Homebrew file
+ * \param filename The desired Homebrew file
+ * \param cask true = Homebrew Cask file, false = Homebrew file
  * \return Map of information concerning package
  */
 QMap<QString, QString> infoPackage(QString filename, bool cask);
 
 /*!
- * \brief addToMap
- * \param map
- * \param infos
- * \param line
+ * \brief Add the info to the map if exist
+ * \param map The map
+ * \param infos The remaining infos to find
+ * \param line The line
  */
 void addToMap(QMap<QString, QString> & map, QStringList & infos, QString line);
 
 /*!
  * \brief Execute the brew cleanup or brew cask cleanuo command
- * \param cask true = brew cask cleanup, false = brew cleanup
+ * \param cask True = brew cask cleanup, false = brew cleanup
  */
 void cleanup(bool cask);
 

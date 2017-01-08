@@ -66,7 +66,7 @@ class Preferences : public QDialog
     QVBoxLayout * vbox_;
 
     /*!
-     * \brief The line edit to display and modify homebrew path
+     * \brief The line edit to display and modify Homebrew path
      */
     QLineEdit * path_;
 

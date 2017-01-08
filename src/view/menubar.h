@@ -22,8 +22,8 @@ class MenuBar : public QMenuBar
 
     /*!
      * \brief Constructor
-     * \param parent widget from which this menubar will depend
-     * \param list list of packages that the menubar will modify
+     * \param parent Widget from which this menubar will depend
+     * \param list List of packages that the menubar will modify
      */
     MenuBar(QWidget * parent, qbrew::PackageList * list);
 

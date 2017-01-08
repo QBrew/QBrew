@@ -15,7 +15,7 @@ QString PackageList::getStatus() const
     return status_;
 }
 
-PackageList::PackageList(QWidget * parent)
+PackageList::PackageList(QWidget * parent) : QTableWidget(parent)
 {
     QStringList qsl;
     qsl << "" << "Filename" << "Cask" << "Name" << "Version"
@@ -194,7 +194,7 @@ QWidget * PackageList::alignCheckBox(QCheckBox * cb)
     return widget;
 }
 
-void PackageList::tableItemClicked(int row, int column)
+void PackageList::tableItemClicked(int row)
 {
     this->clearSelection();
     this->selectRow(row);
@@ -205,7 +205,7 @@ void PackageList::tableItemClicked(int row, int column)
     }
 }
 
-void PackageList::tableItemDoubleClicked(int row, int column)
+void PackageList::tableItemDoubleClicked(int row)
 {
     QCheckBox * checkBox = checkBoxes_.at(row);
     checkBox->setChecked(!checkBox->isChecked());

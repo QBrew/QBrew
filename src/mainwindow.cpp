@@ -243,15 +243,15 @@ void MainWindow::setBackgroundColor(QWidget * qWidget, QRgb color)
     qWidget->setPalette(pal);
 }
 
-void MainWindow::tableItemClicked(int row, int column)
+void MainWindow::tableItemClicked(int row)
 {
-    packagelist_->tableItemClicked(row, column);
+    packagelist_->tableItemClicked(row);
     packagelist_->setFocus();
 }
 
-void MainWindow::tableItemDoubleClicked(int row, int column)
+void MainWindow::tableItemDoubleClicked(int row)
 {
-    packagelist_->tableItemDoubleClicked(row, column);
+    packagelist_->tableItemDoubleClicked(row);
 }
 
 void MainWindow::connectToolBar()
@@ -291,7 +291,7 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
         select = new QAction("Select / Unselect", contextMenu);
         connect(select, &QAction::triggered, [this]()
         {
-            tableItemDoubleClicked(clicked_.row(), 0);
+            tableItemDoubleClicked(clicked_.row());
         });
         QAction * install = new QAction("Install / Uninstall", contextMenu);
         connect(install, &QAction::triggered, [this]()

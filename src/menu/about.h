@@ -15,7 +15,7 @@
 
 /*!
  * \class About
- * \brief the about window popup
+ * \brief The about window popup
  */
 class About : public QDialog
 {
@@ -49,7 +49,7 @@ class About : public QDialog
     QVBoxLayout * vbox_;
 
     /*!
-     * \brief the text displayed in the window
+     * \brief The text displayed in the window
      */
     QLabel * text_;
 

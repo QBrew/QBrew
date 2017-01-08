@@ -28,7 +28,7 @@ class NavigationBar : public QWidget
   public:
     /*!
      * \brief Constructor
-     * \param parent widget from which this navigation bar will depend
+     * \param parent Widget from which this navigation bar will depend
      */
     explicit NavigationBar(QWidget * parent = 0);
 

@@ -20,12 +20,12 @@ class ToolBar : public QToolBar
     Q_OBJECT
 
     /*!
-     * \brief the update action
+     * \brief The update action
      */
     QAction * updateAction_;
 
     /*!
-     * \brief the install action
+     * \brief The install action
      */
     QAction * installAction_;
 
@@ -43,11 +43,6 @@ class ToolBar : public QToolBar
      * \brief The remove favourite action
      */
     QAction * removeFavouriteAction_;
-
-    /*!
-     * \brief The email action
-     */
-    QAction * emailAction_;
 
     /*!
      * \brief The select all action
@@ -92,7 +87,7 @@ class ToolBar : public QToolBar
   public:
     /*!
      * \brief Constructor
-     * \param parent widget from which this toolbar will depend
+     * \param parent Widget from which this toolbar will depend
      */
     explicit ToolBar(QWidget * parent = 0);
 

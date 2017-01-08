@@ -3,7 +3,7 @@
 
 /*!
  * \file inforbar.h
- * \brief info bar for the application
+ * \brief Info bar for the application
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
@@ -24,13 +24,13 @@ class infoBar : public QWidget
 
     /*!
      * \brief Constructor
-     * \param parent widget from which this infobar will depend
+     * \param parent Widget from which this infobar will depend
      */
     explicit infoBar(QWidget * parent = 0);
 
     /*!
-     * \brief update displayed information with given package information
-     * \param package the package of which the information will be displayed
+     * \brief Update displayed information with given package information
+     * \param package The package of which the information will be displayed
      */
     void updateInfo(qbrew::PackageDTO package);
 
@@ -46,8 +46,8 @@ class infoBar : public QWidget
 
     /*!
      * \brief Create an hBox in which an information will be displayed
-     * \param text the information that will be displayed
-     * \return the created hbox
+     * \param text The information that will be displayed
+     * \return The created hbox
      */
     QHBoxLayout * hBoxCreator(QString text);
 
