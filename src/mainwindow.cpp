@@ -299,11 +299,6 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
         {
             tableItemDoubleClicked(clicked_.row());
         });
-        QAction * install = new QAction("Install / Uninstall", contextMenu);
-        connect(install, &QAction::triggered, [this]()
-        {
-
-        });
         QAction * favourite = new QAction("Favourite / Unfavourite", contextMenu);
         connect(favourite, &QAction::triggered, [this]()
         {
@@ -314,7 +309,6 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
 
         });
         contextMenu->addAction(select);
-        contextMenu->addAction(install);
         contextMenu->addAction(favourite);
         contextMenu->exec(packagelist_->mapToGlobal(point));
     }
