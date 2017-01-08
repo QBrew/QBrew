@@ -1,11 +1,11 @@
-#ifndef QBREWAPPLICATION_H
-#define QBREWAPPLICATION_H
-
 /*!
  * \file qbrewapplication.h
  * \brief Application launcher
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
+
+#ifndef QBREWAPPLICATION_H
+#define QBREWAPPLICATION_H
 
 #include <QApplication>
 #include "mainwindow.h"

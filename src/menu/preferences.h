@@ -1,11 +1,11 @@
-#ifndef PREFERENCES_H
-#define PREFERENCES_H
-
 /*!
  * \file preferences.h
  * \brief The preferences window
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
+
+#ifndef PREFERENCES_H
+#define PREFERENCES_H
 
 #include <QDialog>
 #include <QVBoxLayout>
@@ -14,7 +14,6 @@
 #include <QPushButton>
 #include <QTextEdit>
 #include <QFileDialog>
-#include <iostream>
 #include <QFile>
 #include <QLineEdit>
 #include <QSettings>

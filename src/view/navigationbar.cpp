@@ -1,4 +1,5 @@
 #include "navigationbar.h"
+
 #include <QButtonGroup>
 
 namespace qbrewview

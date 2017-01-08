@@ -1,13 +1,7 @@
 #include "qbrewapplication.h"
-#include <QApplication>
 #include "db/db/dbmanager.h"
-#include "db/db/dbactions.h"
-#include "db/dto/packagedto.h"
-#include "Process/process.h"
 #include <QSqlDatabase>
-#include "QDebug"
 #include <QSettings>
-#include <QTranslator>
 
 /*!
   * \mainpage QBrew
@@ -19,23 +13,16 @@
   * Quentin RAVAU (42586)
   */
 
-using namespace qbrewview;
-
 int main(int argc, char * argv[])
 {
     qbrewdb::initialize();
-    QBrewApplication app(argc, argv);
-
-    QTranslator translator;
-    qDebug() <<
-             translator.load(":/Translations/qbrew_fr");
-    qDebug() << app.installTranslator(&translator);
 
     //Valeur par défaut, à mettre parmis les fonctions
     //exécutées lors du premier lancement de l'application
     QSettings settings("Projet", "QBrew");
     settings.setValue("path", "/usr/local/HomeBrew");
 
+    qbrewview::QBrewApplication app(argc, argv);
     return app.exec();
     close();
 }

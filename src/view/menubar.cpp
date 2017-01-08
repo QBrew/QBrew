@@ -1,8 +1,10 @@
 #include "menubar.h"
-#include <QDebug>
-#include <QMessageBox>
+
 #include "../db/db/dbactions.h"
 #include "../db/DTO/packagedto.h"
+
+#include <QMessageBox>
+#include <QTextStream>
 
 namespace qbrewview
 {

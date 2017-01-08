@@ -1,6 +1,6 @@
 #include "infobar.h"
+
 #include <QVBoxLayout>
-#include <QDebug>
 
 namespace qbrewview
 {

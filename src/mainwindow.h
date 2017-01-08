@@ -1,11 +1,11 @@
-#ifndef MAINWINDOWS_H
-#define MAINWINDOWS_H
-
 /*!
  * \file mainwindow.h
  * \brief main application window
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
+
+#ifndef MAINWINDOWS_H
+#define MAINWINDOWS_H
 
 #include <QMainWindow>
 #include <QStackedWidget>

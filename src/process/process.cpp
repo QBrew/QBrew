@@ -1,14 +1,13 @@
 #include "process.h"
-#include <sstream>
-#include <iostream>
+
+#include "../db/dto/packagedto.h"
+#include "../db/db/dbactions.h"
+
 #include <QProcess>
 #include <QFile>
 #include <QDir>
 #include <QDirIterator>
 #include <QTextStream>
-#include "../db/dto/packagedto.h"
-#include "../db/db/dbactions.h"
-#include <QDebug>
 
 namespace qbrewprocess
 {

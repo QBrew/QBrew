@@ -1,14 +1,12 @@
-#ifndef PROCESS_H
-#define PROCESS_H
-
 /*!
  * \file process.h
  * \brief The Homebrew processes
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
-#include <string>
-#include <vector>
+#ifndef PROCESS_H
+#define PROCESS_H
+
 #include <QMap>
 #include <QFileInfoList>
 #include "../db/db/dbactions.h"

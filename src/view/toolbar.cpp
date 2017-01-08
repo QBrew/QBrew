@@ -1,4 +1,5 @@
 #include "toolbar.h"
+
 #include <QIcon>
 #include <QtSvg>
 

@@ -1,11 +1,11 @@
-#ifndef ABOUT_H
-#define ABOUT_H
-
 /*!
  * \file about.h
  * \brief The about window
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
+
+#ifndef ABOUT_H
+#define ABOUT_H
 
 #include <QDialog>
 #include <QVBoxLayout>

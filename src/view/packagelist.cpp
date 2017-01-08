@@ -1,10 +1,12 @@
 #include "packagelist.h"
+
+#include "../db/db/dbactions.h"
+#include "../db/dto/packagedto.h"
+
 #include <QHeaderView>
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <src/db/db/dbactions.h>
-#include <src/db/dto/packagedto.h>
 
 namespace qbrewview
 {

@@ -1,11 +1,11 @@
-#ifndef DBMANAGER_H
-#define DBMANAGER_H
-
 /*!
  * \file dbmanager.h
  * \brief Basic SQL scripts of the database
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
+
+#ifndef DBMANAGER_H
+#define DBMANAGER_H
 
 namespace qbrewdb
 {

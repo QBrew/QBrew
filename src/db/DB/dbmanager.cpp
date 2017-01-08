@@ -1,10 +1,11 @@
 #include "dbmanager.h"
-#include <QtSql>
+
+#include "../../process/process.h"
+
 #include <QDir>
-#include <QDebug>
+#include <QtSql>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include "../../process/process.h"
 
 namespace qbrewdb
 {

@@ -1,7 +1,7 @@
 #include "dbactions.h"
+
 #include <QSqlQuery>
 #include <QVariant>
-#include <QDebug>
 
 namespace qbrewdb
 {

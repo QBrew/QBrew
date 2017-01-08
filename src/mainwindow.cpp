@@ -1,12 +1,13 @@
 #include "mainwindow.h"
+
 #include "view/menubar.h"
 #include "view/packagelist.h"
 #include "process/process.h"
+#include "db/db/dbactions.h"
+#include "db/db/dbmanager.h"
+#include "db/dto/packagedto.h"
 
 #include <QTableWidget>
-#include <src/db/db/dbactions.h>
-#include <src/db/DB/dbmanager.h>
-#include <src/db/dto/packagedto.h>
 #include <QHeaderView>
 #include <QDebug>
 #include <QLineEdit>

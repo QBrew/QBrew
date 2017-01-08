@@ -1,11 +1,11 @@
-#ifndef QBREWDB_H
-#define QBREWDB_H
-
 /*!
  * \file qbrewdb.h
  * \brief Database for Homebrew and Homebrew Cask packages
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
+
+#ifndef QBREWDB_H
+#define QBREWDB_H
 
 #include <QList>
 #include "../dto/packagedto.h"

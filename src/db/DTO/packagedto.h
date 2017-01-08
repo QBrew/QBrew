@@ -1,14 +1,13 @@
-#ifndef PACKAGEDTO_H
-#define PACKAGEDTO_H
-
 /*!
  * \file packagedto.h
  * \brief database access for packages
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
+#ifndef PACKAGEDTO_H
+#define PACKAGEDTO_H
+
 #include <QString>
-#include <QDebug>
 
 namespace qbrewdb
 {
