@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
     packagelist_ = new PackageList(this);
     stackedWidget_->addWidget(packagelist_);
-    infoBar_ = new infoBar();
+    infoBar_ = new InfoBar();
 
     navigationBar_ = new NavigationBar();
     setBackgroundColor(navigationBar_, 0x00f6f6f6);

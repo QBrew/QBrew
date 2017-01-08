@@ -18,27 +18,11 @@
   * Quentin RAVAU (42586)
   */
 
-using namespace qbrewdb;
 using namespace qbrewview;
-using namespace qbrewprocess;
 
 int main(int argc, char * argv[])
 {
-    connection();
-    //dropTable();
-
-    QSqlDatabase db = QSqlDatabase::database();
-    if (db.tables().isEmpty())
-    {
-        createTable();
-        createDB(true); //db for brew cask
-        createDB(false); //db for brew
-    }
-
-    removeAllInstalled();
-    addListInstalled(list(true), true);
-    addListInstalled(list(false), false);
-
+    qbrewdb::initialize();
     QBrewApplication app(argc, argv);
 
     //Valeur par défaut, à mettre parmis les fonctions

@@ -170,7 +170,7 @@ class MainWindow : public QMainWindow
     /*!
      * \brief The info bar connected to this window
      */
-    infoBar * infoBar_;
+    InfoBar * infoBar_;
 
     /*!
      * \brief Index to know which package in list has been right clicked_

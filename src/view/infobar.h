@@ -21,7 +21,7 @@ namespace qbrewview
  * \class infoBar
  * \brief The info bar of the application
  */
-class infoBar : public QWidget
+class InfoBar : public QWidget
 {
     Q_OBJECT
   public:
@@ -30,7 +30,7 @@ class infoBar : public QWidget
      * \brief Constructor
      * \param parent Widget from which this infobar will depend
      */
-    explicit infoBar(QWidget * parent = 0);
+    explicit InfoBar(QWidget * parent = 0);
 
     /*!
      * \brief Update displayed information with given package information

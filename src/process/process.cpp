@@ -8,7 +8,6 @@
 #include <QTextStream>
 #include "../db/dto/packagedto.h"
 #include "../db/db/dbactions.h"
-
 #include <QDebug>
 
 namespace qbrewprocess
@@ -198,6 +197,5 @@ void updateHomebrew()
     process.start("/usr/local/bin/brew update");
     process.waitForFinished(-1);
 }
-
 
 } //namespace qbrew

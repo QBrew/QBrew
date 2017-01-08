@@ -10,6 +10,7 @@
 namespace qbrewdb
 {
 
+void initialize();
 /*!
  * \brief Create a connection to the database
  * \return true if connection succeeded, false otherwise

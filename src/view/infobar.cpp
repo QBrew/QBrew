@@ -5,7 +5,7 @@
 namespace qbrewview
 {
 
-infoBar::infoBar(QWidget * parent) : QWidget(parent)
+InfoBar::InfoBar(QWidget * parent) : QWidget(parent)
 {
     initialize();
     QVBoxLayout * vBox = new QVBoxLayout();
@@ -37,7 +37,7 @@ infoBar::infoBar(QWidget * parent) : QWidget(parent)
     this->setLayout(vBox);
 }
 
-void infoBar::updateInfo(PackageDTO package)
+void InfoBar::updateInfo(PackageDTO package)
 {
     filename_->setText(package.filename());
     name_->setText(package.name());
@@ -48,7 +48,7 @@ void infoBar::updateInfo(PackageDTO package)
 
 }
 
-QHBoxLayout * infoBar::hBoxCreator(QString text)
+QHBoxLayout * InfoBar::hBoxCreator(QString text)
 {
     QHBoxLayout * hBox = new QHBoxLayout();
     hBox->setAlignment(Qt::AlignLeft);
@@ -57,7 +57,7 @@ QHBoxLayout * infoBar::hBoxCreator(QString text)
     return hBox;
 }
 
-void infoBar::initialize()
+void InfoBar::initialize()
 {
     name_ = new QLabel();
     filename_ = new QLabel();
@@ -67,7 +67,7 @@ void infoBar::initialize()
     desc_ = new QLabel();
 }
 
-void infoBar::clear()
+void InfoBar::clear()
 {
     name_->clear();
     filename_->clear();
