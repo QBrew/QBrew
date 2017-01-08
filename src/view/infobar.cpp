@@ -42,7 +42,11 @@ void InfoBar::updateInfo(PackageDTO package)
     filename_->setText(package.filename());
     name_->setText(package.name());
     version_->setText(package.version());
-    homepage_->setText(package.homepage());
+    homepage_->setText("<a href=\"" + package.homepage() + "\">" +
+                       package.homepage() + "</a>");
+    homepage_->setTextFormat(Qt::RichText);
+    homepage_->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    homepage_->setOpenExternalLinks(true);
     url_->setText(package.url());
     desc_->setText(package.desc());
 
