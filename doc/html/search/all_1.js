@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['brewversion',['brewVersion',['../namespaceqbrewprocess.html#ad66b8bb44cc3503c1c13a96cb0009317',1,'qbrewprocess']]]
+  ['brewversion',['brewVersion',['../namespaceqbrewutil.html#a815c8359aad79cfe7f3cafc7f6c87880',1,'qbrewutil']]]
 ];

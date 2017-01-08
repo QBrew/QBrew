@@ -4,6 +4,8 @@ var searchData=
   ['dbactions_2eh',['dbactions.h',['../dbactions_8h.html',1,'']]],
   ['dbmanager_2ecpp',['dbmanager.cpp',['../dbmanager_8cpp.html',1,'']]],
   ['dbmanager_2eh',['dbmanager.h',['../dbmanager_8h.html',1,'']]],
+  ['defaultbutton_5f',['defaultButton_',['../classqbrewview_1_1_preferences.html#ae2ba7adfef185144d2d14bf001553086',1,'qbrewview::Preferences']]],
+  ['defaultpath',['defaultPath',['../classqbrewview_1_1_preferences.html#abd6a02e52de61e7fe10e074c4ddb354a',1,'qbrewview::Preferences']]],
   ['deletepackage',['deletePackage',['../namespaceqbrewdb.html#a026f2184b19fcc77a644dd268ce02ad4',1,'qbrewdb']]],
   ['desc',['desc',['../classqbrewdb_1_1_package_d_t_o.html#a3dd509efe7d8a5fc11348b86e912495e',1,'qbrewdb::PackageDTO']]],
   ['desc_5f',['desc_',['../classqbrewdb_1_1_package_d_t_o.html#a6b892bd3669ec64d6d85b2bae0fa70bc',1,'qbrewdb::PackageDTO::desc_()'],['../classqbrewview_1_1_info_bar.html#ae44482659f4def87b8a8ccb5a690966d',1,'qbrewview::InfoBar::desc_()']]],

@@ -6,5 +6,7 @@ var searchData=
   ['navigationbar',['NavigationBar',['../classqbrewview_1_1_navigation_bar.html#a017fd6718854bb84f94c9639146acf26',1,'qbrewview::NavigationBar']]],
   ['navigationbar_2ecpp',['navigationbar.cpp',['../navigationbar_8cpp.html',1,'']]],
   ['navigationbar_2eh',['navigationbar.h',['../navigationbar_8h.html',1,'']]],
-  ['navigationbar_5f',['navigationBar_',['../classqbrewview_1_1_main_window.html#a67d65800f7002a409f3c3dacddc2af65',1,'qbrewview::MainWindow']]]
+  ['navigationbar_5f',['navigationBar_',['../classqbrewview_1_1_main_window.html#a67d65800f7002a409f3c3dacddc2af65',1,'qbrewview::MainWindow']]],
+  ['numberfavourite',['numberFavourite',['../namespaceqbrewdb.html#a529c831770a6eccdebfc39064534ae78',1,'qbrewdb']]],
+  ['numberinstalled',['numberInstalled',['../namespaceqbrewdb.html#a8b7ad434df3695a84dfd0fee2092ebb2',1,'qbrewdb']]]
 ];

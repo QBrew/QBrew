@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>My Project: process/process.h File Reference</title>
+<title>My Project: /Users/cedric/Git/QBrew/src/util/process.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1dc745a558826d0d5751d86c3529451b.html">process</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b7878ad5ecbf2506f4125b9d34c97e45.html">util</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -95,9 +95,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>The Homebrew processes.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;QMap&gt;</code><br />
+<div class="textblock"><code>#include &lt;QMap&gt;</code><br />
+<code>#include &lt;QString&gt;</code><br />
 <code>#include &lt;QFileInfoList&gt;</code><br />
 <code>#include &quot;../db/db/dbactions.h&quot;</code><br />
 </div>
@@ -105,47 +104,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:namespaceqbrewprocess"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html">qbrewprocess</a></td></tr>
+<tr class="memitem:namespaceqbrewutil"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html">qbrewutil</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5674ff1ef1a622e17fee0bcab6913622"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#a5674ff1ef1a622e17fee0bcab6913622">qbrewprocess::isBrewCaskInstalled</a> ()</td></tr>
-<tr class="memdesc:a5674ff1ef1a622e17fee0bcab6913622"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if Homebrew cask is installed on machine.  <a href="namespaceqbrewprocess.html#a5674ff1ef1a622e17fee0bcab6913622">More...</a><br /></td></tr>
-<tr class="separator:a5674ff1ef1a622e17fee0bcab6913622"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36d310dc7103216bae0fa2b432231a9a"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#a36d310dc7103216bae0fa2b432231a9a">qbrewprocess::getBrewPath</a> (bool cask)</td></tr>
-<tr class="memdesc:a36d310dc7103216bae0fa2b432231a9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Homebrew path.  <a href="namespaceqbrewprocess.html#a36d310dc7103216bae0fa2b432231a9a">More...</a><br /></td></tr>
-<tr class="separator:a36d310dc7103216bae0fa2b432231a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad66b8bb44cc3503c1c13a96cb0009317"><td class="memItemLeft" align="right" valign="top">QPair&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#ad66b8bb44cc3503c1c13a96cb0009317">qbrewprocess::brewVersion</a> ()</td></tr>
-<tr class="memdesc:ad66b8bb44cc3503c1c13a96cb0009317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get version of Homebrew and Homebrew cask.  <a href="namespaceqbrewprocess.html#ad66b8bb44cc3503c1c13a96cb0009317">More...</a><br /></td></tr>
-<tr class="separator:ad66b8bb44cc3503c1c13a96cb0009317"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac78fa65d79b9604b600e3aad9de945d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#ac78fa65d79b9604b600e3aad9de945d8">qbrewprocess::createDB</a> (bool cask)</td></tr>
-<tr class="memdesc:ac78fa65d79b9604b600e3aad9de945d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create database with all packages.  <a href="namespaceqbrewprocess.html#ac78fa65d79b9604b600e3aad9de945d8">More...</a><br /></td></tr>
-<tr class="separator:ac78fa65d79b9604b600e3aad9de945d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79b19c4459f6d18b35fa85f6d3bf785a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#a79b19c4459f6d18b35fa85f6d3bf785a">qbrewprocess::install</a> (<a class="el" href="classqbrewdb_1_1_package_d_t_o.html">PackageDTO</a> package)</td></tr>
-<tr class="memdesc:a79b19c4459f6d18b35fa85f6d3bf785a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Install desired package.  <a href="namespaceqbrewprocess.html#a79b19c4459f6d18b35fa85f6d3bf785a">More...</a><br /></td></tr>
-<tr class="separator:a79b19c4459f6d18b35fa85f6d3bf785a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d33db6bd06cf21d34f00782c92a8a5d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#a7d33db6bd06cf21d34f00782c92a8a5d">qbrewprocess::uninstall</a> (<a class="el" href="classqbrewdb_1_1_package_d_t_o.html">PackageDTO</a> package)</td></tr>
-<tr class="memdesc:a7d33db6bd06cf21d34f00782c92a8a5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uninstall desired package.  <a href="namespaceqbrewprocess.html#a7d33db6bd06cf21d34f00782c92a8a5d">More...</a><br /></td></tr>
-<tr class="separator:a7d33db6bd06cf21d34f00782c92a8a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a427a3cb524366df37d0f23fa05387e15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#a427a3cb524366df37d0f23fa05387e15">qbrewprocess::updateHomebrew</a> ()</td></tr>
-<tr class="memdesc:a427a3cb524366df37d0f23fa05387e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the brew update command.  <a href="namespaceqbrewprocess.html#a427a3cb524366df37d0f23fa05387e15">More...</a><br /></td></tr>
-<tr class="separator:a427a3cb524366df37d0f23fa05387e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a322cd36224e1d58f7fc6b77a36a05301"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#a322cd36224e1d58f7fc6b77a36a05301">qbrewprocess::list</a> (bool isCask)</td></tr>
-<tr class="memdesc:a322cd36224e1d58f7fc6b77a36a05301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get list of all packages.  <a href="namespaceqbrewprocess.html#a322cd36224e1d58f7fc6b77a36a05301">More...</a><br /></td></tr>
-<tr class="separator:a322cd36224e1d58f7fc6b77a36a05301"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af303f46dfd5adac58b0d21650b111a83"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#af303f46dfd5adac58b0d21650b111a83">qbrewprocess::listArgument</a> (QString argument)</td></tr>
-<tr class="memdesc:af303f46dfd5adac58b0d21650b111a83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get list of packages matching argument.  <a href="namespaceqbrewprocess.html#af303f46dfd5adac58b0d21650b111a83">More...</a><br /></td></tr>
-<tr class="separator:af303f46dfd5adac58b0d21650b111a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc91764c8030a2670d27b039c1f3a2e1"><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#adc91764c8030a2670d27b039c1f3a2e1">qbrewprocess::infoPackage</a> (QString filename, bool cask)</td></tr>
-<tr class="memdesc:adc91764c8030a2670d27b039c1f3a2e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all informations from package in given Homebrew file.  <a href="namespaceqbrewprocess.html#adc91764c8030a2670d27b039c1f3a2e1">More...</a><br /></td></tr>
-<tr class="separator:adc91764c8030a2670d27b039c1f3a2e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0abe6e3d3e7f79acdb3175a9f7cd0837"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#a0abe6e3d3e7f79acdb3175a9f7cd0837">qbrewprocess::addToMap</a> (QMap&lt; QString, QString &gt; &amp;map, QStringList &amp;infos, QString line)</td></tr>
-<tr class="memdesc:a0abe6e3d3e7f79acdb3175a9f7cd0837"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the info to the map if exist.  <a href="namespaceqbrewprocess.html#a0abe6e3d3e7f79acdb3175a9f7cd0837">More...</a><br /></td></tr>
-<tr class="separator:a0abe6e3d3e7f79acdb3175a9f7cd0837"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bb669afc4bdcbcb90eeccb0499b0edc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewprocess.html#a0bb669afc4bdcbcb90eeccb0499b0edc">qbrewprocess::cleanup</a> (bool cask)</td></tr>
-<tr class="memdesc:a0bb669afc4bdcbcb90eeccb0499b0edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the brew cleanup or brew cask cleanuo command.  <a href="namespaceqbrewprocess.html#a0bb669afc4bdcbcb90eeccb0499b0edc">More...</a><br /></td></tr>
-<tr class="separator:a0bb669afc4bdcbcb90eeccb0499b0edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bf775b78699f97174a0e5bc76b0683d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#a2bf775b78699f97174a0e5bc76b0683d">qbrewutil::isBrewCaskInstalled</a> ()</td></tr>
+<tr class="memdesc:a2bf775b78699f97174a0e5bc76b0683d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if Homebrew cask is installed on machine.  <a href="namespaceqbrewutil.html#a2bf775b78699f97174a0e5bc76b0683d">More...</a><br /></td></tr>
+<tr class="separator:a2bf775b78699f97174a0e5bc76b0683d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a815c8359aad79cfe7f3cafc7f6c87880"><td class="memItemLeft" align="right" valign="top">QPair&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#a815c8359aad79cfe7f3cafc7f6c87880">qbrewutil::brewVersion</a> ()</td></tr>
+<tr class="memdesc:a815c8359aad79cfe7f3cafc7f6c87880"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get version of Homebrew and Homebrew cask.  <a href="namespaceqbrewutil.html#a815c8359aad79cfe7f3cafc7f6c87880">More...</a><br /></td></tr>
+<tr class="separator:a815c8359aad79cfe7f3cafc7f6c87880"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dafb851922dc1455fc5ec7dfd935997"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#a4dafb851922dc1455fc5ec7dfd935997">qbrewutil::createDB</a> (bool cask)</td></tr>
+<tr class="memdesc:a4dafb851922dc1455fc5ec7dfd935997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create database with all packages.  <a href="namespaceqbrewutil.html#a4dafb851922dc1455fc5ec7dfd935997">More...</a><br /></td></tr>
+<tr class="separator:a4dafb851922dc1455fc5ec7dfd935997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abca9c7e6c2b78aa85a020141d754a7a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#abca9c7e6c2b78aa85a020141d754a7a5">qbrewutil::install</a> (<a class="el" href="classqbrewdb_1_1_package_d_t_o.html">PackageDTO</a> package)</td></tr>
+<tr class="memdesc:abca9c7e6c2b78aa85a020141d754a7a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Install desired package.  <a href="namespaceqbrewutil.html#abca9c7e6c2b78aa85a020141d754a7a5">More...</a><br /></td></tr>
+<tr class="separator:abca9c7e6c2b78aa85a020141d754a7a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23155f5e14c0364b3271701f0e7ee5c1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#a23155f5e14c0364b3271701f0e7ee5c1">qbrewutil::uninstall</a> (<a class="el" href="classqbrewdb_1_1_package_d_t_o.html">PackageDTO</a> package)</td></tr>
+<tr class="memdesc:a23155f5e14c0364b3271701f0e7ee5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uninstall desired package.  <a href="namespaceqbrewutil.html#a23155f5e14c0364b3271701f0e7ee5c1">More...</a><br /></td></tr>
+<tr class="separator:a23155f5e14c0364b3271701f0e7ee5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae871fe9dbc6e685b9a7a68021f7aca66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#ae871fe9dbc6e685b9a7a68021f7aca66">qbrewutil::updateHomebrew</a> ()</td></tr>
+<tr class="memdesc:ae871fe9dbc6e685b9a7a68021f7aca66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the brew update command.  <a href="namespaceqbrewutil.html#ae871fe9dbc6e685b9a7a68021f7aca66">More...</a><br /></td></tr>
+<tr class="separator:ae871fe9dbc6e685b9a7a68021f7aca66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3c1ee1cadbd401a50db3c7fd57dec47"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#ab3c1ee1cadbd401a50db3c7fd57dec47">qbrewutil::list</a> (bool isCask)</td></tr>
+<tr class="memdesc:ab3c1ee1cadbd401a50db3c7fd57dec47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get list of all packages.  <a href="namespaceqbrewutil.html#ab3c1ee1cadbd401a50db3c7fd57dec47">More...</a><br /></td></tr>
+<tr class="separator:ab3c1ee1cadbd401a50db3c7fd57dec47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a548fe6d044749caa4ec14d4658c8b031"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#a548fe6d044749caa4ec14d4658c8b031">qbrewutil::listArgument</a> (QString argument)</td></tr>
+<tr class="memdesc:a548fe6d044749caa4ec14d4658c8b031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get list of packages matching argument.  <a href="namespaceqbrewutil.html#a548fe6d044749caa4ec14d4658c8b031">More...</a><br /></td></tr>
+<tr class="separator:a548fe6d044749caa4ec14d4658c8b031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80f5a81c8d826e070c648d9dc54cf05f"><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#a80f5a81c8d826e070c648d9dc54cf05f">qbrewutil::infoPackage</a> (QString filename, bool cask)</td></tr>
+<tr class="memdesc:a80f5a81c8d826e070c648d9dc54cf05f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all informations from package in given Homebrew file.  <a href="namespaceqbrewutil.html#a80f5a81c8d826e070c648d9dc54cf05f">More...</a><br /></td></tr>
+<tr class="separator:a80f5a81c8d826e070c648d9dc54cf05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aa9dca2e54bcda80ede3b94baa0dac5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#a1aa9dca2e54bcda80ede3b94baa0dac5">qbrewutil::addToMap</a> (QMap&lt; QString, QString &gt; &amp;map, QStringList &amp;infos, QString line)</td></tr>
+<tr class="memdesc:a1aa9dca2e54bcda80ede3b94baa0dac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the info to the map if exist.  <a href="namespaceqbrewutil.html#a1aa9dca2e54bcda80ede3b94baa0dac5">More...</a><br /></td></tr>
+<tr class="separator:a1aa9dca2e54bcda80ede3b94baa0dac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc51e9cd3e6a7225f4b895c714c9451a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceqbrewutil.html#afc51e9cd3e6a7225f4b895c714c9451a">qbrewutil::cleanup</a> (bool cask)</td></tr>
+<tr class="memdesc:afc51e9cd3e6a7225f4b895c714c9451a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the brew cleanup or brew cask cleanuo command.  <a href="namespaceqbrewutil.html#afc51e9cd3e6a7225f4b895c714c9451a">More...</a><br /></td></tr>
+<tr class="separator:afc51e9cd3e6a7225f4b895c714c9451a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The Homebrew processes. </p>

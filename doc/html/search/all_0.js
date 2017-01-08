@@ -11,6 +11,6 @@ var searchData=
   ['addinstalled',['addInstalled',['../namespaceqbrewdb.html#a77653eb9ccde70e0a51772eaf9a860cf',1,'qbrewdb::addInstalled(PackageDTO package)'],['../namespaceqbrewdb.html#aa8690adab5aa68d07dbb6374153e6b43',1,'qbrewdb::addInstalled(QString filename, bool isCask)']]],
   ['addlistinstalled',['addListInstalled',['../namespaceqbrewdb.html#a8694ae1bf3cd8ae75bbac94b7db7d8d3',1,'qbrewdb']]],
   ['addpackage',['addPackage',['../namespaceqbrewdb.html#ac30783039a4ec699751d462fd85117f1',1,'qbrewdb']]],
-  ['addtomap',['addToMap',['../namespaceqbrewprocess.html#a0abe6e3d3e7f79acdb3175a9f7cd0837',1,'qbrewprocess']]],
+  ['addtomap',['addToMap',['../namespaceqbrewutil.html#a1aa9dca2e54bcda80ede3b94baa0dac5',1,'qbrewutil']]],
   ['aligncheckbox',['alignCheckBox',['../classqbrewview_1_1_package_list.html#adf0c4463e80f10270c8770f024118b94',1,'qbrewview::PackageList']]]
 ];

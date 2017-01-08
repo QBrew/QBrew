@@ -29,6 +29,8 @@ var searchData=
   ['setstatustips',['setStatusTips',['../classqbrewview_1_1_tool_bar.html#af25465c525d0255ec624341045010355',1,'qbrewview::ToolBar']]],
   ['settext',['setText',['../classqbrewview_1_1_about.html#a63ca7f75c110f9b5a4c7fb8e6673d78d',1,'qbrewview::About']]],
   ['settextzone',['setTextZone',['../classqbrewview_1_1_preferences.html#acc5abb2ade546e4bd16d40e16937c3cc',1,'qbrewview::Preferences']]],
+  ['settings_2ecpp',['settings.cpp',['../settings_8cpp.html',1,'']]],
+  ['settings_2eh',['settings.h',['../settings_8h.html',1,'']]],
   ['settooltips',['setToolTips',['../classqbrewview_1_1_tool_bar.html#a1d54807123c966fb51506a1326e78773',1,'qbrewview::ToolBar']]],
   ['stackedwidget_5f',['stackedWidget_',['../classqbrewview_1_1_main_window.html#a75ca1073d3326961d8f439cc435e5918',1,'qbrewview::MainWindow']]],
   ['status_5f',['status_',['../classqbrewview_1_1_package_list.html#a1d0ab7b4d30dea5e95070f74c4c21ac3',1,'qbrewview::PackageList']]],

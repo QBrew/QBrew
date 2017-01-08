@@ -6,6 +6,6 @@ var searchData=
   ['qbrewapplication_2ecpp',['qbrewapplication.cpp',['../qbrewapplication_8cpp.html',1,'']]],
   ['qbrewapplication_2eh',['qbrewapplication.h',['../qbrewapplication_8h.html',1,'']]],
   ['qbrewdb',['qbrewdb',['../namespaceqbrewdb.html',1,'']]],
-  ['qbrewprocess',['qbrewprocess',['../namespaceqbrewprocess.html',1,'']]],
+  ['qbrewutil',['qbrewutil',['../namespaceqbrewutil.html',1,'']]],
   ['qbrewview',['qbrewview',['../namespaceqbrewview.html',1,'']]]
 ];

@@ -115,6 +115,9 @@ Public Slots</h2></td></tr>
 <tr class="memitem:a6b228e348f537451d4a7aece5284b198"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classqbrewview_1_1_preferences.html#a6b228e348f537451d4a7aece5284b198">save</a> ()</td></tr>
 <tr class="memdesc:a6b228e348f537451d4a7aece5284b198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the new line edit to QSettings.  <a href="#a6b228e348f537451d4a7aece5284b198">More...</a><br /></td></tr>
 <tr class="separator:a6b228e348f537451d4a7aece5284b198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd6a02e52de61e7fe10e074c4ddb354a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classqbrewview_1_1_preferences.html#abd6a02e52de61e7fe10e074c4ddb354a">defaultPath</a> ()</td></tr>
+<tr class="memdesc:abd6a02e52de61e7fe10e074c4ddb354a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the path in QSettings.  <a href="#abd6a02e52de61e7fe10e074c4ddb354a">More...</a><br /></td></tr>
+<tr class="separator:abd6a02e52de61e7fe10e074c4ddb354a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe77c40c939231dc58cba3412258aaa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classqbrewview_1_1_preferences.html#abe77c40c939231dc58cba3412258aaa5">getDirectory</a> ()</td></tr>
 <tr class="memdesc:abe77c40c939231dc58cba3412258aaa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open fileDialog window to set a new path in line edit.  <a href="#abe77c40c939231dc58cba3412258aaa5">More...</a><br /></td></tr>
 <tr class="separator:abe77c40c939231dc58cba3412258aaa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,6 +151,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ab3c6bfd0716cf1450b9cf9eae4c43af0"><td class="memItemLeft" align="right" valign="top">QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classqbrewview_1_1_preferences.html#ab3c6bfd0716cf1450b9cf9eae4c43af0">pathButton_</a></td></tr>
 <tr class="memdesc:ab3c6bfd0716cf1450b9cf9eae4c43af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The button to open the file dialog window.  <a href="#ab3c6bfd0716cf1450b9cf9eae4c43af0">More...</a><br /></td></tr>
 <tr class="separator:ab3c6bfd0716cf1450b9cf9eae4c43af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2ba7adfef185144d2d14bf001553086"><td class="memItemLeft" align="right" valign="top">QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classqbrewview_1_1_preferences.html#ae2ba7adfef185144d2d14bf001553086">defaultButton_</a></td></tr>
+<tr class="memdesc:ae2ba7adfef185144d2d14bf001553086"><td class="mdescLeft">&#160;</td><td class="mdescRight">The button to reset the path.  <a href="#ae2ba7adfef185144d2d14bf001553086">More...</a><br /></td></tr>
+<tr class="separator:ae2ba7adfef185144d2d14bf001553086"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The preferences window. </p>
@@ -177,6 +183,31 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="abd6a02e52de61e7fe10e074c4ddb354a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void qbrewview::Preferences::defaultPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset the path in QSettings. </p>
+
+</div>
+</div>
 <a class="anchor" id="abe77c40c939231dc58cba3412258aaa5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -284,6 +315,28 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae2ba7adfef185144d2d14bf001553086"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPushButton* qbrewview::Preferences::defaultButton_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The button to reset the path. </p>
+
+</div>
+</div>
 <a class="anchor" id="a103ad131a1aa32a97448d0977db048ec"></a>
 <div class="memitem">
 <div class="memproto">
@@ -373,8 +426,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>menu/<a class="el" href="preferences_8h_source.html">preferences.h</a></li>
-<li>menu/<a class="el" href="preferences_8cpp.html">preferences.cpp</a></li>
+<li>/Users/cedric/Git/QBrew/src/menu/<a class="el" href="preferences_8h_source.html">preferences.h</a></li>
+<li>/Users/cedric/Git/QBrew/src/menu/<a class="el" href="preferences_8cpp.html">preferences.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

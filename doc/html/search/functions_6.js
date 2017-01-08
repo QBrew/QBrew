@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['getbrewpath',['getBrewPath',['../namespaceqbrewprocess.html#a36d310dc7103216bae0fa2b432231a9a',1,'qbrewprocess']]],
+  ['getbrewpath',['getBrewPath',['../namespaceqbrewutil.html#abd33cc0f69b94300f581435ab580dd19',1,'qbrewutil']]],
+  ['getcheck',['getCheck',['../classqbrewview_1_1_package_list.html#aae261d594108b37189f76e904cb573e0',1,'qbrewview::PackageList']]],
   ['getdirectory',['getDirectory',['../classqbrewview_1_1_preferences.html#abe77c40c939231dc58cba3412258aaa5',1,'qbrewview::Preferences']]],
   ['getfavourites',['getFavourites',['../namespaceqbrewdb.html#acfeff26288892201f7ce545fab255710',1,'qbrewdb']]],
   ['getinstalled',['getInstalled',['../namespaceqbrewdb.html#ac873ca3cc19a45742ac99c056827558b',1,'qbrewdb']]],
