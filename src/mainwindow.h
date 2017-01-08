@@ -1,6 +1,6 @@
 /*!
  * \file mainwindow.h
- * \brief main application window
+ * \brief Main application window
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 

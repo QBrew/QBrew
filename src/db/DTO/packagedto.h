@@ -1,6 +1,6 @@
 /*!
  * \file packagedto.h
- * \brief database access for packages
+ * \brief Data transfert object for packages
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
