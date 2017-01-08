@@ -62,11 +62,11 @@ PackageDTO selectPackage(QString filename, bool isCask)
         bool isCask = (query.value(6).toInt() == 1);
         bool isInstalled = (query.value(7).toInt() == 1);
         bool isFavourite = (query.value(8).toInt() == 1);
-        PackageDTO PACKAGE {query.value(0).toString(), query.value(1).toString(),
+        PackageDTO package {query.value(0).toString(), query.value(1).toString(),
                             query.value(2).toString(), query.value(3).toString(),
                             query.value(4).toString(), query.value(5).toString(),
                             isCask, isInstalled, isFavourite};
-        result = PACKAGE;
+        result = package;
     }
     return result;
 }
@@ -75,13 +75,13 @@ bool addPackage(PackageDTO package)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO PACKAGES VALUES (:filename, :name, :version, "
-                  " :url, :homepage, :desc, :cask, :install, :fav)");
+                  ":homepage, :url, :desc, :cask, :install, :fav)");
     query.bindValue(":filename", package.filename());
     query.bindValue(":name", package.name());
     query.bindValue(":name", package.name());
     query.bindValue(":version", package.version());
-    query.bindValue(":url", package.url());
     query.bindValue(":homepage", package.homepage());
+    query.bindValue(":url", package.url());
     query.bindValue(":desc", package.desc());
     query.bindValue(":cask", package.isCask() ? 1 : 0);
     query.bindValue(":install", package.isInstalled() ? 1 : 0);
