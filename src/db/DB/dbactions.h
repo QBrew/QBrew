@@ -41,6 +41,18 @@ QList<PackageDTO> getSearch(QString searchValue);
 PackageDTO selectPackage(QString filename, bool isCask);
 
 /*!
+ * \brief Get the number of installed packages
+ * \return The number of installed packages
+ */
+int numberInstalled();
+
+/*!
+ * \brief Get the number of favourite
+ * \return The number of favourite
+ */
+int numberFavourite();
+
+/*!
  * \brief Insert given package into the database
  * \param package The package to insert
  * \return True if insertion was succesful, false otherwise

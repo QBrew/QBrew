@@ -1,4 +1,5 @@
 #include "navigationbar.h"
+#include "src/db/DB/dbactions.h"
 
 #include <QButtonGroup>
 
@@ -11,6 +12,14 @@ NavigationBar::NavigationBar(QWidget * parent) : QWidget(parent)
     this->setLayout(vBox_);
 }
 
+void NavigationBar::updateNumber()
+{
+    installed_->setText("Installed(" + QString::number(qbrewdb::numberInstalled()) +
+                        ")");
+    favourite_->setText("Favourite(" + QString::number(qbrewdb::numberFavourite()) +
+                        ")");
+}
+
 void NavigationBar::setButtons()
 {
     group_ = new QButtonGroup(this);
@@ -20,8 +29,12 @@ void NavigationBar::setButtons()
     vBox_->setSpacing(10);
     vBox_->setAlignment(Qt::AlignTop);
 
-    installed_ = getPushButton(tr("Installed"));
-    favourite_ = getPushButton(tr("Favourite"));
+    installed_ = getPushButton("Installed(" + QString::number(
+                                   qbrewdb::numberInstalled()) +
+                               ")");
+    favourite_ = getPushButton("Favourite(" + QString::number(
+                                   qbrewdb::numberFavourite()) +
+                               ")");
 
     installed_->setChecked(true);
 

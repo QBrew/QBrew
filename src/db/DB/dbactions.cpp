@@ -184,4 +184,26 @@ void removeAllFavourites()
     query.exec();
 }
 
+int numberInstalled()
+{
+    QSqlQuery query;
+
+    query.prepare("SELECT COUNT(*) FROM PACKAGES "
+                  "WHERE INSTALL = 1");
+    query.exec();
+    query.next();
+    return query.value(0).toInt();
+}
+
+int numberFavourite()
+{
+    QSqlQuery query;
+
+    query.prepare("SELECT COUNT(*) FROM PACKAGES "
+                  "WHERE FAVOURITE = 1");
+    query.exec();
+    query.next();
+    return query.value(0).toInt();
+}
+
 }

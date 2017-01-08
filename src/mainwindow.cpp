@@ -138,6 +138,7 @@ void MainWindow::update()
 
     packagelist_->update();
     infoBar_->clear();
+    navigationBar_->updateNumber();
 }
 
 int MainWindow::installOrUninstallDialog(bool install)
@@ -183,6 +184,7 @@ int MainWindow::installOrUninstallDialog(bool install)
     }
     progress->setValue(selected.size());
 
+    navigationBar_->updateNumber();
     packagelist_->update();
     infoBar_->clear();
     return number;
@@ -206,6 +208,7 @@ void MainWindow::updateFavourite(bool isFavourite)
     {
         infoBar_->clear();
     }
+    navigationBar_->updateNumber();
 }
 
 void MainWindow::searchPackages()

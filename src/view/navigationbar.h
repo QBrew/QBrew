@@ -53,6 +53,8 @@ class NavigationBar : public QWidget
      */
     inline QButtonGroup * group();
 
+    void updateNumber();
+
   signals:
 
   public slots:
