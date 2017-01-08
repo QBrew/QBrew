@@ -1,6 +1,6 @@
 #include "dbmanager.h"
 
-#include "../../process/process.h"
+#include "../../util/process.h"
 
 #include <QDir>
 #include <QtSql>
@@ -62,22 +62,20 @@ void dropTable()
     query.exec("DROP TABLE IF EXISTS PACKAGES");
 }
 
-void initialize()
+void initializeDB()
 {
     connection();
-    dropTable();
-
     QSqlDatabase db = QSqlDatabase::database();
     if (db.tables().isEmpty())
     {
         createTable();
-        qbrewprocess::createDB(true); //db for brew cask
-        qbrewprocess::createDB(false); //db for brew
+        qbrewutil::createDB(true); //db for brew cask
+        qbrewutil::createDB(false); //db for brew
     }
 
     removeAllInstalled();
-    addListInstalled(qbrewprocess::list(true), true);
-    addListInstalled(qbrewprocess::list(false), false);
+    addListInstalled(qbrewutil::list(true), true);
+    addListInstalled(qbrewutil::list(false), false);
 }
 
 }

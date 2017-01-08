@@ -2,35 +2,16 @@
 
 #include "../db/dto/packagedto.h"
 #include "../db/db/dbactions.h"
+#include "settings.h"
 
 #include <QProcess>
 #include <QFile>
 #include <QDir>
 #include <QDirIterator>
 #include <QTextStream>
-#include <QSettings>
 
-namespace qbrewprocess
+namespace qbrewutil
 {
-
-void initializeSettings()
-{
-    QSettings settings("Projet", "QBrew");
-    if (!settings.contains("path"))
-    {
-        settings.setValue("path", "/usr/local/Homebrew");
-    }
-}
-
-QString getBrewPath(bool cask)
-{
-    QSettings settings("Projet", "QBrew");
-    QString path = settings.value("path").toString();
-    QString homebrew = "/Library/Taps/caskroom/homebrew-cask/Casks/";
-    QString homebrewcask = "/Library/Taps/homebrew/homebrew-core/Formula/";
-
-    return cask ? path + homebrewcask : path + homebrew;
-}
 
 bool isBrewCaskInstalled()
 {

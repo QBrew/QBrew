@@ -1,6 +1,6 @@
 #include "qbrewapplication.h"
 #include "db/db/dbmanager.h"
-#include "process/process.h"
+#include "util/settings.h"
 
 #include <QSqlDatabase>
 #include <QSettings>
@@ -17,8 +17,8 @@
 
 int main(int argc, char * argv[])
 {
-    qbrewdb::initialize();
-    qbrewprocess::initializeSettings();
+    qbrewdb::initializeDB();
+    qbrewutil::initializeSettings();
 
     qbrewview::QBrewApplication app(argc, argv);
     return app.exec();

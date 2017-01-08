@@ -14,34 +14,36 @@ TARGET = QBrew
 TEMPLATE = app
 
 SOURCES += src/main.cpp\
-    src/process/process.cpp \
     src/qbrewapplication.cpp \
     src/mainwindow.cpp \
     src/view/toolbar.cpp \
-    src/db/db/dbmanager.cpp \
     src/view/menubar.cpp \
-    src/menu/about.cpp \
-    src/menu/preferences.cpp \
     src/view/navigationbar.cpp \
-    src/db/dto/packagedto.cpp \
     src/view/packagelist.cpp \
     src/view/infobar.cpp \
-    src/db/db/dbactions.cpp
+    src/db/db/dbmanager.cpp \
+    src/db/dto/packagedto.cpp \
+    src/db/db/dbactions.cpp \
+    src/menu/about.cpp \
+    src/menu/preferences.cpp \
+    src/util/process.cpp \
+    src/util/settings.cpp
 
 HEADERS  += \
-    src/process/process.h \
     src/qbrewapplication.h \
     src/view/toolbar.h \
-    src/mainwindow.h \
-    src/db/db/dbmanager.h \
     src/view/menubar.h \
-    src/menu/about.h \
     src/view/navigationbar.h \
-    src/menu/preferences.h \
-    src/db/dto/packagedto.h \
     src/view/packagelist.h \
     src/view/infobar.h \
-    src/db/db/dbactions.h
+    src/mainwindow.h \
+    src/db/db/dbmanager.h \
+    src/db/dto/packagedto.h \
+    src/db/db/dbactions.h \
+    src/menu/about.h \
+    src/menu/preferences.h \
+    src/util/process.h \
+    src/util/settings.h
 
 TRANSLATIONS = translations/qbrew_fr.ts
 

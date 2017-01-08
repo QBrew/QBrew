@@ -2,7 +2,7 @@
 
 #include "view/menubar.h"
 #include "view/packagelist.h"
-#include "process/process.h"
+#include "util/process.h"
 #include "db/db/dbactions.h"
 #include "db/db/dbmanager.h"
 #include "db/dto/packagedto.h"
@@ -17,7 +17,7 @@
 #include <QMessageBox>
 #include <QSqlDatabase>
 
-using namespace qbrewprocess;
+using namespace qbrewutil;
 
 namespace qbrewview
 {
