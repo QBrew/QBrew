@@ -10,8 +10,6 @@
 #include <QTextStream>
 #include <QSettings>
 
-#include <QDebug>
-
 namespace qbrewprocess
 {
 
@@ -31,12 +29,7 @@ QString getBrewPath(bool cask)
     QString homebrew = "/Library/Taps/caskroom/homebrew-cask/Casks/";
     QString homebrewcask = "/Library/Taps/homebrew/homebrew-core/Formula/";
 
-    qDebug() << path + homebrew;
-    qDebug() << path + homebrewcask;
-
-    return cask ?
-           "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :
-           "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/";
+    return cask ? path + homebrewcask : path + homebrew;
 }
 
 bool isBrewCaskInstalled()
