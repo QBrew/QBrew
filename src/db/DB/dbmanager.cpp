@@ -43,8 +43,8 @@ void createTable()
                    "FILENAME    TEXT    NOT NULL,"
                    "NAME        TEXT    NOT NULL,"
                    "VERSION     TEXT    NOT NULL,"
-                   "URL         TEXT    NOT NULL,"
                    "HOMEPAGE    TEXT    NOT NULL,"
+                   "URL         TEXT    NOT NULL,"
                    "DESC        TEXT    NOT NULL,"
                    "CASK        INT     NOT NULL,"
                    "INSTALL     INT     NOT NULL,"
@@ -64,7 +64,7 @@ void dropTable()
 void initialize()
 {
     connection();
-    //dropTable();
+    dropTable();
 
     QSqlDatabase db = QSqlDatabase::database();
     if (db.tables().isEmpty())
