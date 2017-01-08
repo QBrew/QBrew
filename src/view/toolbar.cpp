@@ -51,6 +51,7 @@ void ToolBar::setStatusTips()
     favouriteAction_->setStatusTip(tr("Add selected packages to favourite"));
     removeFavouriteAction_->setStatusTip(
         tr("Remove selected packages from favourite"));
+    searchField_->setStatusTip(tr("Search a one or several packages"));
 }
 
 void ToolBar::setToolTips()
@@ -63,6 +64,7 @@ void ToolBar::setToolTips()
     favouriteAction_->setToolTip(tr("Add selected packages to favourite"));
     removeFavouriteAction_->setToolTip(
         tr("Remove selected packages from favourite"));
+    searchField_->setToolTip(tr("Search a one or several packages"));
 }
 
 void ToolBar::setSearchField()
