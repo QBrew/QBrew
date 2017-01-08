@@ -8,6 +8,7 @@ namespace qbrewdb
 
 QList<PackageDTO> getList(QSqlQuery query)
 {
+    query.exec();
     QList<PackageDTO> list;
     while (query.next())
     {
@@ -57,6 +58,7 @@ PackageDTO selectPackage(QString filename, bool isCask)
                     "AND CASK = :cask");
     query.bindValue(":filename", filename);
     query.bindValue(":cask", isCask ? 1 : 0);
+    query.exec();
     if (query.next())
     {
         bool isCask = (query.value(6).toInt() == 1);
