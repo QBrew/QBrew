@@ -79,22 +79,33 @@ void MainWindow::selectAllNone(bool isAll)
 
 void MainWindow::install()
 {
-    int i = installOrUninstallDialog(true);
-    QMessageBox message;
-    message.setText(QString::number(i) +
-                    " package(s) installed");
-    message.setStandardButtons(QMessageBox::Ok);
-    message.exec();
+    QMessageBox::StandardButton question;
+    question = QMessageBox::question(this, "", "Install selected packages ?",
+                                     QMessageBox::No | QMessageBox::Yes);
+    if (question == QMessageBox::Yes)
+    {
+        int i = installOrUninstallDialog(true);
+        QMessageBox message;
+        message.setText(QString::number(i) +
+                        " package(s) installed");
+        message.setStandardButtons(QMessageBox::Ok);
+        message.exec();
+    }
 }
 
 void MainWindow::uninstall()
 {
-    int i = installOrUninstallDialog(false);
-    QMessageBox message;
-    message.setText(QString::number(i) +
-                    " package(s) removed");
-    message.setStandardButtons(QMessageBox::Ok);
-    message.exec();
+    QMessageBox::StandardButton question;
+    question = QMessageBox::question(this, "", "Uninstall selected packages ?",
+                                     QMessageBox::No | QMessageBox::Yes);
+    if (question == QMessageBox::Yes)
+    {
+        int i = installOrUninstallDialog(false);
+        QMessageBox message;
+        message.setText(QString::number(i) + " package(s) removed");
+        message.setStandardButtons(QMessageBox::Ok);
+        message.exec();
+    }
 }
 
 void MainWindow::update()
