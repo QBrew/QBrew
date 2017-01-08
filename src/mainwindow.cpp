@@ -292,21 +292,25 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
     if (index.isValid())
     {
         clicked_ = index;
+        PackageDTO package = packagelist_->getPackage(clicked_.row());
         QMenu * contextMenu = new QMenu(packagelist_);
-        QAction * select;
-        select = new QAction("Select / Unselect", contextMenu);
+
+        QString selectString = packagelist_->getCheck(clicked_.row()) ? "Unselect" :
+                               "Select";
+        QAction * select = new QAction(selectString, contextMenu);
         connect(select, &QAction::triggered, [this]()
         {
             tableItemDoubleClicked(clicked_.row());
         });
-        QAction * favourite = new QAction("Favourite / Unfavourite", contextMenu);
+
+        QString favouriteString = package.isFavourite() ? "Unfavourite" : "Favourite";
+        QAction * favourite = new QAction(favouriteString, contextMenu);
         connect(favourite, &QAction::triggered, [this]()
         {
-            PackageDTO package = packagelist_->getPackage(clicked_.row());
-            package.setIsFavourite(!package.isFavourite());
-            qbrewdb::updateFavourite(package);
+            PackageDTO p = packagelist_->getPackage(clicked_.row());
+            p.setIsFavourite(!p.isFavourite());
+            qbrewdb::updateFavourite(p);
             packagelist_->update();
-
         });
         contextMenu->addAction(select);
         contextMenu->addAction(favourite);

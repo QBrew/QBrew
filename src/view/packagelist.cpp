@@ -16,6 +16,11 @@ QString PackageList::getStatus() const
     return status_;
 }
 
+bool PackageList::getCheck(int row) const
+{
+    return checkBoxes_.at(row)->isChecked();
+}
+
 PackageList::PackageList(QWidget * parent) : QTableWidget(parent)
 {
     QStringList qsl;

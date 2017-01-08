@@ -116,6 +116,8 @@ class PackageList : public QTableWidget
      */
     QString getStatus() const;
 
+    bool getCheck(int row) const;
+
   private:
 
     /*!
