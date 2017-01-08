@@ -17,13 +17,13 @@ Preferences::Preferences(QWidget * parent) : QDialog(parent)
 void Preferences::setTextZone()
 {
     QLabel * title = new QLabel("Path : ");
-    vbox_->addWidget(title, Qt::AlignLeft);
 
     QHBoxLayout * hbox = new QHBoxLayout;
 
     QSettings settings("Projet", "QBrew");
     QString text = settings.value("path").toString();
 
+    hbox->addWidget(title);
     path_ = new QLineEdit(text);
     path_->setMinimumSize(300, 20);
     path_->setMaximumSize(300, 20);
@@ -44,7 +44,13 @@ void Preferences::setButtons()
     connect(closeButton_, SIGNAL (clicked()), this, SLOT(close()));
     hbox->addWidget(closeButton_);
 
-    saveButton_ = new QPushButton("Ok");
+    defaultButton_ = new QPushButton("Default");
+    defaultButton_->setMinimumSize(75, 30);
+    defaultButton_->setMaximumSize(75, 30);
+    connect(defaultButton_, SIGNAL (clicked()), this, SLOT(defaultPath()));
+    hbox->addWidget(defaultButton_);
+
+    saveButton_ = new QPushButton("Save");
     saveButton_->setMinimumSize(75, 30);
     saveButton_->setMaximumSize(75, 30);
     connect(saveButton_, SIGNAL (clicked()), this, SLOT(save()));
@@ -53,6 +59,11 @@ void Preferences::setButtons()
     connect(pathButton_, SIGNAL (clicked()), this, SLOT(getDirectory()));
 
     vbox_->addLayout(hbox);
+}
+
+void Preferences::defaultPath()
+{
+    path_->setText("/usr/local/Homebrew");
 }
 
 

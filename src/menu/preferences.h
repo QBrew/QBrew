@@ -56,6 +56,11 @@ class Preferences : public QDialog
     void save();
 
     /*!
+     * \brief Reset the path in QSettings
+     */
+    void defaultPath();
+
+    /*!
      * \brief Open fileDialog window to set a new path in line edit
      */
     void getDirectory();
@@ -86,6 +91,11 @@ class Preferences : public QDialog
      * \brief The button to open the file dialog window
      */
     QPushButton * pathButton_;
+
+    /*!
+     * \brief The button to reset the path
+     */
+    QPushButton * defaultButton_;
 };
 }
 #endif // PREFERENCES_H
