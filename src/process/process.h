@@ -7,7 +7,7 @@
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
-#include <string>
+#include <QString>
 #include <vector>
 #include <QMap>
 #include <QFileInfoList>
