@@ -14,9 +14,11 @@ NavigationBar::NavigationBar(QWidget * parent) : QWidget(parent)
 
 void NavigationBar::updateNumber()
 {
-    installed_->setText("Installed(" + QString::number(qbrewdb::numberInstalled()) +
+    installed_->setText("Installed (" + QString::number(qbrewdb::numberInstalled())
+                        +
                         ")");
-    favourite_->setText("Favourite(" + QString::number(qbrewdb::numberFavourite()) +
+    favourite_->setText("Favourite (" + QString::number(qbrewdb::numberFavourite())
+                        +
                         ")");
 }
 
@@ -29,10 +31,10 @@ void NavigationBar::setButtons()
     vBox_->setSpacing(10);
     vBox_->setAlignment(Qt::AlignTop);
 
-    installed_ = getPushButton("Installed(" + QString::number(
+    installed_ = getPushButton("Installed (" + QString::number(
                                    qbrewdb::numberInstalled()) +
                                ")");
-    favourite_ = getPushButton("Favourite(" + QString::number(
+    favourite_ = getPushButton("Favourite (" + QString::number(
                                    qbrewdb::numberFavourite()) +
                                ")");
 
