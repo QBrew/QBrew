@@ -163,6 +163,11 @@ QMap<QString, QString> infoPackage(QString filename, bool cask)
         }
         inputFile.close();
     }
+    if (map.value("url").contains("#{version}"))
+    {
+        QString url = map.value("url");
+        map.insert("url", url.replace("#{version}", map.value("version")));
+    }
     return map;
 }
 

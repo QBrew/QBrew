@@ -8,6 +8,7 @@
 #define PROCESS_H
 
 #include <QMap>
+#include <QString>
 #include <QFileInfoList>
 #include "../db/db/dbactions.h"
 
