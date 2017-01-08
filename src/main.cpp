@@ -1,5 +1,7 @@
 #include "qbrewapplication.h"
 #include "db/db/dbmanager.h"
+#include "process/process.h"
+
 #include <QSqlDatabase>
 #include <QSettings>
 
@@ -16,11 +18,7 @@
 int main(int argc, char * argv[])
 {
     qbrewdb::initialize();
-
-    //Valeur par défaut, à mettre parmis les fonctions
-    //exécutées lors du premier lancement de l'application
-    QSettings settings("Projet", "QBrew");
-    settings.setValue("path", "/usr/local/HomeBrew");
+    qbrewprocess::initializeSettings();
 
     qbrewview::QBrewApplication app(argc, argv);
     return app.exec();

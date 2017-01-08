@@ -8,13 +8,31 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QTextStream>
+#include <QSettings>
+
+#include <QDebug>
 
 namespace qbrewprocess
 {
 
+void initializeSettings()
+{
+    QSettings settings("Projet", "QBrew");
+    if (!settings.contains("path"))
+    {
+        settings.setValue("path", "/usr/local/Homebrew");
+    }
+}
+
 QString getBrewPath(bool cask)
 {
-    //TODO check if path is no default
+    QSettings settings("Projet", "QBrew");
+    QString path = settings.value("path").toString();
+    QString homebrew = "/Library/Taps/caskroom/homebrew-cask/Casks/";
+    QString homebrewcask = "/Library/Taps/homebrew/homebrew-core/Formula/";
+
+    qDebug() << path + homebrew;
+    qDebug() << path + homebrewcask;
 
     return cask ?
            "/usr/local/Homebrew/Library/Taps/caskroom/homebrew-cask/Casks/" :

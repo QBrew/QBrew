@@ -17,6 +17,8 @@ using namespace qbrewdb;
 namespace qbrewprocess
 {
 
+void initializeSettings();
+
 /*!
  * \brief Checks if Homebrew cask is installed on machine
  * \return True if Homebrew cask is installed, false otherwise
