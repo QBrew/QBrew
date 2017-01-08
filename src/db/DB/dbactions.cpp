@@ -1,9 +1,9 @@
-#include "qbrewdb.h"
+#include "dbactions.h"
 #include <QSqlQuery>
 #include <QVariant>
 #include <QDebug>
 
-namespace qbrew
+namespace qbrewdb
 {
 
 QList<PackageDTO> getList(QSqlQuery query)

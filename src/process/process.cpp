@@ -7,11 +7,11 @@
 #include <QDirIterator>
 #include <QTextStream>
 #include "../db/dto/packagedto.h"
-#include "../db/db/qbrewdb.h"
+#include "../db/db/dbactions.h"
 
 #include <QDebug>
 
-namespace qbrew
+namespace qbrewprocess
 {
 
 QString getBrewPath(bool cask)

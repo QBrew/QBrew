@@ -21,12 +21,8 @@
 #include "view/packagelist.h"
 #include "view/infobar.h"
 
-/*!
- * \namespace qbrew
- *
- * namespace for all application classes and functions
- */
-using namespace qbrew;
+namespace qbrewview
+{
 
 /*!
  * \class MainWindow
@@ -41,7 +37,7 @@ class MainWindow : public QMainWindow
   public:
     /*!
      * \brief Constructor
-     * \param parent widget from which this window will depend
+     * \param parent Widget from which this window will depend
      *
      * Constructor for the class
      */
@@ -67,13 +63,13 @@ class MainWindow : public QMainWindow
     void uninstall();
 
     /*!
-     * \brief update action to update homebrew then database
+     * \brief Update action to update homebrew then database
      */
     void update();
 
     /*!
      * \brief Install/uninstall progress bar popup
-     * \param install true = install, false = uninstall
+     * \param install True = install, false = uninstall
      * \return Number of packages installed or uninstalled
      */
     int installOrUninstallDialog(bool install);
@@ -85,18 +81,18 @@ class MainWindow : public QMainWindow
 
     /*!
      * \brief Favourite or unfavourite selected packages
-     * \param isFavourite true = favourite, false = unfavourite
+     * \param isFavourite True = favourite, false = unfavourite
      */
     void updateFavourite(bool isFavourite);
 
     /*!
-     * \brief search packages from search field input
+     * \brief Search packages from search field input
      */
     void searchPackages();
 
     /*!
-     * \brief right click menu for a package
-     * \param point position of click
+     * \brief Right click menu for a package
+     * \param point Position of click
      */
     void onCustomContextMenu(const QPoint & point);
 
@@ -119,25 +115,25 @@ class MainWindow : public QMainWindow
 
     /*!
      * \brief Click on a package
-     * \param row row of package in packagelist_
+     * \param row Row of package in packagelist_
      */
     void tableItemClicked(int row);
 
     /*!
      * \brief Double click on package
-     * \param row row of package in packagelist_
+     * \param row Row of package in packagelist_
      */
     void tableItemDoubleClicked(int row);
 
   private:
 
     /*!
-     * \brief the main layout of the window
+     * \brief The main layout of the window
      */
     QHBoxLayout * hbox_;
 
     /*!
-     * \brief the root widget that contains the main layout
+     * \brief The root widget that contains the main layout
      */
     QWidget * root_;
 
@@ -172,7 +168,7 @@ class MainWindow : public QMainWindow
     PackageList * packagelist_;
 
     /*!
-     * \brief the info bar connected to this window
+     * \brief The info bar connected to this window
      */
     infoBar * infoBar_;
 
@@ -196,5 +192,7 @@ class MainWindow : public QMainWindow
      */
     void connectInfoBar();
 };
+
+}
 
 #endif // MAINWINDOWS_H

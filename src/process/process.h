@@ -11,9 +11,11 @@
 #include <vector>
 #include <QMap>
 #include <QFileInfoList>
-#include "../db/db/qbrewdb.h"
+#include "../db/db/dbactions.h"
 
-namespace qbrew
+using namespace qbrewdb;
+
+namespace qbrewprocess
 {
 
 /*!

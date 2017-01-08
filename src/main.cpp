@@ -1,16 +1,26 @@
 #include "qbrewapplication.h"
 #include <QApplication>
 #include "db/db/dbmanager.h"
-#include "db/db/qbrewdb.h"
+#include "db/db/dbactions.h"
 #include "db/dto/packagedto.h"
 #include "Process/process.h"
 #include <QSqlDatabase>
-
 #include "QDebug"
 #include <QSettings>
 
+/*!
+  * \mainpage QBrew
+  * HE2B-ESI\n
+  * C++ Project\n
+  * 2016-2017\n
+  * Arnaud DE BRUECKER (40894)\n
+  * Cédric GILON (41674)\n
+  * Quentin RAVAU (42586)
+  */
 
-using namespace qbrew;
+using namespace qbrewdb;
+using namespace qbrewview;
+using namespace qbrewprocess;
 
 int main(int argc, char * argv[])
 {

@@ -11,6 +11,9 @@
 #include <QToolBar>
 #include <QLineEdit>
 
+namespace qbrewview
+{
+
 /*!
  * \class ToolBar
  * \brief Toolbar of the main window
@@ -138,5 +141,7 @@ class ToolBar : public QToolBar
      */
     void searchPressed();
 };
+
+}
 
 #endif // TOOLBAR_H

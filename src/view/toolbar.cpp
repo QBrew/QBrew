@@ -1,7 +1,9 @@
 #include "toolbar.h"
-
 #include <QIcon>
 #include <QtSvg>
+
+namespace qbrewview
+{
 
 ToolBar::ToolBar(QWidget * parent) : QToolBar(parent)
 {
@@ -91,4 +93,6 @@ void ToolBar::setConnections()
             this, &ToolBar::removeFavouriteClicked);
     connect(searchField_, &QLineEdit::returnPressed,
             this, &ToolBar::searchPressed);
+}
+
 }

@@ -1,11 +1,11 @@
 #include "menubar.h"
 #include <QDebug>
 #include <QMessageBox>
-#include "../db/DB/qbrewdb.h"
+#include "../db/db/dbactions.h"
 #include "../db/DTO/packagedto.h"
 
-using namespace qbrew;
-
+namespace qbrewview
+{
 
 MenuBar::MenuBar(QWidget * parent, PackageList * list) : QMenuBar(parent)
 {
@@ -101,4 +101,6 @@ void MenuBar::exportPopup()
         out << QString::number(p.isCask() ? 1 : 0) << "\n";
     }
     file.close();
+}
+
 }

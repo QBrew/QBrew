@@ -12,6 +12,9 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
+namespace qbrewview
+{
+
 /*!
  * \class NavigationBar
  * \brief Navigation bar for the application
@@ -100,5 +103,6 @@ QButtonGroup * NavigationBar::group()
     return group_;
 }
 
+}
 
 #endif // NAVIGATIONBAR_H

@@ -10,8 +10,12 @@
 #include <QWidget>
 #include <QLabel>
 #include <QHBoxLayout>
-
 #include "src/db/DTO/packagedto.h"
+
+using namespace qbrewdb;
+
+namespace qbrewview
+{
 
 /*!
  * \class infoBar
@@ -32,7 +36,7 @@ class infoBar : public QWidget
      * \brief Update displayed information with given package information
      * \param package The package of which the information will be displayed
      */
-    void updateInfo(qbrew::PackageDTO package);
+    void updateInfo(PackageDTO package);
 
     /*!
      * \brief Creates all information labels
@@ -87,5 +91,7 @@ class infoBar : public QWidget
      */
     QLabel * desc_;
 };
+
+}
 
 #endif // INFOBAR_H

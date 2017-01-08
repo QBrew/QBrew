@@ -7,7 +7,7 @@
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
-namespace qbrew
+namespace qbrewdb
 {
 
 /*!

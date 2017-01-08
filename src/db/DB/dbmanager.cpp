@@ -6,7 +6,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
-namespace qbrew
+namespace qbrewdb
 {
 
 bool connection()

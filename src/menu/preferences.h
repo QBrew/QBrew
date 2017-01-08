@@ -19,6 +19,9 @@
 #include <QLineEdit>
 #include <QSettings>
 
+namespace qbrewview
+{
+
 /*!
  * \class Preferences
  * \brief The preferences window
@@ -85,5 +88,5 @@ class Preferences : public QDialog
      */
     QPushButton * pathButton_;
 };
-
+}
 #endif // PREFERENCES_H

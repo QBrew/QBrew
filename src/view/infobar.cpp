@@ -2,6 +2,9 @@
 #include <QVBoxLayout>
 #include <QDebug>
 
+namespace qbrewview
+{
+
 infoBar::infoBar(QWidget * parent) : QWidget(parent)
 {
     initialize();
@@ -34,7 +37,7 @@ infoBar::infoBar(QWidget * parent) : QWidget(parent)
     this->setLayout(vBox);
 }
 
-void infoBar::updateInfo(qbrew::PackageDTO package)
+void infoBar::updateInfo(PackageDTO package)
 {
     filename_->setText(package.filename());
     name_->setText(package.name());
@@ -72,4 +75,6 @@ void infoBar::clear()
     url_->clear();
     homepage_->clear();
     desc_->clear();
+}
+
 }
