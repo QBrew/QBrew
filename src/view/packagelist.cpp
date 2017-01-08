@@ -3,12 +3,11 @@
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include <QLabel>
-
-#include <src/db/db/qbrewdb.h>
+#include <src/db/db/dbactions.h>
 #include <src/db/dto/packagedto.h>
 
-using namespace qbrew;
-
+namespace qbrewview
+{
 
 QString PackageList::getStatus() const
 {
@@ -48,21 +47,21 @@ PackageList::PackageList(QWidget * parent) : QTableWidget(parent)
 
 void PackageList::setFavourite()
 {
-    packages_ = qbrew::getFavourites();
+    packages_ = getFavourites();
     setList();
     status_ = "Favourite";
 }
 
 void PackageList::setInstalled()
 {
-    packages_ = qbrew::getInstalled();
+    packages_ = getInstalled();
     setList();
     status_ = "Installed";
 }
 
 void PackageList::setSearch(QString searchValue)
 {
-    packages_ = qbrew::getSearch(searchValue);
+    packages_ = getSearch(searchValue);
     setList();
     status_ = searchValue;
 }
@@ -118,7 +117,7 @@ void PackageList::setSelectPackage(bool isAll)
 
 QList<PackageDTO> PackageList::listSelected()
 {
-    QList<qbrew::PackageDTO> result;
+    QList<PackageDTO> result;
     int i{0};
     for (QCheckBox * checkBox : checkBoxes_)
     {
@@ -143,7 +142,7 @@ void PackageList::setList()
     checkBoxes_.clear();
     this->setRowCount(packages_.size());
     int i {0};
-    for (qbrew::PackageDTO f : packages_)
+    for (PackageDTO f : packages_)
     {
         int j {0};
         QCheckBox * checkBox = new QCheckBox();
@@ -209,4 +208,6 @@ void PackageList::tableItemDoubleClicked(int row)
 {
     QCheckBox * checkBox = checkBoxes_.at(row);
     checkBox->setChecked(!checkBox->isChecked());
+}
+
 }

@@ -13,7 +13,9 @@
 #include <QIcon>
 #include <src/db/DTO/packagedto.h>
 
-namespace qbrew
+using namespace qbrewdb;
+
+namespace qbrewview
 {
 
 /*!

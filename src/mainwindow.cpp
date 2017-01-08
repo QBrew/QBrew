@@ -4,7 +4,7 @@
 #include "process/process.h"
 
 #include <QTableWidget>
-#include <src/db/db/qbrewdb.h>
+#include <src/db/db/dbactions.h>
 #include <src/db/DB/dbmanager.h>
 #include <src/db/dto/packagedto.h>
 #include <QHeaderView>
@@ -15,6 +15,11 @@
 #include <QButtonGroup>
 #include <QMessageBox>
 #include <QSqlDatabase>
+
+using namespace qbrewprocess;
+
+namespace qbrewview
+{
 
 MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 {
@@ -27,7 +32,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
 
     packagelist_ = new PackageList(this);
     stackedWidget_->addWidget(packagelist_);
-    infoBar_ = new infoBar();
+    infoBar_ = new InfoBar();
 
     navigationBar_ = new NavigationBar();
     setBackgroundColor(navigationBar_, 0x00f6f6f6);
@@ -56,9 +61,9 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent)
     showMaximized();
 
     connect(packagelist_, SIGNAL(cellClicked(int, int)), this,
-            SLOT(tableItemClicked(int, int)));
+            SLOT(tableItemClicked(int)));
     connect(packagelist_, SIGNAL(cellDoubleClicked(int, int)), this,
-            SLOT(tableItemDoubleClicked(int, int)));
+            SLOT(tableItemDoubleClicked(int)));
 
     packagelist_->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(packagelist_, SIGNAL(customContextMenuRequested(const QPoint &)), this,
@@ -126,7 +131,7 @@ void MainWindow::update()
 
     for (PackageDTO package : temp)
     {
-        qbrew::updateFavourite(package);
+        qbrewdb::updateFavourite(package);
     }
     progress->setValue(3);
 
@@ -136,7 +141,7 @@ void MainWindow::update()
 
 int MainWindow::installOrUninstallDialog(bool install)
 {
-    QList<qbrew::PackageDTO> selected = packagelist_->listSelected();
+    QList<PackageDTO> selected = packagelist_->listSelected();
     int number {0};
     QProgressDialog * progress = new QProgressDialog("", "Cancel", 0,
             selected.size(), this);
@@ -189,11 +194,11 @@ void MainWindow::updateInfoBar()
 
 void MainWindow::updateFavourite(bool isFavourite)
 {
-    QList<qbrew::PackageDTO> selected = packagelist_->listSelected();
-    for (qbrew::PackageDTO f : selected)
+    QList<PackageDTO> selected = packagelist_->listSelected();
+    for (PackageDTO f : selected)
     {
         f.setIsFavourite(isFavourite);
-        qbrew::updateFavourite(f);
+        qbrewdb::updateFavourite(f);
     }
     packagelist_->update();
     if (packagelist_->getStatus() == "Favourite")
@@ -303,7 +308,7 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
         {
             PackageDTO package = packagelist_->getPackage(clicked_.row());
             package.setIsFavourite(!package.isFavourite());
-            qbrew::updateFavourite(package);
+            qbrewdb::updateFavourite(package);
             packagelist_->update();
 
         });
@@ -312,4 +317,6 @@ void MainWindow::onCustomContextMenu(const QPoint & point)
         contextMenu->addAction(favourite);
         contextMenu->exec(packagelist_->mapToGlobal(point));
     }
+}
+
 }

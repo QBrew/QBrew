@@ -10,7 +10,7 @@
 #include <QList>
 #include "../dto/packagedto.h"
 
-namespace qbrew
+namespace qbrewdb
 {
 
 /*!

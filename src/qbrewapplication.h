@@ -10,6 +10,9 @@
 #include <QApplication>
 #include "mainwindow.h"
 
+namespace qbrewview
+{
+
 class MainWindow;
 
 /*!
@@ -21,8 +24,8 @@ class QBrewApplication : public QApplication
   public:
     /*!
      * \brief Constructor
-     * \param argc number of parameters
-     * \param argv list of parameters
+     * \param argc Number of parameters
+     * \param argv List of parameters
      */
     QBrewApplication(int & argc, char * argv[]);
   private:
@@ -32,5 +35,7 @@ class QBrewApplication : public QApplication
      */
     MainWindow * mainWindow_;
 };
+
+}
 
 #endif // QBREWAPPLICATION_H

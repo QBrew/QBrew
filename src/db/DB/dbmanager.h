@@ -7,9 +7,10 @@
  * \author Cédric Gilon, Arnaud De Bruecker, Quentin Ravau
  */
 
-namespace qbrew
+namespace qbrewdb
 {
 
+void initialize();
 /*!
  * \brief Create a connection to the database
  * \return true if connection succeeded, false otherwise

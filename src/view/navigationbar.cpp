@@ -1,6 +1,8 @@
 #include "navigationbar.h"
-
 #include <QButtonGroup>
+
+namespace qbrewview
+{
 
 NavigationBar::NavigationBar(QWidget * parent) : QWidget(parent)
 {
@@ -46,4 +48,6 @@ QPushButton * NavigationBar::getPushButton(const QString & name)
     qpb->setStyleSheet(style);
     group_->addButton(qpb);
     return qpb;
+}
+
 }

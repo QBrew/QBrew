@@ -1,6 +1,6 @@
 #include "packagedto.h"
 
-namespace qbrew
+namespace qbrewdb
 {
 
 QString PackageDTO::toString()

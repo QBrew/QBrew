@@ -2,11 +2,11 @@
 #include <QtSql>
 #include <QDir>
 #include <QDebug>
-
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include "../../process/process.h"
 
-namespace qbrew
+namespace qbrewdb
 {
 
 bool connection()
@@ -59,6 +59,24 @@ void dropTable()
 {
     QSqlQuery query;
     query.exec("DROP TABLE IF EXISTS PACKAGES");
+}
+
+void initialize()
+{
+    connection();
+    //dropTable();
+
+    QSqlDatabase db = QSqlDatabase::database();
+    if (db.tables().isEmpty())
+    {
+        createTable();
+        qbrewprocess::createDB(true); //db for brew cask
+        qbrewprocess::createDB(false); //db for brew
+    }
+
+    removeAllInstalled();
+    addListInstalled(qbrewprocess::list(true), true);
+    addListInstalled(qbrewprocess::list(false), false);
 }
 
 }

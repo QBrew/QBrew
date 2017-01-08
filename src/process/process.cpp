@@ -7,11 +7,10 @@
 #include <QDirIterator>
 #include <QTextStream>
 #include "../db/dto/packagedto.h"
-#include "../db/db/qbrewdb.h"
-
+#include "../db/db/dbactions.h"
 #include <QDebug>
 
-namespace qbrew
+namespace qbrewprocess
 {
 
 QString getBrewPath(bool cask)
@@ -198,6 +197,5 @@ void updateHomebrew()
     process.start("/usr/local/bin/brew update");
     process.waitForFinished(-1);
 }
-
 
 } //namespace qbrew

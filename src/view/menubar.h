@@ -12,6 +12,9 @@
 #include "../menu/about.h"
 #include "../menu/preferences.h"
 
+namespace qbrewview
+{
+
 /*!
  * \class MenuBar
  * \brief Menu bar for the application
@@ -25,7 +28,7 @@ class MenuBar : public QMenuBar
      * \param parent Widget from which this menubar will depend
      * \param list List of packages that the menubar will modify
      */
-    MenuBar(QWidget * parent, qbrew::PackageList * list);
+    MenuBar(QWidget * parent, PackageList * list);
 
     /*!
      * \brief Set all actions in matching menu
@@ -95,7 +98,8 @@ class MenuBar : public QMenuBar
     /*!
      * \brief The list of packages the menubar actions will update
      */
-    qbrew::PackageList * list_;
+    PackageList * list_;
 };
 
+}
 #endif // MENUBAR_H

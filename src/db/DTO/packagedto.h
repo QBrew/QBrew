@@ -10,7 +10,7 @@
 #include <QString>
 #include <QDebug>
 
-namespace qbrew
+namespace qbrewdb
 {
 
 /*!

@@ -13,6 +13,9 @@
 #include <QLabel>
 #include <QPushButton>
 
+namespace qbrewview
+{
+
 /*!
  * \class About
  * \brief The about window popup
@@ -58,5 +61,7 @@ class About : public QDialog
      */
     QPushButton * closeButton_;
 };
+
+}
 
 #endif // ABOUT_H

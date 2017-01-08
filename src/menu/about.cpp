@@ -1,5 +1,8 @@
 #include "about.h"
 
+namespace qbrewview
+{
+
 About::About(QWidget * parent) : QDialog(parent)
 {
     vbox_ = new QVBoxLayout;
@@ -30,4 +33,6 @@ void About::setButton()
     connect(closeButton_, SIGNAL (clicked()), this, SLOT(close()));
     vbox_->addWidget(closeButton_);
     vbox_->setAlignment(closeButton_, Qt::AlignRight);
+}
+
 }
