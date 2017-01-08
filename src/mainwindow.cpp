@@ -160,8 +160,7 @@ int MainWindow::installOrUninstallDialog(bool install)
 
         if (install && !selected.at(i).isInstalled())
         {
-            if (true)
-                //if (qbrew::install(selected.at(i)) == 0)
+            if (qbrewutil::install(selected.at(i)) == 0)
             {
                 addInstalled(selected.at(i));
                 number++;
@@ -169,8 +168,7 @@ int MainWindow::installOrUninstallDialog(bool install)
         }
         if (!install && selected.at(i).isInstalled())
         {
-            if (true)
-                //if (qbrew::uninstall(selected.at(i)) == 0)
+            if (qbrewutil::uninstall(selected.at(i)) == 0)
             {
                 removeInstalled(selected.at(i));
                 number++;
@@ -178,7 +176,6 @@ int MainWindow::installOrUninstallDialog(bool install)
         }
         if (progress->wasCanceled())
             break;
-        QThread::sleep(1);
 
     }
     progress->setValue(selected.size());
