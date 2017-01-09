@@ -45,7 +45,5 @@ HEADERS  += \
     src/util/process.h \
     src/util/settings.h
 
-TRANSLATIONS = translations/qbrew_fr.ts
-
 RESOURCES += \
     ressources.qrc
